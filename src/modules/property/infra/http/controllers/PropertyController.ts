@@ -9,7 +9,7 @@ import showPropertyUseCase from '@modules/property/useCases/ShowPropertyUseCase'
 
 export default class PropertyController {
 
-  public async listAllOfUser(
+  public async listAll(
     request: Request,
     response: Response,
   ): Promise<Response> {
