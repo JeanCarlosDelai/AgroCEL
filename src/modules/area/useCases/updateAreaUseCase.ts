@@ -17,8 +17,8 @@ class UpdateAreaUseCase {
 
   public async execute({
     name,
-    property_id,
     area_id,
+    property_id,
     species,
     variety,
     driving_system,
