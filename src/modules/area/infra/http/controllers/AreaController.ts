@@ -32,7 +32,7 @@ export default class AreaController {
       distance_between_plants,
       number_plants,
     } = request.body;
-    const property_id = request.params.id;
+    const property_id = request.params.property_id;
 
     const createArea = container.resolve(CreateAreaUseCase);
 
@@ -90,7 +90,7 @@ export default class AreaController {
       number_plants,
     });
 
-    return response.json(area);
+    return response.status(StatusCodes.OK).json(area);
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
