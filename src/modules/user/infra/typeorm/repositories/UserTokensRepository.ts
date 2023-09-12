@@ -1,4 +1,4 @@
-import { IUserTokensRepository } from '@modules/users/domain/repositories/IUserTokensRepository';
+import { IUserTokensRepository } from '@modules/user/domain/repositories/IUserTokensRepository';
 import { Repository } from 'typeorm';
 import UserToken from '../entities/UserToken';
 import { dataSource } from '@shared/infra/typeorm';

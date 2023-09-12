@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import CreateUserUseCase from '@modules/users/useCases/CreateUserUseCase';
-import ListUserUseCase from '@modules/users/useCases/ListUserUseCase';
-import ShowUserUseCase from '@modules/users/useCases/ShowUserUseCase';
+import CreateUserUseCase from '@modules/user/useCases/CreateUserUseCase';
+import ListUserUseCase from '@modules/user/useCases/ListUserUseCase';
+import ShowUserUseCase from '@modules/user/useCases/ShowUserUseCase';
 import { instanceToInstance } from 'class-transformer';
 
 export default class UsersController {
