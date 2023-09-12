@@ -5,6 +5,8 @@ import { CreateProperty1608058533060 } from './migrations/1608058533060-CreatePr
 import { AddUserIdToProperty1609037132700 } from './migrations/1609037132700-AddUserIdToProperty';
 import User from '@modules/user/infra/typeorm/entities/User';
 import Property from '@modules/property/infra/typeorm/entities/Property';
+import { CreateArea1693744290769 } from './migrations/1693744290769-CreateArea';
+import Area from '@modules/area/infra/typeorm/entities/Area';
 
 export const dataSource = new DataSource({
   type: 'postgres',
@@ -13,11 +15,12 @@ export const dataSource = new DataSource({
   username: 'postgres',
   password: 'docker',
   database: 'agrocel',
-  entities: [User, Property],
+  entities: [User, Property, Area],
   migrations: [
     CreateUsers1607534203339,
     CreateUserTokens1607917238905,
     CreateProperty1608058533060,
     AddUserIdToProperty1609037132700,
+    CreateArea1693744290769,
   ],
 });
