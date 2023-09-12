@@ -1,10 +1,10 @@
 import { container } from 'tsyringe';
 
-import '@modules/users/providers';
-import { IUsersRepository } from '@modules/users/domain/repositories/IUsersRepository';
-import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
-import UserTokensRepository from '@modules/users/infra/typeorm/repositories/UserTokensRepository';
-import { IUserTokensRepository } from '@modules/users/domain/repositories/IUserTokensRepository';
+import '@modules/user/providers';
+import { IUsersRepository } from '@modules/user/domain/repositories/IUsersRepository';
+import UsersRepository from '@modules/user/infra/typeorm/repositories/UsersRepository';
+import UserTokensRepository from '@modules/user/infra/typeorm/repositories/UserTokensRepository';
+import { IUserTokensRepository } from '@modules/user/domain/repositories/IUserTokensRepository';
 
 
 container.registerSingleton<IUsersRepository>(

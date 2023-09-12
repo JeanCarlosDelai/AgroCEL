@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import CreateSessionsUseCase from '@modules/users/useCases/CreateSessionsUseCase';
+import CreateSessionsUseCase from '@modules/user/useCases/CreateSessionsUseCase';
 import { instanceToInstance } from 'class-transformer';
 
 export default class SessionsController {

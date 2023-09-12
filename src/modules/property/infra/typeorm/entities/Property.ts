@@ -1,5 +1,5 @@
 import { IProperty } from '@modules/property/domain/models/IProperty';
-import User from '@modules/users/infra/typeorm/entities/User';
+import User from '@modules/user/infra/typeorm/entities/User';
 import {
   Column,
   CreateDateColumn,
