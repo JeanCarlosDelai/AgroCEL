@@ -8,7 +8,6 @@ const Landing = () => {
       <div className="container page">
         {/* info */}
         <div className="info">
-          <Logo />
           <h4>Caderno de campo digital</h4>
           <Link to="/register" className="btn btn-hero">
             Login/Registrar-se

@@ -43,11 +43,6 @@ export class CreateProperty1608058533060 implements MigrationInterface {
             type: 'timestamp with time zone',
             default: 'now()',
           },
-          {
-            name: 'user_id',
-            type: 'uuid',
-            isNullable: true,
-          },
         ],
       }),
     );
