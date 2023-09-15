@@ -1,16 +1,21 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Landing from './pages/Landing';
+import { Landing, Register } from './pages';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from './components/Footer';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
-        <Route path="landing" element={<Landing />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="register" element={<Register />} />
       </Routes>
       <ToastContainer position="top-center" />
+      <Footer />
     </BrowserRouter>
   );
 }
