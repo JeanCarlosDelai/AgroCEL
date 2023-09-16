@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import { Landing, Register, Error, ProtectedRoute } from './pages';
 import { SharedLayout, Profile } from './pages/dashboard';
 import { Footer } from './components/index';
+import PropertysContainer from './pages/dashboard/Propertys/PropertysContainer';
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +20,7 @@ function App() {
           }
         >
           <Route path="profile" element={<Profile />} />
+          <Route path="propertys" element={<PropertysContainer />} />
         </Route>
         <Route path="landing" element={<Landing />} />
         <Route path="register" element={<Register />} />

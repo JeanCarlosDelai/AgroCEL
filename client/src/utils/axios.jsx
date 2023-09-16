@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { clearStore } from '../features/user/userSlice';
-import { getUserFromLocalStorage } from './localStorage';
+import {
+  getUserFromLocalStorage,
+  getTokenFromLocalStorage,
+} from './localStorage';
 
 const customFetch = axios.create({
   baseURL: 'http://localhost:3333/',
@@ -8,8 +11,10 @@ const customFetch = axios.create({
 
 customFetch.interceptors.request.use((config) => {
   const user = getUserFromLocalStorage();
-  if (user) {
-    config.headers['Authorization'] = `Bearer ${user.token}`;
+  const token = getTokenFromLocalStorage();
+
+  if (user && token) {
+    config.headers['Authorization'] = `Bearer ${token}`;
   }
   return config;
 });

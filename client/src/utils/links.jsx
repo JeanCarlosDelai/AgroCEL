@@ -5,7 +5,12 @@ import { ImProfile } from 'react-icons/im';
 
 const links = () => {
   const links = [
-    { id: 1, text: 'Propriedades', path: '/', icon: <IoBarChartSharp /> },
+    {
+      id: 1,
+      text: 'Propriedades',
+      path: '/propertys',
+      icon: <IoBarChartSharp />,
+    },
     { id: 2, text: 'Áreas', path: '/', icon: <ImProfile /> },
   ];
   return links;

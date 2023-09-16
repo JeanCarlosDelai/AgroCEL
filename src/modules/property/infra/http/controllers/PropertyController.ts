@@ -14,6 +14,7 @@ export default class PropertyController {
     response: Response,
   ): Promise<Response> {
     const user_id = request.user.id;
+    console.log(user_id);
 
     const listPropertys = container.resolve(ListPropertyUseCase);
     const propertys = await listPropertys.execute(user_id);

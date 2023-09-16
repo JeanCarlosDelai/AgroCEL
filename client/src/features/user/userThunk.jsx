@@ -24,10 +24,10 @@ export const loginUserThunk = async (url, user, thunkAPI) => {
 
 export const updateUserThunk = async (url, user, thunkAPI) => {
   try {
-    const resp = await customFetch.patch(url, user);
+    const resp = await customFetch.put(url, user);
     return resp.data;
   } catch (error) {
-    return checkForUnauthorizedResponse(error, thunkAPI);
+    // return checkForUnauthorizedResponse(error, thunkAPI);
   }
 };
 

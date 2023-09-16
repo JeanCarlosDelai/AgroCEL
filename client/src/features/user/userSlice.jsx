@@ -4,6 +4,9 @@ import {
   addUserToLocalStorage,
   getUserFromLocalStorage,
   removeUserFromLocalStorage,
+  addTokenToLocalStorage,
+  getTokenFromLocalStorage,
+  removeTokenFromLocalStorage,
 } from '../../utils/localStorage';
 import {
   loginUserThunk,
@@ -17,6 +20,7 @@ const initialState = {
   isLoading: false,
   isSidebarOpen: false,
   user: getUserFromLocalStorage(),
+  token: getTokenFromLocalStorage(),
 };
 
 //É uma função que cria ações assíncronas para o Redux.
@@ -52,8 +56,10 @@ const userSlice = createSlice({
     },
     logoutUser: (state, { payload }) => {
       state.user = null;
+      state.token = null;
       state.isSidebarOpen = false;
       removeUserFromLocalStorage();
+      removeTokenFromLocalStorage();
       if (payload) {
         toast.success(payload);
       }
@@ -66,11 +72,8 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(registerUser.fulfilled, (state) => {
-        const { user } = payload;
         state.isLoading = false;
-        state.user = user;
-        addUserToLocalStorage(user);
-        toast.success(`Seja bem vindo ${user.name}!`);
+        toast.success(`Usuário cadastrado com sucesso!`);
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -80,11 +83,12 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
-        const { user } = payload;
+        const { user, token } = payload;
         state.isLoading = false;
         state.user = user;
+        state.token = token;
         addUserToLocalStorage(user);
-
+        addTokenToLocalStorage(token);
         toast.success(`Seja bem vindo novamente ${user.name}`);
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
@@ -99,7 +103,6 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.user = user;
         addUserToLocalStorage(user);
-
         toast.success(`Usuário atualizado!`);
       })
       .addCase(updateUser.rejected, (state, { payload }) => {
