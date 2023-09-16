@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { Landing, Register } from './pages';
+import { Landing, Register, Error } from './pages';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from './components/Footer';
@@ -13,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="register" element={<Register />} />
+        <Route path="*" element={<Error />} />
       </Routes>
       <ToastContainer position="top-center" />
       <Footer />

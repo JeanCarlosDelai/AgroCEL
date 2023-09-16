@@ -1,4 +1,5 @@
 import Landing from './Landing';
 import Register from './Register';
+import Error from './Error';
 
-export { Landing, Register };
+export { Landing, Register, Error };
