@@ -19,7 +19,7 @@ const CreateProperty = () => {
     total_area,
     cultivated_area,
     isEditing,
-    editpropertyId,
+    propertyId,
   } = useSelector((store) => store.property);
   const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const CreateProperty = () => {
     if (isEditing) {
       dispatch(
         editProperty({
-          editpropertyId,
+          propertyId,
           property: {
             name,
             city,

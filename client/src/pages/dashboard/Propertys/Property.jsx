@@ -5,8 +5,14 @@ import {
   deleteProperty,
   setEditProperty,
 } from '../../../features/property/propertySlice';
+import { getAllPropertys } from '../../../features/property/propertySlice';
 const Property = ({ id, name, total_area, cultivated_area, city, state }) => {
   const dispatch = useDispatch();
+  const handleDeleteProperty = async () => {
+    await dispatch(deleteProperty(id));
+
+    dispatch(getAllPropertys());
+  };
 
   return (
     <PropertyWrapper>
@@ -33,13 +39,12 @@ const Property = ({ id, name, total_area, cultivated_area, city, state }) => {
             onClick={() =>
               dispatch(
                 setEditProperty({
-                  editTravelId: id,
-                  travelName,
-                  location,
-                  description,
-                  characteristics,
-                  image,
-                  price,
+                  propertyId: id,
+                  name,
+                  city,
+                  state,
+                  total_area,
+                  cultivated_area,
                 }),
               )
             }
@@ -49,7 +54,7 @@ const Property = ({ id, name, total_area, cultivated_area, city, state }) => {
           <button
             type="button"
             className="btn delete-btn"
-            onClick={() => dispatch(deleteProperty(id))}
+            onClick={handleDeleteProperty} // Chama a função de exclusão
           >
             Excluir
           </button>

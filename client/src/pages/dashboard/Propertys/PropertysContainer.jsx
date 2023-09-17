@@ -3,13 +3,13 @@ import Property from './Property';
 import PropertysContainerWrapper from '../../../assets/wrappers/PropertysContainerWrapper';
 import { useSelector, useDispatch } from 'react-redux';
 import { Loading } from '../../../components';
-import { getAllPropertys } from '../../../features/AllPropertys/allPropertySlice';
+import { getAllPropertys } from '../../../features/property/propertySlice';
 import { Link } from 'react-router-dom';
 
 const PropertysContainer = () => {
-  const { propertys, isLoading } = useSelector((store) => store.allPropertys);
+  const { propertys, isLoading } = useSelector((store) => store.property);
   const dispatch = useDispatch();
-  console.log(propertys);
+
   useEffect(() => {
     dispatch(getAllPropertys());
   }, []);
@@ -18,8 +18,13 @@ const PropertysContainer = () => {
     return <Loading />;
   }
 
-  const propertyArray = propertys.data;
+  if (!propertys) {
+    return <Loading />;
+  }
 
+  const propertyArray = propertys.data || [];
+
+  // console.log(propertyArray);
   if (propertyArray.length === 0) {
     return (
       <PropertysContainerWrapper>

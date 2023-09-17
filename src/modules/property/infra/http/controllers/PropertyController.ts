@@ -14,7 +14,6 @@ export default class PropertyController {
     response: Response,
   ): Promise<Response> {
     const user_id = request.user.id;
-    console.log(user_id);
 
     const listPropertys = container.resolve(ListPropertyUseCase);
     const propertys = await listPropertys.execute(user_id);
@@ -44,7 +43,8 @@ export default class PropertyController {
     const user_id = request.user.id;
     const property_id = request.params.id;
     const { name, total_area, cultivated_area, city, state } = request.body;
-
+    console.log(`propertyId:  ${property_id}`);
+    console.log(`userId:  ${user_id}`);
     const updateProperty = container.resolve(UpdatePropertyUseCase);
 
     const property = await updateProperty.execute({

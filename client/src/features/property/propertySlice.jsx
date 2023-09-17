@@ -5,6 +5,7 @@ import {
   createPropertyThunk,
   deletePropertyThunk,
   editPropertyThunk,
+  getAllPropertysThunk,
 } from './propertyThunk';
 const initialState = {
   isLoading: false,
@@ -14,11 +15,17 @@ const initialState = {
   total_area: 0,
   cultivated_area: 0,
   isEditing: false,
-  editPropertyId: '',
+  propertyId: '',
+  propertys: [],
 };
 
+export const getAllPropertys = createAsyncThunk(
+  'property/getPropertys',
+  getAllPropertysThunk,
+);
+
 export const createProperty = createAsyncThunk(
-  'propertyl/createProperty',
+  'property/createProperty',
   createPropertyThunk,
 );
 
@@ -36,6 +43,12 @@ const propertySlice = createSlice({
   name: 'property',
   initialState,
   reducers: {
+    showLoading: (state) => {
+      state.isLoading = true;
+    },
+    hideLoading: (state) => {
+      state.isLoading = false;
+    },
     handleChange: (state, { payload: { name, value } }) => {
       if (name === 'price') {
         value = parseFloat(value);
@@ -49,6 +62,7 @@ const propertySlice = createSlice({
       };
     },
     setEditProperty: (state, { payload }) => {
+      console.log('Payload in setEditProperty:', payload);
       return { ...state, isEditing: true, ...payload };
     },
   },
@@ -78,16 +92,32 @@ const propertySlice = createSlice({
       })
       .addCase(editProperty.fulfilled, (state) => {
         state.isLoading = false;
-        toast.success('Viagem modificada...');
+        toast.success('Propriedade modificada...');
       })
       .addCase(editProperty.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        toast.error(payload);
+      })
+      .addCase(getAllPropertys.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllPropertys.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.propertys = payload;
+      })
+      .addCase(getAllPropertys.rejected, (state, { payload }) => {
         state.isLoading = false;
         toast.error(payload);
       });
   },
 });
 
-export const { handleChange, clearValues, setEditProperty } =
-  propertySlice.actions;
+export const {
+  handleChange,
+  clearValues,
+  setEditProperty,
+  showLoading,
+  hideLoading,
+} = propertySlice.actions;
 
 export default propertySlice.reducer;

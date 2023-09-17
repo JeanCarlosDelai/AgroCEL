@@ -6,6 +6,6 @@ export const store = configureStore({
   reducer: {
     user: userSlice,
     property: propertySlice,
-    allPropertys: allPropertySlice,
+    // allPropertys: allPropertySlice,
   },
 });

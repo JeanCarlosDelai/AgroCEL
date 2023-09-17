@@ -27,9 +27,20 @@ export const deletePropertyThunk = async (propertyId, thunkAPI) => {
   }
 };
 export const editPropertyThunk = async ({ propertyId, property }, thunkAPI) => {
+  console.log(propertyId);
   try {
     const resp = await customFetch.put(`/property/${propertyId}`, property);
     thunkAPI.dispatch(clearValues());
+    return resp.data;
+  } catch (error) {
+    return checkForUnauthorizedResponse(error, thunkAPI);
+  }
+};
+
+export const getAllPropertysThunk = async (_, thunkAPI) => {
+  let url = `/property/user`;
+  try {
+    const resp = await customFetch.get(url);
     return resp.data;
   } catch (error) {
     return checkForUnauthorizedResponse(error, thunkAPI);
