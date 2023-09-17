@@ -104,6 +104,7 @@ const PropertyWrapper = styled.article`
     color: var(--green-dark);
     background: var(--green-light);
     margin-right: 0.5rem;
+    margin-bottom: 0.8rem;
   }
   .delete-btn {
     color: var(--red-dark);

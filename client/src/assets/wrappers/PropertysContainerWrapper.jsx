@@ -13,6 +13,9 @@ const PropertysContainerWrapper = styled.section`
     grid-template-columns: 1fr;
     row-gap: 2rem;
   }
+  .create-btn {
+    margin-bottom: 1rem;
+  }
   @media (min-width: 992px) {
     .jobs {
       display: grid;

@@ -2,39 +2,38 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { getUserFromLocalStorage } from '../../utils/localStorage';
 import {
-  createTravelThunk,
-  deleteTravelThunk,
-  editTravelThunk,
+  createPropertyThunk,
+  deletePropertyThunk,
+  editPropertyThunk,
 } from './propertyThunk';
 const initialState = {
   isLoading: false,
-  travelName: '',
-  location: '',
-  description: '',
-  characteristics: '',
-  image: '',
-  price: 0,
+  name: '',
+  city: '',
+  state: '',
+  total_area: 0,
+  cultivated_area: 0,
   isEditing: false,
-  editTravelId: '',
+  editPropertyId: '',
 };
 
-export const createTravel = createAsyncThunk(
-  'travel/createTravel',
-  createTravelThunk,
+export const createProperty = createAsyncThunk(
+  'propertyl/createProperty',
+  createPropertyThunk,
 );
 
-export const deleteTravel = createAsyncThunk(
-  'travel/deleteTravel',
-  deleteTravelThunk,
+export const deleteProperty = createAsyncThunk(
+  'property/deleteProperty',
+  deletePropertyThunk,
 );
 
-export const editTravel = createAsyncThunk(
-  'travel/editTravel',
-  editTravelThunk,
+export const editProperty = createAsyncThunk(
+  'property/editProperty',
+  editPropertyThunk,
 );
 
-const travelSlice = createSlice({
-  name: 'travel',
+const propertySlice = createSlice({
+  name: 'property',
   initialState,
   reducers: {
     handleChange: (state, { payload: { name, value } }) => {
@@ -49,7 +48,7 @@ const travelSlice = createSlice({
         location: getUserFromLocalStorage()?.location || '',
       };
     },
-    setEditTravel: (state, { payload }) => {
+    setEditProperty: (state, { payload }) => {
       return { ...state, isEditing: true, ...payload };
     },
   },
@@ -57,37 +56,38 @@ const travelSlice = createSlice({
   // Manipuladores de ações assíncronas
   extraReducers: (builder) => {
     builder
-      .addCase(createTravel.pending, (state) => {
+      .addCase(createProperty.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(createTravel.fulfilled, (state) => {
+      .addCase(createProperty.fulfilled, (state) => {
         state.isLoading = false;
-        toast.success('Viagem criada');
+        toast.success('Propriedade criada');
       })
-      .addCase(createTravel.rejected, (state, { payload }) => {
+      .addCase(createProperty.rejected, (state, { payload }) => {
         state.isLoading = false;
         toast.error(payload);
       })
-      .addCase(deleteTravel.fulfilled, (state, { payload }) => {
-        toast.success('Viagem excluída..');
+      .addCase(deleteProperty.fulfilled, (state, { payload }) => {
+        toast.success('Propriedade excluída..');
       })
-      .addCase(deleteTravel.rejected, (state, { payload }) => {
+      .addCase(deleteProperty.rejected, (state, { payload }) => {
         toast.error(payload);
       })
-      .addCase(editTravel.pending, (state) => {
+      .addCase(editProperty.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(editTravel.fulfilled, (state) => {
+      .addCase(editProperty.fulfilled, (state) => {
         state.isLoading = false;
         toast.success('Viagem modificada...');
       })
-      .addCase(editTravel.rejected, (state, { payload }) => {
+      .addCase(editProperty.rejected, (state, { payload }) => {
         state.isLoading = false;
         toast.error(payload);
       });
   },
 });
 
-export const { handleChange, clearValues, setEditTravel } = travelSlice.actions;
+export const { handleChange, clearValues, setEditProperty } =
+  propertySlice.actions;
 
-export default travelSlice.reducer;
+export default propertySlice.reducer;
