@@ -33,6 +33,6 @@ export default function isAuthenticated(
 
     return next();
   } catch {
-    throw new CustomAPIError.BadRequestError('Invalid JWT token.');
+    throw new CustomAPIError.BadRequestError(authHeader);
   }
 }

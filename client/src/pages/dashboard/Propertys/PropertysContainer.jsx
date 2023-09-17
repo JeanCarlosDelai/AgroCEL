@@ -6,11 +6,9 @@ import { Loading } from '../../../components';
 import { getAllPropertys } from '../../../features/AllPropertys/allPropertySlice';
 
 const PropertysContainer = () => {
-  const { propertys, isLoading, totalPropertys } = useSelector(
-    (store) => store.allPropertys,
-  );
+  const { propertys, isLoading } = useSelector((store) => store.allPropertys);
   const dispatch = useDispatch();
-
+  console.log(propertys);
   useEffect(() => {
     dispatch(getAllPropertys());
   }, []);
@@ -26,14 +24,15 @@ const PropertysContainer = () => {
   //     </Wrapper>
   //   );
   // }
+  const propertyArray = propertys.data;
 
   return (
     <propertysContainer>
       <>
-        <h5>{totalPropertys} Propriedades encontradas</h5>
+        <h5>{propertyArray.length} Propriedades encontradas</h5>
         <div className="jobs">
-          {propertys.map((property, index) => {
-            return <Property key={index} {...property} />;
+          {propertyArray.map((property, index) => {
+            return <Property key={property.id} {...property} />;
           })}
         </div>
         <p>Propriedade</p>

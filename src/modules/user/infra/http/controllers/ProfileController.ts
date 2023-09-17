@@ -10,7 +10,6 @@ export default class ProfileController {
     const user_id = request.user.id;
 
     const user = await showProfile.execute({ user_id });
-
     return response.json(instanceToInstance(user));
   }
 
