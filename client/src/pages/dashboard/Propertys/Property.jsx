@@ -1,40 +1,28 @@
 // import { CgDollar } from 'react-icons/cg';
 import { AiFillCaretRight } from 'react-icons/ai';
 // import { Link } from 'react-router-dom';
-import property from '../../../assets/wrappers/Property';
+import PropertyWrapper from '../../../assets/wrappers/PropertyWrapper';
 import { useDispatch } from 'react-redux';
 import { PropertyInfo } from '../../../components';
-import moment from 'moment';
 // import { deleteTravel, setEditTravel } from '../features/travel/travelSlice';
-const Property = ({
-  id,
-  name,
-  total_area,
-  cultivated_area,
-  city,
-  state,
-  createdAt,
-}) => {
+const Property = ({ id, name, total_area, cultivated_area, city, state }) => {
   const dispatch = useDispatch();
 
-  const date = moment(createdAt).format('MMM Do, YYYY');
-
   return (
-    <property>
-      <header>
-        <div className="info">
-          <h5>{name}</h5>
-          <p>{city}</p>
-          <p>{state}</p>
-        </div>
-      </header>
-
-      <div className="content"></div>
-      <div className="content">
-        <PropertyInfo icon={<AiFillCaretRight />} text={total_area} />
+    <PropertyWrapper>
+      <div className="info">
+        <h2>{name}</h2>
       </div>
-      <div className="content">
-        <PropertyInfo icon={<AiFillCaretRight />} text={cultivated_area} />
+      <div className="info">
+        <h3>
+          {city} - {state}
+        </h3>
+      </div>
+      <div className="info">
+        <h4>Área total:{total_area} </h4>
+      </div>
+      <div className="info">
+        <h4>Área cultivada:{cultivated_area} </h4>
       </div>
       {/*
         <footer>
@@ -68,7 +56,7 @@ const Property = ({
           </div>
         </footer> */}
       {/* </div> */}
-    </property>
+    </PropertyWrapper>
   );
 };
 export default Property;
