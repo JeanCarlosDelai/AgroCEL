@@ -7,6 +7,7 @@ import {
   addTokenToLocalStorage,
   getTokenFromLocalStorage,
   removeTokenFromLocalStorage,
+  removePropertyFromLocalStorage,
 } from '../../utils/localStorage';
 import {
   loginUserThunk,
@@ -60,6 +61,7 @@ const userSlice = createSlice({
       state.isSidebarOpen = false;
       removeUserFromLocalStorage();
       removeTokenFromLocalStorage();
+      removePropertyFromLocalStorage();
       if (payload) {
         toast.success(payload);
       }
