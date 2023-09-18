@@ -5,8 +5,14 @@ import {
   deleteProperty,
   setEditProperty,
 } from '../../../features/property/propertySlice';
+import { addPropertyToLocalStorage } from '../../../utils/localStorage';
 const Property = ({ id, name, total_area, cultivated_area, city, state }) => {
   const dispatch = useDispatch();
+
+  const handleSelectProperty = () => {
+    addPropertyToLocalStorage(id, name);
+    window.location.reload();
+  };
 
   return (
     <PropertyWrapper>
@@ -51,6 +57,13 @@ const Property = ({ id, name, total_area, cultivated_area, city, state }) => {
             onClick={() => dispatch(deleteProperty(id))}
           >
             Excluir
+          </button>
+          <button
+            type="button"
+            className="btn select-btn"
+            onClick={handleSelectProperty}
+          >
+            Selecionar
           </button>
         </div>
       </footer>

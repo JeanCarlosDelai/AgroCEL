@@ -17,6 +17,8 @@ const initialState = {
   isEditing: false,
   propertyId: '',
   propertys: [],
+  selectedPropertyId: '',
+  selectedPropertyName: '',
 };
 
 export const getAllPropertys = createAsyncThunk(
@@ -63,6 +65,15 @@ const propertySlice = createSlice({
     },
     setEditProperty: (state, { payload }) => {
       return { ...state, isEditing: true, ...payload };
+    },
+    setSelectedProperty: (state, action) => {
+      state.selectedPropertyId = action.payload.id;
+      state.selectedPropertyName = action.payload.name;
+    },
+
+    clearSelectedProperty: (state) => {
+      state.selectedPropertyId = '';
+      state.selectedPropertyName = '';
     },
   },
 
@@ -117,6 +128,8 @@ export const {
   setEditProperty,
   showLoading,
   hideLoading,
+  setSelectedProperty,
+  clearSelectedProperty,
 } = propertySlice.actions;
 
 export default propertySlice.reducer;

@@ -1,7 +1,6 @@
 import { FormRow } from '../../../components';
 import DashboardFormPage from '../../../assets/wrappers/DashboardFormPage';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import {
   handleChange,
@@ -9,7 +8,6 @@ import {
   createProperty,
   editProperty,
 } from '../../../features/property/propertySlice';
-import { useEffect } from 'react';
 const CreateProperty = () => {
   const {
     isLoading,
@@ -21,7 +19,6 @@ const CreateProperty = () => {
     isEditing,
     propertyId,
   } = useSelector((store) => store.property);
-  const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();

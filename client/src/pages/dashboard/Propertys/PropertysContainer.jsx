@@ -18,13 +18,8 @@ const PropertysContainer = () => {
     return <Loading />;
   }
 
-  if (!propertys) {
-    return <Loading />;
-  }
-
   const propertyArray = propertys.data || [];
 
-  // console.log(propertyArray);
   if (propertyArray.length === 0) {
     return (
       <PropertysContainerWrapper>

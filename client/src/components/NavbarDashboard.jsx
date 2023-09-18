@@ -5,11 +5,13 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSidebar, clearStore } from '../features/user/userSlice';
 import { Link } from 'react-router-dom';
+import { getPropertyNameFromLocalStorage } from '../utils/localStorage';
 
 const NavbarDashboard = () => {
   const [showLogout, setShowLogout] = useState(false);
   const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  const propertyName = getPropertyNameFromLocalStorage();
 
   const toggle = () => {
     dispatch(toggleSidebar());
@@ -23,7 +25,7 @@ const NavbarDashboard = () => {
         </button>
         <div>
           <Logo />
-          <h3 className="logo-text">dashboard</h3>
+          <h3 className="logo-text">{propertyName}</h3>
         </div>
         <div className="btn-container">
           <button
