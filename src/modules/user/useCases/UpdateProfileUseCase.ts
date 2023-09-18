@@ -1,9 +1,11 @@
 import { inject, injectable } from 'tsyringe';
 import CustomAPIError from '@shared/errors';
 import { compare, hash } from 'bcryptjs';
+import authConfig from '@config/auth';
 import { IUpdateProfile } from '../domain/models/IUpdateProfile';
 import { IUser } from '../domain/models/IUser';
 import { IUsersRepository } from '../domain/repositories/IUsersRepository';
+import { sign, Secret } from 'jsonwebtoken';
 
 @injectable()
 class UpdateProfileUseCase {
@@ -22,7 +24,7 @@ class UpdateProfileUseCase {
     email,
     password,
     old_password,
-  }: IUpdateProfile): Promise<IUser> {
+  }: IUpdateProfile): Promise<any> {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
@@ -58,7 +60,15 @@ class UpdateProfileUseCase {
 
     await this.usersRepository.save(user);
 
-    return user;
+    const token = sign({}, authConfig.jwt.secret as Secret, {
+      subject: user.id,
+      expiresIn: authConfig.jwt.expiresIn,
+    });
+
+    return {
+      user,
+      token,
+    };
   }
 }
 

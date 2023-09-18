@@ -1,18 +1,32 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { Landing, Register } from './pages';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Footer from './components/Footer';
-import Navbar from './components/Navbar';
-
+import { ToastContainer } from 'react-toastify';
+import { Landing, Register, Error, ProtectedRoute } from './pages';
+import { SharedLayout, Profile } from './pages/dashboard';
+import { Footer } from './components/index';
+import PropertysContainer from './pages/dashboard/Propertys/PropertysContainer';
+import CreateProperty from './pages/dashboard/Propertys/CreateProperty';
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <SharedLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="profile" element={<Profile />} />
+          <Route path="propertys" element={<PropertysContainer />} />
+          <Route path="create-property" element={<CreateProperty />} />
+        </Route>
+        <Route path="landing" element={<Landing />} />
         <Route path="register" element={<Register />} />
+        <Route path="*" element={<Error />} />
       </Routes>
       <ToastContainer position="top-center" />
       <Footer />

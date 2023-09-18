@@ -43,7 +43,8 @@ export default class PropertyController {
     const user_id = request.user.id;
     const property_id = request.params.id;
     const { name, total_area, cultivated_area, city, state } = request.body;
-
+    console.log(`propertyId:  ${property_id}`);
+    console.log(`userId:  ${user_id}`);
     const updateProperty = container.resolve(UpdatePropertyUseCase);
 
     const property = await updateProperty.execute({

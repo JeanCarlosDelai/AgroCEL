@@ -47,6 +47,7 @@ class CreateSessionsUseCase {
       subject: user.id,
       expiresIn: authConfig.jwt.expiresIn,
     });
+    console.log(token);
 
     return {
       user,
