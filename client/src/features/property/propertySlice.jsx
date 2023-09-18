@@ -62,7 +62,6 @@ const propertySlice = createSlice({
       };
     },
     setEditProperty: (state, { payload }) => {
-      console.log('Payload in setEditProperty:', payload);
       return { ...state, isEditing: true, ...payload };
     },
   },

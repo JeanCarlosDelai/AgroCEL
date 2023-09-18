@@ -2,7 +2,7 @@ import {
   showLoading,
   hideLoading,
   getAllPropertys,
-} from '../AllPropertys/allPropertySlice';
+} from '../property/propertySlice';
 import customFetch, { checkForUnauthorizedResponse } from '../../utils/axios';
 import { clearValues } from './propertySlice';
 
@@ -27,7 +27,6 @@ export const deletePropertyThunk = async (propertyId, thunkAPI) => {
   }
 };
 export const editPropertyThunk = async ({ propertyId, property }, thunkAPI) => {
-  console.log(propertyId);
   try {
     const resp = await customFetch.put(`/property/${propertyId}`, property);
     thunkAPI.dispatch(clearValues());
