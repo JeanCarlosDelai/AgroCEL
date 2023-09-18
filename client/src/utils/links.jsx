@@ -11,7 +11,7 @@ const links = () => {
       path: '/propertys',
       icon: <IoBarChartSharp />,
     },
-    { id: 2, text: 'Áreas', path: '/', icon: <ImProfile /> },
+    { id: 2, text: 'Áreas', path: '/areas', icon: <ImProfile /> },
   ];
   return links;
 };
