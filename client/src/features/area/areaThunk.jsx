@@ -15,13 +15,10 @@ export const createAreaThunk = async (propertyId, area, thunkAPI) => {
     return checkForUnauthorizedResponse(error, thunkAPI);
   }
 };
-export const deleteAreaThunk = async (areaId, propertyId, thunkAPI) => {
+export const deleteAreaThunk = async ({ id, property_id }, thunkAPI) => {
   thunkAPI.dispatch(showLoading());
   try {
-    const resp = await customFetch.delete(
-      `/area/${propertyId}/delete/${areaId}`,
-    );
-    window.location.reload();
+    const resp = await customFetch.delete(`/area/${property_id}/delete/${id}`);
     return resp.data.msg;
   } catch (error) {
     thunkAPI.dispatch(hideLoading());
@@ -43,7 +40,6 @@ export const editAreaThunk = async ({ areaId, area }, propertyId, thunkAPI) => {
 };
 
 export const getAllAreasThunk = async (propertyId, thunkAPI) => {
-  console.log(propertyId);
   let url = `/area/${propertyId}`;
   try {
     const resp = await customFetch.get(url);
