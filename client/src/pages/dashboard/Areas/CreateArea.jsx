@@ -9,11 +9,12 @@ import {
   editArea,
 } from '../../../features/area/areaSlice';
 import { getPropertyIdFromLocalStorage } from '../../../utils/localStorage';
-const property_id = getPropertyIdFromLocalStorage();
+// const property_id = getPropertyIdFromLocalStorage();
 const CreateArea = () => {
   const {
     isLoading,
-    id: areaId,
+    areaId,
+    property_id,
     name,
     species,
     variety,
@@ -28,6 +29,7 @@ const CreateArea = () => {
     number_plants,
     isEditing,
   } = useSelector((store) => store.area);
+  // property_id=
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();

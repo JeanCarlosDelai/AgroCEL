@@ -39,7 +39,7 @@ const Property = ({ id, name, total_area, cultivated_area, city, state }) => {
             onClick={() =>
               dispatch(
                 setEditProperty({
-                  propertyId: id,
+                  property_id: id,
                   name,
                   city,
                   state,

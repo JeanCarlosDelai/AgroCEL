@@ -7,8 +7,6 @@ import { clearValues } from './areaSlice';
 // } from '../../utils/localStorage';
 
 export const createAreaThunk = async ({ property_id, area }, thunkAPI) => {
-  console.log(property_id);
-  console.log(area);
   try {
     const resp = await customFetch.post(`/area/${property_id}`, area);
     thunkAPI.dispatch(clearValues());
@@ -27,14 +25,17 @@ export const deleteAreaThunk = async ({ id, property_id }, thunkAPI) => {
     return checkForUnauthorizedResponse(error, thunkAPI);
   }
 };
-export const editAreaThunk = async ({ areaId, area }, propertyId, thunkAPI) => {
+export const editAreaThunk = async (
+  { property_id, areaId, area },
+  thunkAPI,
+) => {
+  console.log(areaId);
   try {
     const resp = await customFetch.put(
-      `/area/${propertyId}/put/${areaId}`,
+      `/area/${property_id}/put/${areaId}`,
       area,
     );
     thunkAPI.dispatch(clearValues());
-    window.location.reload();
     return resp.data;
   } catch (error) {
     return checkForUnauthorizedResponse(error, thunkAPI);

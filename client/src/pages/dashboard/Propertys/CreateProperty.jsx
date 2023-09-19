@@ -11,6 +11,7 @@ import {
 const CreateProperty = () => {
   const {
     isLoading,
+    property_id,
     name,
     city,
     state,
@@ -29,7 +30,7 @@ const CreateProperty = () => {
     if (isEditing) {
       dispatch(
         editProperty({
-          propertyId,
+          property_id,
           property: {
             name,
             city,
