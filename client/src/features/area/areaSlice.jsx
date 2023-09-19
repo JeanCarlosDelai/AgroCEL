@@ -22,6 +22,7 @@ const initialState = {
   distance_between_plants: 0,
   number_plants: 0,
   isEditing: false,
+  property_id: '',
   areaId: '',
   areas: [],
   selectedAreaId: '',

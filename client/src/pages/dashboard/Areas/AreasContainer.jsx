@@ -26,7 +26,7 @@ const AreasContainer = () => {
   if (areaArray.length === 0) {
     return (
       <PropertysContainerWrapper>
-        <Link to="/create-property" className="btn create-btn">
+        <Link to="/create-area" className="btn create-btn">
           Criar nova Area
         </Link>
         <h2>Sem Areas para mostrar...</h2>
@@ -36,7 +36,7 @@ const AreasContainer = () => {
 
   return (
     <PropertysContainerWrapper>
-      <Link to="/create-property" className="btn create-btn">
+      <Link to="/create-area" className="btn create-btn">
         Criar nova Area
       </Link>
       <h5>

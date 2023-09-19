@@ -17,7 +17,6 @@ const CreateProperty = () => {
     total_area,
     cultivated_area,
     isEditing,
-    propertyId,
   } = useSelector((store) => store.property);
   const dispatch = useDispatch();
   const handleSubmit = (e) => {

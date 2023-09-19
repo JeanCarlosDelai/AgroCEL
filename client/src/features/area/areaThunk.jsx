@@ -6,9 +6,11 @@ import { clearValues } from './areaSlice';
 //   addPropertyToLocalStorage,
 // } from '../../utils/localStorage';
 
-export const createAreaThunk = async (propertyId, area, thunkAPI) => {
+export const createAreaThunk = async ({ property_id, area }, thunkAPI) => {
+  console.log(property_id);
+  console.log(area);
   try {
-    const resp = await customFetch.post(`/area/${propertyId}`, area);
+    const resp = await customFetch.post(`/area/${property_id}`, area);
     thunkAPI.dispatch(clearValues());
     return resp.data.msg;
   } catch (error) {
