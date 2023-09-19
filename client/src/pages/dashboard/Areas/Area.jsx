@@ -78,13 +78,12 @@ const Area = ({
           >
             Excluir
           </button>
-          {/* <button
-            type="button"
+          <Link
+            to={`/area-info?property_id=${property_id}&area_id=${id}`}
             className="btn select-btn"
-            onClick={handleSelectProperty}
           >
-            Selecionar
-          </button> */}
+            Mais informações
+          </Link>
         </div>
       </footer>
     </PropertyWrapper>

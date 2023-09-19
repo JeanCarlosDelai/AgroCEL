@@ -9,6 +9,7 @@ import PropertysContainer from './pages/dashboard/Propertys/PropertysContainer';
 import CreateProperty from './pages/dashboard/Propertys/CreateProperty';
 import PropertysArea from './pages/dashboard/Areas/AreasContainer';
 import CreateArea from './pages/dashboard/Areas/CreateArea';
+import AreaInfoPage from './pages/dashboard/Areas/AreaInfoPage';
 function App() {
   return (
     <BrowserRouter>
@@ -27,6 +28,7 @@ function App() {
           <Route path="create-property" element={<CreateProperty />} />
           <Route path="areas" element={<PropertysArea />} />
           <Route path="create-area" element={<CreateArea />} />
+          <Route path="/area-info" element={<AreaInfoPage />} />
         </Route>
         <Route path="landing" element={<Landing />} />
         <Route path="register" element={<Register />} />

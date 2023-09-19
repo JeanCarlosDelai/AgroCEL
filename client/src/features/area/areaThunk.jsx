@@ -51,3 +51,13 @@ export const getAllAreasThunk = async (propertyId, thunkAPI) => {
     return checkForUnauthorizedResponse(error, thunkAPI);
   }
 };
+
+export const getOneAreaThunk = async ({ property_id, area_id }, thunkAPI) => {
+  let url = `/area/${property_id}/property/${area_id}`;
+  try {
+    const resp = await customFetch.get(url);
+    return resp.data;
+  } catch (error) {
+    return checkForUnauthorizedResponse(error, thunkAPI);
+  }
+};

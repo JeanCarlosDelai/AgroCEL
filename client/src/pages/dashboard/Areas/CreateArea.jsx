@@ -29,7 +29,6 @@ const CreateArea = () => {
     number_plants,
     isEditing,
   } = useSelector((store) => store.area);
-  // property_id=
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();

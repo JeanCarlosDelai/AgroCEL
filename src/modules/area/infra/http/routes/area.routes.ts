@@ -12,7 +12,7 @@ const areaController = new AreaController();
 areaRouter.use(isAuthenticated);
 
 areaRouter.get(
-  '/:property_id/area/:area_id',
+  '/:property_id/property/:area_id',
   validator(propertyIdAreaIdSchema),
   areaController.show,
 );

@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { getUserFromLocalStorage } from '../../utils/localStorage';
+// import { getUserFromLocalStorage } from '../../utils/localStorage';
 import {
   createAreaThunk,
   deleteAreaThunk,
   editAreaThunk,
   getAllAreasThunk,
+  getOneAreaThunk,
 } from './areaThunk';
 const initialState = {
   isLoading: false,
@@ -25,11 +26,13 @@ const initialState = {
   property_id: '',
   areaId: '',
   areas: [],
-  selectedAreaId: '',
+  selectedAreaData: '',
   selectedAreaName: '',
 };
 
 export const getAllAreas = createAsyncThunk('area/getAreas', getAllAreasThunk);
+
+export const getOneArea = createAsyncThunk('area/getArea', getOneAreaThunk);
 
 export const createArea = createAsyncThunk('area/createArea', createAreaThunk);
 
@@ -102,6 +105,17 @@ const areaSlice = createSlice({
         state.areas = payload;
       })
       .addCase(getAllAreas.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        toast.error(payload);
+      })
+      .addCase(getOneArea.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getOneArea.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.selectedAreaData = payload;
+      })
+      .addCase(getOneArea.rejected, (state, { payload }) => {
         state.isLoading = false;
         toast.error(payload);
       });
