@@ -2,12 +2,15 @@ import { inject, injectable } from 'tsyringe';
 import { IAreaRepository } from '../domain/repositories/IAreaRepository';
 import { IListArea } from '../domain/models/IListArea';
 import CustomAPIError from '@shared/errors';
+import { IPropertyRepository } from '@modules/property/domain/repositories/IPropertyRepository';
 
 @injectable()
 class ListAreaUseCase {
   constructor(
     @inject('AreaRepository')
     private areasRepository: IAreaRepository,
+    @inject('PropertyRepository')
+    private propertyRepository: IPropertyRepository,
   ) {
     if (!areasRepository) {
       throw new Error('PropertyRepository is required.');
@@ -15,9 +18,9 @@ class ListAreaUseCase {
   }
 
   public async execute(property_Id: string): Promise<IListArea> {
-    const area = await this.areasRepository.findById(property_Id);
+    const propertyExist = await this.propertyRepository.findById(property_Id);
 
-    if (!area) {
+    if (!propertyExist) {
       throw new CustomAPIError.BadRequestError('Property does not exists.');
     }
 

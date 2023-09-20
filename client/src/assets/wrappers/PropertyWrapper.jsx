@@ -94,12 +94,6 @@ const PropertyWrapper = styled.article`
   footer {
     margin-top: 1rem;
   }
-  .edit-btn,
-  .delete-btn {
-    letter-spacing: var(--letterSpacing);
-    cursor: pointer;
-    height: 30px;
-  }
   .edit-btn {
     color: var(--green-dark);
     background: var(--green-light);
@@ -109,6 +103,11 @@ const PropertyWrapper = styled.article`
   .delete-btn {
     color: var(--red-dark);
     background: var(--red-light);
+  }
+  .select-btn {
+    color: blue;
+    background: #a4aced;
+    margin-left: 0.5rem;
   }
   &:hover .actions {
     visibility: visible;

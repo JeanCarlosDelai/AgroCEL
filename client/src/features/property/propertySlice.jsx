@@ -15,7 +15,7 @@ const initialState = {
   total_area: 0,
   cultivated_area: 0,
   isEditing: false,
-  propertyId: '',
+  property_id: '',
   propertys: [],
   selectedPropertyId: '',
   selectedPropertyName: '',

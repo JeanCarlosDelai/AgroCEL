@@ -11,13 +11,13 @@ import {
 const CreateProperty = () => {
   const {
     isLoading,
+    property_id,
     name,
     city,
     state,
     total_area,
     cultivated_area,
     isEditing,
-    propertyId,
   } = useSelector((store) => store.property);
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
@@ -30,7 +30,7 @@ const CreateProperty = () => {
     if (isEditing) {
       dispatch(
         editProperty({
-          propertyId,
+          property_id,
           property: {
             name,
             city,

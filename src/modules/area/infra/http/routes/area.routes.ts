@@ -12,7 +12,7 @@ const areaController = new AreaController();
 areaRouter.use(isAuthenticated);
 
 areaRouter.get(
-  '/:property_id/area/:area_id',
+  '/:property_id/property/:area_id',
   validator(propertyIdAreaIdSchema),
   areaController.show,
 );
@@ -30,13 +30,13 @@ areaRouter.post(
 );
 
 areaRouter.put(
-  '/:property_id/area/:area_id',
+  '/:property_id/put/:area_id',
   validator(updateAreaSchema),
   areaController.update,
 );
 
 areaRouter.delete(
-  '/:property_id/area/:area_id',
+  '/:property_id/delete/:area_id',
   validator(propertyIdAreaIdSchema),
   areaController.delete,
 );
