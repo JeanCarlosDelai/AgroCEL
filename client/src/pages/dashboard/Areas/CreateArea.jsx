@@ -1,4 +1,4 @@
-import { FormRow } from '../../../components';
+import { FormRow, FormSelect } from '../../../components';
 import DashboardFormPage from '../../../assets/wrappers/DashboardFormPage';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -8,8 +8,10 @@ import {
   createArea,
   editArea,
 } from '../../../features/area/areaSlice';
-import { getPropertyIdFromLocalStorage } from '../../../utils/localStorage';
-// const property_id = getPropertyIdFromLocalStorage();
+// import { getPropertyIdFromLocalStorage } from '../../../utils/localStorage';
+import { DrivingSystems } from '../../../Arrays/DrivingSystems';
+import { AreaVarietys } from '../../../Arrays/AreaVarietys';
+import { RookstockTypes } from '../../../Arrays/RookstockTypes';
 const CreateArea = () => {
   const {
     isLoading,
@@ -30,6 +32,7 @@ const CreateArea = () => {
     isEditing,
   } = useSelector((store) => store.area);
   const dispatch = useDispatch();
+  // const varietyOptions = ['Opção 1', 'Opção 2', 'Opção 3', 'Opção 4'];
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -113,26 +116,29 @@ const CreateArea = () => {
             value={species}
             handleChange={handlePropertyInput}
           />
-          <FormRow
-            type="text"
+          <FormSelect
+            type="select"
             name="variety"
             labelText="Nome da variedade"
             value={variety}
             handleChange={handlePropertyInput}
+            options={AreaVarietys}
           />
-          <FormRow
-            type="text"
+          <FormSelect
+            type="select"
             name="driving_system"
-            labelText="Nome do sistema de condução"
+            labelText="Sistema de condução"
             value={driving_system}
             handleChange={handlePropertyInput}
+            options={DrivingSystems}
           />
-          <FormRow
-            type="text"
+          <FormSelect
+            type="select"
             name="rookstock_type"
-            labelText="Nome do tipo de porta enxerto"
+            labelText="Tipo de porta enxerto"
             value={rookstock_type}
             handleChange={handlePropertyInput}
+            options={RookstockTypes}
           />
           <FormRow
             type="text"
