@@ -40,10 +40,11 @@ class CreateSessionsUseCase {
       );
     }
 
-    const token = sign({}, authConfig.jwt.secret as Secret, {
+    const token = sign({}, process.env.JWT_SECRET as Secret, {
       subject: user.id,
       expiresIn: authConfig.jwt.expiresIn,
     });
+
     return {
       user,
       token,
