@@ -12,15 +12,14 @@
     "style:check": "prettier --check \"src/**/*.ts\" ",
     "style:fix": "prettier --write \"src/**/*.ts\" ",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "test": "jest ./tests --forceExit --runInBand",
-    "test:coverage": "jest ./tests --coverage"
+    "test": "jest --forceExit --runInBand",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jean Carlos",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "celebrate": "^15.0.1",
     "class-transformer": "^0.5.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
@@ -42,7 +41,7 @@
     "reflect-metadata": "^0.1.13",
     "tsyringe": "^4.8.0",
     "typeorm": "^0.3.17",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.3",
@@ -53,12 +52,15 @@
     "@types/multer": "^1.4.7",
     "@types/node": "^20.5.7",
     "@types/nodemailer": "^6.4.9",
+    "@types/supertest": "^2.0.13",
+    "@types/uuid": "^9.0.4",
     "@typescript-eslint/eslint-plugin": "^6.5.0",
     "@typescript-eslint/parser": "^6.5.0",
     "eslint": "^8.48.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.3",
+    "supertest": "^6.3.3",
     "ts-jest": "^29.1.1",
     "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.2.0",

@@ -1,27 +1,17 @@
 import { inject, injectable } from 'tsyringe';
-import { IPaginateUser } from '../domain/models/IPaginateUser';
 import { IUsersRepository } from '../domain/repositories/IUsersRepository';
-
-interface SearchParams {
-  page: number;
-  limit: number;
-}
+import { IListUser } from '../domain/models/IListUser';
 
 @injectable()
 class ListUserUseCase {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
-  ) { }
+    private usersRepository: IUsersRepository, // eslint-disable-next-line prettier/prettier
+  ) // eslint-disable-next-line prettier/prettier
+  { }
 
-  public async execute({ page, limit }: SearchParams): Promise<IPaginateUser> {
-    const take = limit;
-    const skip = (Number(page) - 1) * take;
-    const users = await this.usersRepository.findAll({
-      page,
-      skip,
-      take,
-    });
+  public async execute(): Promise<IListUser> {
+    const users = await this.usersRepository.findAll();
 
     return users;
   }

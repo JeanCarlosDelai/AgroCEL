@@ -3,20 +3,17 @@ import CustomAPIError from '@shared/errors';
 import { compare, hash } from 'bcryptjs';
 import authConfig from '@config/auth';
 import { IUpdateProfile } from '../domain/models/IUpdateProfile';
-import { IUser } from '../domain/models/IUser';
 import { IUsersRepository } from '../domain/repositories/IUsersRepository';
 import { sign, Secret } from 'jsonwebtoken';
+import { IProfileUpdate } from '../domain/models/IProfileUpdate';
 
 @injectable()
 class UpdateProfileUseCase {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
-  ) {
-    if (!usersRepository) {
-      throw new Error('usersRepository is required.');
-    }
-  }
+    private usersRepository: IUsersRepository, // eslint-disable-next-line prettier/prettier
+  ) // eslint-disable-next-line prettier/prettier
+  { }
 
   public async execute({
     user_id,
@@ -24,7 +21,7 @@ class UpdateProfileUseCase {
     email,
     password,
     old_password,
-  }: IUpdateProfile): Promise<any> {
+  }: IUpdateProfile): Promise<IProfileUpdate> {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {

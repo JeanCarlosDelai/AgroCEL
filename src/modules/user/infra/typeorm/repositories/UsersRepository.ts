@@ -1,16 +1,10 @@
 import { ICreateUser } from '@modules/user/domain/models/ICreateUser';
-import { IPaginateUser } from '@modules/user/domain/models/IPaginateUser';
+import { IListUser } from '@modules/user/domain/models/IListUser';
 import { IUsersRepository } from '@modules/user/domain/repositories/IUsersRepository';
 import { Repository } from 'typeorm';
 import User from '../entities/User';
 import { dataSource } from '@shared/infra/typeorm';
 import { IUser } from '@modules/user/domain/models/IUser';
-
-type SearchParams = {
-  page: number;
-  skip: number;
-  take: number;
-};
 
 class UsersRepository implements IUsersRepository {
   private ormRepository: Repository<User>;
@@ -33,21 +27,12 @@ class UsersRepository implements IUsersRepository {
     return user;
   }
 
-  public async findAll({
-    page,
-    skip,
-    take,
-  }: SearchParams): Promise<IPaginateUser> {
-    const [users, count] = await this.ormRepository
-      .createQueryBuilder()
-      .skip(skip)
-      .take(take)
-      .getManyAndCount();
+  public async findAll(): Promise<IListUser> {
+    const users = await this.ormRepository
+      .createQueryBuilder('users')
+      .getMany();
 
     const result = {
-      per_page: take,
-      total: count,
-      current_page: page,
       data: users,
     };
 
