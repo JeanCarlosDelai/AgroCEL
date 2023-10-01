@@ -21,7 +21,9 @@ class UsersRepositoryInMemory implements IUsersRepository {
   }
 
   public async save(user: User): Promise<User> {
-    const findIndex = this.users.findIndex(findUser => findUser.id === user.id);
+    const findIndex = this.users.findIndex(
+      (findUser) => findUser.id === user.id,
+    );
 
     this.users[findIndex] = user;
 
@@ -38,26 +40,25 @@ class UsersRepositoryInMemory implements IUsersRepository {
     return usersPaginate;
   }
 
-
   public async findByName(name: string): Promise<User | null> {
-    const user = this.users.find(user => user.name === name);
+    const user = this.users.find((user) => user.name === name);
     if (user) {
       return user;
     } else return null;
   }
 
   public async findById(id: string): Promise<User | null> {
-    const user = this.users.find(user => user.id === id);
+    const user = this.users.find((user) => user.id === id);
     if (user) {
       return user;
-    } else return null
+    } else return null;
   }
 
   public async findByEmail(email: string): Promise<User | null> {
-    const user = this.users.find(user => user.email === email);
+    const user = this.users.find((user) => user.email === email);
     if (user) {
       return user;
-    } else return null
+    } else return null;
   }
 }
 
