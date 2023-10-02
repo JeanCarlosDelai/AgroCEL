@@ -3,12 +3,11 @@ import ListPropertyUseCase from '@modules/property/useCases/ListPropertyUseCase'
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { container } from 'tsyringe';
-import UpdatePropertyUseCase from '@modules/property/useCases/updatePropertyUseCase';
 import DeletePropertyUseCase from '@modules/property/useCases/DeletePropertyUseCase';
 import showPropertyUseCase from '@modules/property/useCases/ShowPropertyUseCase';
+import UpdatePropertyUseCase from '@modules/property/useCases/updatePropertyUseCase';
 
 export default class PropertyController {
-
   public async listAll(
     request: Request,
     response: Response,
@@ -43,8 +42,6 @@ export default class PropertyController {
     const user_id = request.user.id;
     const property_id = request.params.id;
     const { name, total_area, cultivated_area, city, state } = request.body;
-    console.log(`propertyId:  ${property_id}`);
-    console.log(`userId:  ${user_id}`);
     const updateProperty = container.resolve(UpdatePropertyUseCase);
 
     const property = await updateProperty.execute({

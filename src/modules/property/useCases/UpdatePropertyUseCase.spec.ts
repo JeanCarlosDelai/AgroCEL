@@ -10,17 +10,18 @@ import PropertysRepositoryInMemory from '../domain/repositories/in-memory/Proper
 import { IPropertyRepository } from '../domain/repositories/IPropertyRepository';
 import { ICreateProperty } from '../domain/models/ICreateProperty';
 import { IProperty } from '../domain/models/IProperty';
-import ListPropertyUseCase from './ListPropertyUseCase';
+import UpdatePropertyUseCase from './updatePropertyUseCase';
+import { IUpdateProperty } from '../domain/models/IUpdateProperty';
 
 let usersRepositoryInMemory: IUsersRepository;
 let propertysRepositoryInMemory: IPropertyRepository;
 let fakehashedProvider: IHashProvider;
 let createUserUseCase: CreateUserUseCase;
 let createPropertyUseCase: CreatePropertyUseCase;
-let listPropertyUseCase: ListPropertyUseCase;
+let updatePropertyUseCase: UpdatePropertyUseCase;
 let user: IUser;
-let property1: IProperty;
-let property2: IProperty;
+let property: IProperty;
+let id: string;
 
 beforeAll(() => {
   usersRepositoryInMemory = new UsersRepositoryInMemory();
@@ -33,10 +34,12 @@ beforeAll(() => {
   createPropertyUseCase = new CreatePropertyUseCase(
     propertysRepositoryInMemory,
   );
-  listPropertyUseCase = new ListPropertyUseCase(propertysRepositoryInMemory);
+  updatePropertyUseCase = new UpdatePropertyUseCase(
+    propertysRepositoryInMemory,
+  );
 });
 
-describe('List Propertys', () => {
+describe('Update Property', () => {
   beforeAll(async () => {
     const userData: ICreateUser = {
       name: 'Jean teste',
@@ -45,7 +48,7 @@ describe('List Propertys', () => {
     };
     user = await createUserUseCase.execute(userData);
 
-    const propertyData1: ICreateProperty = {
+    const propertyData: ICreateProperty = {
       name: 'Propriedade 1',
       user_id: user.id,
       total_area: 10,
@@ -53,35 +56,40 @@ describe('List Propertys', () => {
       city: 'Coronel Pilar',
       state: 'RS',
     };
+    property = await createPropertyUseCase.execute(propertyData);
+    id = property.id;
+  });
 
-    const propertyData2: ICreateProperty = {
+  it('Should be able to update a property', async () => {
+    const propertyDataUpdate: IUpdateProperty = {
       name: 'Propriedade 2',
       user_id: user.id,
+      property_id: id,
       total_area: 10,
       cultivated_area: 5,
       city: 'Coronel Pilar',
       state: 'RS',
     };
+    property = await updatePropertyUseCase.execute(propertyDataUpdate);
 
-    property1 = await createPropertyUseCase.execute(propertyData1);
-    property2 = await createPropertyUseCase.execute(propertyData2);
+    expect(property).toBeTruthy();
+    expect(property.name).toBe(propertyDataUpdate.name);
   });
 
-  it('Should be able to list propertys', async () => {
-    const response = await listPropertyUseCase.execute(user.id);
+  it('Should not be able to update a not exist property', async () => {
+    const propertyDataUpdate: IUpdateProperty = {
+      name: 'Propriedade 2',
+      user_id: user.id,
+      property_id: '11231',
+      total_area: 10,
+      cultivated_area: 5,
+      city: 'Coronel Pilar',
+      state: 'RS',
+    };
+    const expectErrorResponse = new Error('Property not exist.');
 
-    expect(response).toBeTruthy();
-    expect(response.data[0].name).toBe(property1.name);
-    expect(response.data[1].name).toBe(property2.name);
+    expect(
+      updatePropertyUseCase.execute(propertyDataUpdate),
+    ).rejects.toThrowError(expectErrorResponse);
   });
-
-  // it('Should not be able to show one property', async () => {
-  //   const fakeUserId = '1232131321';
-  //   const fakePropertyId = '1232131321';
-  //   const expectErrorResponse = new Error('Property not exist.');
-
-  //   expect(
-  //     listPropertyUseCase.execute(fakeUserId, fakePropertyId),
-  //   ).rejects.toThrowError(expectErrorResponse);
-  // });
 });
