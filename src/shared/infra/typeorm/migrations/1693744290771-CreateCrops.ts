@@ -5,7 +5,7 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class CreateArea1693744290770 implements MigrationInterface {
+export class CreateArea1693744290771 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -32,7 +32,7 @@ export class CreateArea1693744290770 implements MigrationInterface {
           },
           {
             name: 'crop_time',
-            type: 'date',
+            type: 'int',
           },
           {
             name: 'created_at',
