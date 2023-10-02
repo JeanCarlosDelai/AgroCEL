@@ -5,11 +5,11 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class CreateArea1693744290769 implements MigrationInterface {
+export class CreateArea1693744290770 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'areas',
+        name: 'crops',
         columns: [
           {
             name: 'id',
@@ -23,48 +23,16 @@ export class CreateArea1693744290769 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'species',
-            type: 'varchar',
-          },
-          {
-            name: 'variety',
-            type: 'varchar',
-          },
-          {
-            name: 'driving_system',
-            type: 'varchar',
-          },
-          {
-            name: 'rookstock_type',
-            type: 'varchar',
-          },
-          {
-            name: 'cultivated_area',
+            name: 'quantity',
             type: 'int',
           },
           {
-            name: 'geographic_coordinates',
-            type: 'varchar',
-          },
-          {
-            name: 'implementation_date',
+            name: 'crop_date',
             type: 'date',
           },
           {
-            name: 'number_rows',
-            type: 'int',
-          },
-          {
-            name: 'distance_between_rows',
-            type: 'int',
-          },
-          {
-            name: 'distance_between_plants',
-            type: 'int',
-          },
-          {
-            name: 'number_plants',
-            type: 'int',
+            name: 'crop_time',
+            type: 'date',
           },
           {
             name: 'created_at',
@@ -77,7 +45,7 @@ export class CreateArea1693744290769 implements MigrationInterface {
             default: 'now()',
           },
           {
-            name: 'property_id',
+            name: 'area_id',
             type: 'uuid',
             isNullable: true,
           },
@@ -85,11 +53,11 @@ export class CreateArea1693744290769 implements MigrationInterface {
       }),
     );
     await queryRunner.createForeignKey(
-      'areas',
+      'crops',
       new TableForeignKey({
-        name: 'AreasProperty',
-        columnNames: ['property_id'],
-        referencedTableName: 'propertys',
+        name: 'AreasCrops',
+        columnNames: ['area_id'],
+        referencedTableName: 'areas',
         referencedColumnNames: ['id'],
         onDelete: 'SET NULL',
       }),
@@ -97,7 +65,7 @@ export class CreateArea1693744290769 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('areas');
-    await queryRunner.dropForeignKey('areas', 'AreasProperty');
+    await queryRunner.dropTable('crops');
+    await queryRunner.dropForeignKey('crops', 'AreasCrops');
   }
 }

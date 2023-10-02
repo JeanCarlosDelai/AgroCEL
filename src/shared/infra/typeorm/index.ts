@@ -7,6 +7,7 @@ import User from '@modules/user/infra/typeorm/entities/User';
 import Property from '@modules/property/infra/typeorm/entities/Property';
 import { CreateArea1693744290769 } from './migrations/1693744290769-CreateArea';
 import Area from '@modules/area/infra/typeorm/entities/Area';
+import { CreateArea1693744290770 } from './migrations/1693744290770-CreateCrops';
 
 export const dataSource = new DataSource({
   type: 'postgres',
@@ -22,5 +23,6 @@ export const dataSource = new DataSource({
     CreateProperty1608058533060,
     AddUserIdToProperty1609037132700,
     CreateArea1693744290769,
+    CreateArea1693744290770,
   ],
 });
