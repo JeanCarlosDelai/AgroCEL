@@ -30,7 +30,13 @@ class UsersRepositoryInMemory implements IUsersRepository {
     return user;
   }
 
-  public async remove(user: User): Promise<void> { }
+  public async remove(user: User): Promise<void> {
+    const propertyIndex = this.users.findIndex(
+      (findUser) => findUser.id === user.id,
+    );
+
+    this.users.splice(propertyIndex, 1);
+  }
 
   public async findAll(): Promise<IListUser> {
     const usersPaginate: IListUser = {

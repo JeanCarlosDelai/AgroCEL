@@ -2,9 +2,7 @@ import { Repository } from 'typeorm';
 import Property from '../entities/Property';
 import { dataSource } from '@shared/infra/typeorm';
 import { IPropertyRepository } from '@modules/property/domain/repositories/IPropertyRepository';
-import { SearchParams } from '../../../domain/repositories/IPropertyRepository';
 import { ICreateProperty } from '@modules/property/domain/models/ICreateProperty';
-import { IPropertyPaginate } from '@modules/property/domain/models/IPropertyPaginate';
 import { IPropertyAllOfUser } from '@modules/property/domain/models/IPropertyAllOfUser';
 import { IProperty } from '@modules/property/domain/models/IProperty';
 
@@ -44,25 +42,6 @@ class PropertyRepository implements IPropertyRepository {
 
   public async remove(property: Property): Promise<void> {
     await this.ormRepository.remove(property);
-  }
-
-  public async findAll({
-    page,
-    skip,
-    take,
-  }: SearchParams): Promise<IPropertyPaginate> {
-    const query = this.ormRepository.createQueryBuilder().skip(skip).take(take);
-
-    const [property, count] = await query.getManyAndCount();
-
-    const result = {
-      per_page: take,
-      total: count,
-      current_page: page,
-      data: property,
-    };
-
-    return result;
   }
 
   public async findAllOfUser(user_Id: string): Promise<IPropertyAllOfUser> {
