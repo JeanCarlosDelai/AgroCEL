@@ -9,6 +9,8 @@ import { IPropertyRepository } from '@modules/property/domain/repositories/IProp
 import PropertyRepository from '@modules/property/infra/typeorm/repositories/PropertyRepository';
 import { IAreaRepository } from '@modules/area/domain/repositories/IAreaRepository';
 import AreaRepository from '@modules/area/infra/typeorm/repositories/AreaRepository';
+import { ICropRepository } from '@modules/crops/domain/repositories/ICropRepository';
+import CropRepository from '@modules/crops/infra/typeorm/repositories/CropRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -26,3 +28,5 @@ container.registerSingleton<IPropertyRepository>(
 );
 
 container.registerSingleton<IAreaRepository>('AreaRepository', AreaRepository);
+
+container.registerSingleton<ICropRepository>('CropRepository', CropRepository);

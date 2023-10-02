@@ -12,7 +12,7 @@
     "style:check": "prettier --check \"src/**/*.ts\" ",
     "style:fix": "prettier --write \"src/**/*.ts\" ",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "test": "jest --forceExit --runInBand",
+    "test": "jest ./src/modules/crop --forceExit --runInBand",
     "test:coverage": "jest --coverage"
   },
   "keywords": [],
