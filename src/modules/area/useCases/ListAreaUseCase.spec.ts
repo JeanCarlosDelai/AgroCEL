@@ -50,7 +50,7 @@ beforeAll(() => {
   );
 });
 
-describe('Create Area', () => {
+describe('List Area', () => {
   beforeAll(async () => {
     const userData: ICreateUser = {
       name: 'Jean teste',
@@ -104,7 +104,7 @@ describe('Create Area', () => {
     property_id = area.property_id;
   });
 
-  it('Should be able to show areas', async () => {
+  it('Should be able to list areas', async () => {
     const response = await listAreaUseCase.execute(property_id);
 
     expect(response).toBeTruthy();
@@ -112,7 +112,7 @@ describe('Create Area', () => {
     expect(response.data[1].name).toBe(area2.name);
   });
 
-  it('Should not be able to show area with invalid property', async () => {
+  it('Should not be able to list areas with invalid property', async () => {
     const fakePropertyId = '1232131321';
     const expectErrorResponse = new Error('Area does not exists.');
 

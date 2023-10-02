@@ -15,7 +15,7 @@ import CreatePropertyUseCase from '@modules/property/useCases/CreatePropertyUseC
 import { ICreateProperty } from '@modules/property/domain/models/ICreateProperty';
 import { IProperty } from '@modules/property/domain/models/IProperty';
 import { IPropertyRepository } from '@modules/property/domain/repositories/IPropertyRepository';
-import DeleteAreaUseCase from './DeleteAreaUseCase';
+import ShowAreaUseCase from './ShowAreaUseCase';
 
 let usersRepositoryInMemory: IUsersRepository;
 let propertysRepositoryInMemory: IPropertyRepository;
@@ -24,12 +24,12 @@ let fakehashedProvider: IHashProvider;
 let createUserUseCase: CreateUserUseCase;
 let createPropertyUseCase: CreatePropertyUseCase;
 let createAreaUseCase: CreateAreaUseCase;
-let deleteAreaUseCase: DeleteAreaUseCase;
+let showAreaUseCase: ShowAreaUseCase;
 let user: IUser;
 let property: IProperty;
 let area: IArea;
-let area_id: string;
 let property_id: string;
+let area_id: string;
 
 beforeAll(() => {
   usersRepositoryInMemory = new UsersRepositoryInMemory();
@@ -44,10 +44,10 @@ beforeAll(() => {
     propertysRepositoryInMemory,
   );
   createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory);
-  deleteAreaUseCase = new DeleteAreaUseCase(areasRepositoryInMemory);
+  showAreaUseCase = new ShowAreaUseCase(areasRepositoryInMemory);
 });
 
-describe('Delete Area', () => {
+describe('Show Area', () => {
   beforeAll(async () => {
     const userData: ICreateUser = {
       name: 'Jean teste',
@@ -82,17 +82,24 @@ describe('Delete Area', () => {
       number_plants: 2000,
     };
     area = await createAreaUseCase.execute(areaData);
-    area_id = area.id;
     property_id = area.property_id;
+    area_id = area.id;
   });
 
-  it('Should be able to delete a new area', async () => {
-    const expectErrorResponse = new Error('Area not found.');
+  it('Should be able to show area', async () => {
+    const response = await showAreaUseCase.execute({ property_id, area_id });
 
-    await deleteAreaUseCase.execute({ property_id, area_id });
+    expect(response).toBeTruthy();
+    expect(response).toHaveProperty('name');
+  });
+
+  it('Should not be able to show one area', async () => {
+    const property_id = '1232131321';
+    const area_id = '1232131321';
+    const expectErrorResponse = new Error('Property or Area not exist.');
 
     expect(
-      deleteAreaUseCase.execute({ property_id, area_id }),
+      showAreaUseCase.execute({ property_id, area_id }),
     ).rejects.toThrowError(expectErrorResponse);
   });
 });
