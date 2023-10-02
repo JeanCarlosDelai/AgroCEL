@@ -20,7 +20,8 @@ import CropRepositoryInMemory from '../domain/repositories/in-memory/CropReposit
 import CreateCropUseCase from './CreateCropUseCase';
 import { ICropRepository } from '../domain/repositories/ICropRepository';
 import { ICrop } from '../domain/models/ICrop';
-import ListCropUseCase from './ListCropUseCase';
+import UpdateCropUseCase from './UpdateCropUseCase';
+import { IUpdateCrop } from '../domain/models/IUpdateCrop';
 
 let usersRepositoryInMemory: IUsersRepository;
 let propertysRepositoryInMemory: IPropertyRepository;
@@ -31,13 +32,13 @@ let createUserUseCase: CreateUserUseCase;
 let createPropertyUseCase: CreatePropertyUseCase;
 let createAreaUseCase: CreateAreaUseCase;
 let createCropUseCase: CreateCropUseCase;
-let listCropUseCase: ListCropUseCase;
+let updateCropUseCase: UpdateCropUseCase;
 let user: IUser;
 let property: IProperty;
 let area: IArea;
 let crop: ICrop;
-let crop2: ICrop;
-let area_id: string;
+let id: string;
+// let area_id: string;
 
 beforeAll(() => {
   usersRepositoryInMemory = new UsersRepositoryInMemory();
@@ -54,13 +55,10 @@ beforeAll(() => {
   );
   createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory);
   createCropUseCase = new CreateCropUseCase(cropsRepositoryInMemory);
-  listCropUseCase = new ListCropUseCase(
-    cropsRepositoryInMemory,
-    areasRepositoryInMemory,
-  );
+  updateCropUseCase = new UpdateCropUseCase(cropsRepositoryInMemory);
 });
 
-describe('List Crops', () => {
+describe('Update Crops', () => {
   beforeAll(async () => {
     const userData: ICreateUser = {
       name: 'Jean teste',
@@ -105,32 +103,36 @@ describe('List Crops', () => {
     };
 
     crop = await createCropUseCase.execute(cropData);
-    area_id = crop.area_id;
+    id = crop.id;
+  });
 
-    const cropData2: ICreateCrop = {
+  it('Should be able to update a crop', async () => {
+    const cropDataUpdate: IUpdateCrop = {
+      id: id,
       name: 'Coljeita 2',
       area_id: area.id,
       quantity: 10000,
       crop_date: new Date(),
       crop_time: 10,
     };
+    crop = await updateCropUseCase.execute(cropDataUpdate);
 
-    crop2 = await createCropUseCase.execute(cropData2);
+    expect(crop).toBeTruthy();
+    expect(crop.name).toBe(cropDataUpdate.name);
   });
 
-  it('Should be able to list crops', async () => {
-    const response = await listCropUseCase.execute(area_id);
+  it('Should not be able to update a not exist crop', async () => {
+    const cropDataUpdate: IUpdateCrop = {
+      id: id,
+      name: 'Coljeita 2',
+      area_id: 'fakeid',
+      quantity: 10000,
+      crop_date: new Date(),
+      crop_time: 10,
+    };
+    const expectErrorResponse = new Error('Area or Crop not exist.');
 
-    expect(response).toBeTruthy();
-    expect(response.data[0].name).toBe(crop.name);
-    expect(response.data[1].name).toBe(crop2.name);
-  });
-
-  it('Should not be able to list crops with invalid area', async () => {
-    const fakePropertyId = '1232131321';
-    const expectErrorResponse = new Error('Crop does not exists.');
-
-    expect(listCropUseCase.execute(fakePropertyId)).rejects.toThrowError(
+    expect(updateCropUseCase.execute(cropDataUpdate)).rejects.toThrowError(
       expectErrorResponse,
     );
   });
