@@ -58,9 +58,7 @@ class AreaRepository implements IAreaRepository {
     await this.ormRepository.remove(area);
   }
 
-  public async findAll(
-    property_Id: string,
-  ): Promise<IListArea> {
+  public async findAll(property_Id: string): Promise<IListArea> {
     const areas = await this.ormRepository
       .createQueryBuilder('areas')
       .where('areas.property_id = :property_Id', { property_Id })

@@ -69,11 +69,11 @@ class CropRepositoryInMemory implements ICropRepository {
   }
 
   public async findByIds(
-    area_id: string,
     crop_id: string,
+    area_id: string,
   ): Promise<Crop | null> {
     const crop = this.crops.find(
-      (crop) => crop.id === area_id && crop.id === crop_id,
+      (crop) => crop.id === crop_id && crop.area_id === area_id,
     );
     if (crop) {
       return crop;
