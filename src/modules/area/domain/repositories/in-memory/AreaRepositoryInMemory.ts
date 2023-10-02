@@ -90,8 +90,8 @@ class AreaRepositoryInMemory implements IAreaRepository {
   }
 
   public async findByIds(
-    area_id: string,
     property_id: string,
+    area_id: string,
   ): Promise<Area | null> {
     const area = this.areas.find(
       (area) => area.id === area_id && area.property_id === property_id,
