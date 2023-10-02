@@ -10,7 +10,6 @@ import PropertyRepository from '@modules/property/infra/typeorm/repositories/Pro
 import { IAreaRepository } from '@modules/area/domain/repositories/IAreaRepository';
 import AreaRepository from '@modules/area/infra/typeorm/repositories/AreaRepository';
 
-
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,

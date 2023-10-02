@@ -8,12 +8,9 @@ import { IPropertyRepository } from '../domain/repositories/IPropertyRepository'
 class CreatePropertyUseCase {
   constructor(
     @inject('PropertyRepository')
-    private propertyRepository: IPropertyRepository,
-  ) {
-    if (!propertyRepository) {
-      throw new Error('PropertyRepository is required.');
-    }
-  }
+    private propertyRepository: IPropertyRepository, // eslint-disable-next-line prettier/prettier
+  ) // eslint-disable-next-line prettier/prettier
+  { }
 
   public async execute({
     name,

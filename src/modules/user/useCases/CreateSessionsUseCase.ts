@@ -13,12 +13,9 @@ class CreateSessionsUseCase {
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
     @inject('HashProvider')
-    private hashProvider: IHashProvider,
-  ) {
-    if (!usersRepository) {
-      throw new Error('usersRepository is required.');
-    }
-  }
+    private hashProvider: IHashProvider, // eslint-disable-next-line prettier/prettier
+  ) // eslint-disable-next-line prettier/prettier
+  { }
 
   public async execute({
     email,
@@ -43,11 +40,10 @@ class CreateSessionsUseCase {
       );
     }
 
-    const token = sign({}, authConfig.jwt.secret as Secret, {
+    const token = sign({}, process.env.JWT_SECRET as Secret, {
       subject: user.id,
       expiresIn: authConfig.jwt.expiresIn,
     });
-    console.log(token);
 
     return {
       user,
