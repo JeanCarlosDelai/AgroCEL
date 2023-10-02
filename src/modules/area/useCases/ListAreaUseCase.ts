@@ -10,18 +10,15 @@ class ListAreaUseCase {
     @inject('AreaRepository')
     private areasRepository: IAreaRepository,
     @inject('PropertyRepository')
-    private propertyRepository: IPropertyRepository,
-  ) {
-    if (!areasRepository) {
-      throw new Error('PropertyRepository is required.');
-    }
-  }
+    private propertyRepository: IPropertyRepository, // eslint-disable-next-line prettier/prettier
+  ) // eslint-disable-next-line prettier/prettier
+  { }
 
   public async execute(property_Id: string): Promise<IListArea> {
     const propertyExist = await this.propertyRepository.findById(property_Id);
 
     if (!propertyExist) {
-      throw new CustomAPIError.BadRequestError('Property does not exists.');
+      throw new CustomAPIError.BadRequestError('Area does not exists.');
     }
 
     const areas = await this.areasRepository.findAll(property_Id);
