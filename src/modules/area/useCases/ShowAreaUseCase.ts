@@ -3,18 +3,14 @@ import { IAreaRepository } from '../domain/repositories/IAreaRepository';
 import CustomAPIError from '@shared/errors';
 import { IArea } from '../domain/models/IArea';
 import { IShowArea } from '../domain/models/IShowArea';
-import { IPropertyRepository } from '@modules/property/domain/repositories/IPropertyRepository';
 
 @injectable()
 class ShowAreaUseCase {
   constructor(
     @inject('AreaRepository')
-    private areasRepository: IAreaRepository
-  ) {
-    if (!areasRepository) {
-      throw new Error('AreaRepository is required.');
-    }
-  }
+    private areasRepository: IAreaRepository, // eslint-disable-next-line prettier/prettier
+  ) // eslint-disable-next-line prettier/prettier
+  { }
 
   public async execute({
     property_id,

@@ -8,12 +8,9 @@ import { IArea } from '../domain/models/IArea';
 class CreateAreaUseCase {
   constructor(
     @inject('AreaRepository')
-    private areaRepository: IAreaRepository,
-  ) {
-    if (!areaRepository) {
-      throw new Error('areaRepository is required.');
-    }
-  }
+    private areaRepository: IAreaRepository, // eslint-disable-next-line prettier/prettier
+  ) // eslint-disable-next-line prettier/prettier
+  { }
 
   public async execute({
     name,

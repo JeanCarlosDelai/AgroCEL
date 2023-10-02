@@ -8,12 +8,9 @@ import { IArea } from '../domain/models/IArea';
 class UpdateAreaUseCase {
   constructor(
     @inject('AreaRepository')
-    private areaRepository: IAreaRepository,
-  ) {
-    if (!areaRepository) {
-      throw new Error('AreaRepository is required.');
-    }
-  }
+    private areaRepository: IAreaRepository, // eslint-disable-next-line prettier/prettier
+  ) // eslint-disable-next-line prettier/prettier
+  { }
 
   public async execute({
     name,
@@ -37,7 +34,7 @@ class UpdateAreaUseCase {
     );
 
     if (!areaExists) {
-      throw new CustomAPIError.BadRequestError('Area not exist.');
+      throw new CustomAPIError.BadRequestError('Property or Area not exist.');
     }
 
     areaExists.name = name;

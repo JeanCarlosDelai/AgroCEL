@@ -58,7 +58,8 @@ export default class AreaController {
   public async update(request: Request, response: Response): Promise<Response> {
     const area_id = request.params.area_id;
     const property_id = request.params.property_id;
-    const { name,
+    const {
+      name,
       species,
       variety,
       driving_system,
@@ -69,7 +70,8 @@ export default class AreaController {
       number_rows,
       distance_between_rows,
       distance_between_plants,
-      number_plants, } = request.body;
+      number_plants,
+    } = request.body;
 
     const updateArea = container.resolve(UpdateAreaUseCase);
 

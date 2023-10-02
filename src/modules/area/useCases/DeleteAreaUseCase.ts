@@ -7,12 +7,9 @@ import { IDeleteArea } from '../domain/models/IDeleteArea';
 class DeleteAreaUseCase {
   constructor(
     @inject('AreaRepository')
-    private areaRepository: IAreaRepository,
-  ) {
-    if (!areaRepository) {
-      throw new Error('AreaRepository is required.');
-    }
-  }
+    private areaRepository: IAreaRepository, // eslint-disable-next-line prettier/prettier
+  ) // eslint-disable-next-line prettier/prettier
+  { }
 
   public async execute({ property_id, area_id }: IDeleteArea): Promise<void> {
     const area = await this.areaRepository.findByIds(property_id, area_id);
