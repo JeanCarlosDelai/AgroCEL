@@ -6,12 +6,9 @@ import { IPropertyAllOfUser } from '../domain/models/IPropertyAllOfUser';
 class ListPropertyUseCase {
   constructor(
     @inject('PropertyRepository')
-    private propertysRepository: IPropertyRepository,
-  ) {
-    if (!propertysRepository) {
-      throw new Error('PropertyRepository is required.');
-    }
-  }
+    private propertysRepository: IPropertyRepository, // eslint-disable-next-line prettier/prettier
+  ) // eslint-disable-next-line prettier/prettier
+  { }
 
   public async execute(user_Id: string): Promise<IPropertyAllOfUser> {
     const propertys = await this.propertysRepository.findAllOfUser(user_Id);
