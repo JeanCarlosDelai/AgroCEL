@@ -20,7 +20,7 @@ import CropRepositoryInMemory from '../domain/repositories/in-memory/CropReposit
 import CreateCropUseCase from './CreateCropUseCase';
 import { ICropRepository } from '../domain/repositories/ICropRepository';
 import { ICrop } from '../domain/models/ICrop';
-import DeleteCropUseCase from './DeleteCropUseCase';
+import ShowCropUseCase from './ShowCropUseCase';
 
 let usersRepositoryInMemory: IUsersRepository;
 let propertysRepositoryInMemory: IPropertyRepository;
@@ -31,7 +31,7 @@ let createUserUseCase: CreateUserUseCase;
 let createPropertyUseCase: CreatePropertyUseCase;
 let createAreaUseCase: CreateAreaUseCase;
 let createCropUseCase: CreateCropUseCase;
-let deleteCropUseCase: DeleteCropUseCase;
+let showCropUseCase: ShowCropUseCase;
 let user: IUser;
 let property: IProperty;
 let area: IArea;
@@ -54,10 +54,10 @@ beforeAll(() => {
   );
   createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory);
   createCropUseCase = new CreateCropUseCase(cropsRepositoryInMemory);
-  deleteCropUseCase = new DeleteCropUseCase(cropsRepositoryInMemory);
+  showCropUseCase = new ShowCropUseCase(cropsRepositoryInMemory);
 });
 
-describe('Delete Crop', () => {
+describe('Show Crops', () => {
   beforeAll(async () => {
     const userData: ICreateUser = {
       name: 'Jean teste',
@@ -100,18 +100,25 @@ describe('Delete Crop', () => {
       crop_date: new Date(),
       crop_time: 10,
     };
+
     crop = await createCropUseCase.execute(cropData);
     id = crop.id;
     area_id = crop.area_id;
   });
 
-  it('Should be able to delete a crop', async () => {
-    const expectErrorResponse = new Error('Crop not found.');
+  it('Should be able to show crop', async () => {
+    const response = await showCropUseCase.execute({ id, area_id });
 
-    await deleteCropUseCase.execute({ id, area_id });
+    expect(response).toBeTruthy();
+    expect(response).toHaveProperty('name');
+  });
 
-    expect(crop).toHaveProperty('id');
-    expect(deleteCropUseCase.execute({ id, area_id })).rejects.toThrowError(
+  it('Should not be able to show one area', async () => {
+    const id = '1232131321';
+    const area_id = '1232131321';
+    const expectErrorResponse = new Error('Area or Crop not exist.');
+
+    expect(showCropUseCase.execute({ id, area_id })).rejects.toThrowError(
       expectErrorResponse,
     );
   });
