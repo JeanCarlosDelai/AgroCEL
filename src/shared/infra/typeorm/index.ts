@@ -7,7 +7,7 @@ import User from '@modules/user/infra/typeorm/entities/User';
 import Property from '@modules/property/infra/typeorm/entities/Property';
 import { CreateArea1693744290769 } from './migrations/1693744290769-CreateArea';
 import Area from '@modules/area/infra/typeorm/entities/Area';
-import { CreateArea1693744290771 } from './migrations/1693744290771-CreateCrops';
+import { CreateCrops1693744290771 } from './migrations/1693744290771-CreateCrops';
 import Crop from '@modules/crops/infra/typeorm/entities/Crop';
 
 export const dataSource = new DataSource({
@@ -24,6 +24,6 @@ export const dataSource = new DataSource({
     CreateProperty1608058533060,
     AddUserIdToProperty1609037132700,
     CreateArea1693744290769,
-    CreateArea1693744290771,
+    CreateCrops1693744290771,
   ],
 });

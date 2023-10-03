@@ -44,7 +44,7 @@ class CropRepository implements ICropRepository {
 
   public async findAll(area_Id: string): Promise<IListCrop> {
     const areas = await this.ormRepository
-      .createQueryBuilder('areas')
+      .createQueryBuilder('crops')
       .where('crops.area_id = :area_Id', { area_Id })
       .getMany();
 

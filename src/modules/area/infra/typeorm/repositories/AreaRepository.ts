@@ -98,9 +98,9 @@ class AreaRepository implements IAreaRepository {
 
     return area;
   }
-  public async findById(property_id: string): Promise<IArea | null> {
+  public async findById(id: string): Promise<IArea | null> {
     const area = await this.ormRepository.findOneBy({
-      property_id,
+      id,
     });
 
     return area;
