@@ -12,7 +12,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-@Entity('areas')
+@Entity('crops_destination')
 class CropDestination implements ICropDestination {
   @PrimaryGeneratedColumn('uuid')
   id: string;

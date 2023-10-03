@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { ICropDestinationRepository } from '../ICropDestinationRepository';
-import CropDestination from '@modules/cropsDestination/infra/typeorm/entities/Area';
+import CropDestination from '@modules/cropsDestination/infra/typeorm/entities/CropDestination';
 import { ICreateCropDestination } from '../../models/ICreateCropDestination';
 import { IListCropDestination } from '../../models/IListCropDestination';
 // import { ICropRepository } from '../ICropDestinationRepository';
