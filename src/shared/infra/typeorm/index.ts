@@ -9,6 +9,7 @@ import { CreateArea1693744290769 } from './migrations/1693744290769-CreateArea';
 import Area from '@modules/area/infra/typeorm/entities/Area';
 import { CreateCrops1693744290771 } from './migrations/1693744290771-CreateCrops';
 import Crop from '@modules/crops/infra/typeorm/entities/Crop';
+import { CreateCropsDestination1693744290772 } from './migrations/1693744290772-CreateCropsDestination';
 
 export const dataSource = new DataSource({
   type: 'postgres',
@@ -25,5 +26,6 @@ export const dataSource = new DataSource({
     AddUserIdToProperty1609037132700,
     CreateArea1693744290769,
     CreateCrops1693744290771,
+    CreateCropsDestination1693744290772,
   ],
 });
