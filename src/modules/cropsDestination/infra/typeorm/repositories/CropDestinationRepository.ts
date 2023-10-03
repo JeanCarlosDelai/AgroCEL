@@ -1,15 +1,10 @@
 import { Repository } from 'typeorm';
 import { dataSource } from '@shared/infra/typeorm';
 import { ICropDestinationRepository } from '@modules/cropsDestination/domain/repositories/ICropDestinationRepository';
-import CropDestination from '../CropDestination';
+import CropDestination from '../entities/CropDestination';
 import { ICreateCropDestination } from '@modules/cropsDestination/domain/models/ICreateCropDestination';
 import { ICropDestination } from '@modules/cropsDestination/domain/models/ICropDestination';
 import { IListCropDestination } from '@modules/cropsDestination/domain/models/IListCropDestination';
-// import { ICropRepository } from '@modules/crops/domain/repositories/ICropRepository';
-// import Crop from '../entities/Crop';
-// import { ICrop } from '@modules/crops/domain/models/ICrop';
-// import { ICreateCrop } from '@modules/crops/domain/models/ICreateCrop';
-// import { IListCrop } from '@modules/crops/domain/models/IListCrop';
 
 class CropDestinationRepository implements ICropDestinationRepository {
   private ormRepository: Repository<CropDestination>;
@@ -71,7 +66,7 @@ class CropDestinationRepository implements ICropDestinationRepository {
     const cropDestination = await this.ormRepository.findOne({
       where: {
         name,
-        area_id: crop_id,
+        crop_id,
       },
     });
 

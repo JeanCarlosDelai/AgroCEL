@@ -56,7 +56,7 @@ class CropDestinationRepositoryInMemory implements ICropDestinationRepository {
 
   public async findAll(crop_id: string): Promise<IListCropDestination> {
     const cropsDestination: CropDestination[] = this.cropsDestination.filter(
-      (crop) => crop.id === crop_id,
+      (crop) => crop.crop_id === crop_id,
     );
 
     return { data: cropsDestination };
