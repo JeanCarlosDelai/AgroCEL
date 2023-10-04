@@ -11,6 +11,8 @@ import { CreateCrops1693744290771 } from './migrations/1693744290771-CreateCrops
 import Crop from '@modules/crops/infra/typeorm/entities/Crop';
 import { CreateCropsDestination1693744290772 } from './migrations/1693744290772-CreateCropsDestination';
 import CropDestination from '@modules/cropsDestination/infra/typeorm/entities/CropDestination';
+import { CreateAgriculturInputs1693744290773 } from './migrations/1693744290773-CreateAgriculturalInputs';
+import { CreateApplication1693744290774 } from './migrations/1693744290774-CreateApplication';
 
 export const dataSource = new DataSource({
   type: 'postgres',
@@ -28,5 +30,7 @@ export const dataSource = new DataSource({
     CreateArea1693744290769,
     CreateCrops1693744290771,
     CreateCropsDestination1693744290772,
+    CreateAgriculturInputs1693744290773,
+    CreateApplication1693744290774,
   ],
 });
