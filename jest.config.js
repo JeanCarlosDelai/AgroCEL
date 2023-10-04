@@ -20,7 +20,7 @@ const config = {
     '^@modules/(.*)$': '<rootDir>/src/modules/$1',
     '^@shared/(.*)$': '<rootDir>/src/shared/$1',
   },
-  testMatch: ['**/**/*.spec.ts'],
+  testMatch: ['**/**/*.test.ts'],
 };
 
 module.exports = config;

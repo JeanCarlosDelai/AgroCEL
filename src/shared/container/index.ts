@@ -13,6 +13,8 @@ import { ICropRepository } from '@modules/crops/domain/repositories/ICropReposit
 import CropRepository from '@modules/crops/infra/typeorm/repositories/CropRepository';
 import { ICropDestinationRepository } from '@modules/cropsDestination/domain/repositories/ICropDestinationRepository';
 import CropDestinationRepository from '@modules/cropsDestination/infra/typeorm/repositories/CropDestinationRepository';
+import { IApplicationRepository } from '@modules/application/domain/repositories/IApplicationRepository';
+import ApplicationRepository from '@modules/application/infra/typeorm/repositories/ApplicationRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -36,4 +38,9 @@ container.registerSingleton<ICropRepository>('CropRepository', CropRepository);
 container.registerSingleton<ICropDestinationRepository>(
   'CropDestinationRepository',
   CropDestinationRepository,
+);
+
+container.registerSingleton<IApplicationRepository>(
+  'ApplicationRepository',
+  ApplicationRepository,
 );
