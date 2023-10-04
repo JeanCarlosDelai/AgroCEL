@@ -11,6 +11,8 @@ import { IAreaRepository } from '@modules/area/domain/repositories/IAreaReposito
 import AreaRepository from '@modules/area/infra/typeorm/repositories/AreaRepository';
 import { ICropRepository } from '@modules/crops/domain/repositories/ICropRepository';
 import CropRepository from '@modules/crops/infra/typeorm/repositories/CropRepository';
+import { ICropDestinationRepository } from '@modules/cropsDestination/domain/repositories/ICropDestinationRepository';
+import CropDestinationRepository from '@modules/cropsDestination/infra/typeorm/repositories/CropDestinationRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -30,3 +32,8 @@ container.registerSingleton<IPropertyRepository>(
 container.registerSingleton<IAreaRepository>('AreaRepository', AreaRepository);
 
 container.registerSingleton<ICropRepository>('CropRepository', CropRepository);
+
+container.registerSingleton<ICropDestinationRepository>(
+  'CropDestinationRepository',
+  CropDestinationRepository,
+);

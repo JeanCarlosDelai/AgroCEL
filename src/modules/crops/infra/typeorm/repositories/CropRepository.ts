@@ -79,9 +79,9 @@ class CropRepository implements ICropRepository {
 
     return crop;
   }
-  public async findById(area_id: string): Promise<ICrop | null> {
+  public async findById(id: string): Promise<ICrop | null> {
     const crop = await this.ormRepository.findOneBy({
-      area_id,
+      id,
     });
 
     return crop;
