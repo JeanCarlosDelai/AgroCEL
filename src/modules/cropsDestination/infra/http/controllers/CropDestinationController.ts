@@ -7,7 +7,7 @@ import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { container } from 'tsyringe';
 
-export default class CropController {
+export default class CropDestinationController {
   public async index(request: Request, response: Response): Promise<Response> {
     const crop_id = request.params.crop_id;
 
@@ -72,7 +72,7 @@ export default class CropController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const id = request.params.crop_id;
+    const id = request.params.crop_destination_id;
     const crop_id = request.params.crop_id;
 
     const deleteCropDestination = container.resolve(

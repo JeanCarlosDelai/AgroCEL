@@ -10,6 +10,7 @@ import Area from '@modules/area/infra/typeorm/entities/Area';
 import { CreateCrops1693744290771 } from './migrations/1693744290771-CreateCrops';
 import Crop from '@modules/crops/infra/typeorm/entities/Crop';
 import { CreateCropsDestination1693744290772 } from './migrations/1693744290772-CreateCropsDestination';
+import CropDestination from '@modules/cropsDestination/infra/typeorm/entities/CropDestination';
 
 export const dataSource = new DataSource({
   type: 'postgres',
@@ -18,7 +19,7 @@ export const dataSource = new DataSource({
   username: 'postgres',
   password: 'docker',
   database: 'agrocel',
-  entities: [User, Property, Area, Crop],
+  entities: [User, Property, Area, Crop, CropDestination],
   migrations: [
     CreateUsers1607534203339,
     CreateUserTokens1607917238905,
