@@ -10,6 +10,7 @@ import cropDestinationRouter from '@modules/cropsDestination/infra/http/routes/c
 import applicationRouter from '@modules/application/infra/http/routes/application.routes';
 import agriculturalIputsRouter from '@modules/agriculturalInputs/infra/http/routes/AgriculturalInputs';
 import otherActivitiesRouter from '@modules/otherActivities/infra/http/routes/otherActivities.routes';
+import cropSaleRouter from '@modules/cropsSale/infra/http/routes/cropSale.routes';
 
 const routes = Router();
 
@@ -20,6 +21,7 @@ routes.use('/property', propertyRouter);
 routes.use('/area', areaRouter);
 routes.use('/crop', cropRouter);
 routes.use('/crop/destination', cropDestinationRouter);
+routes.use('/crop/sale', cropSaleRouter);
 routes.use('/application', applicationRouter);
 routes.use('/inputs', agriculturalIputsRouter);
 routes.use('/other', otherActivitiesRouter);

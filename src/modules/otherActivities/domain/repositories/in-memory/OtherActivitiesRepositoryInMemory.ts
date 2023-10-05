@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { IOtherActivitiesRepository } from '../IOtherActivitiesRepository';
 import { IListOtherActivities } from '../../models/IListOtherActivities';
 import { ICreateOtherActivities } from '../../models/ICreateOtherActivities';
-import OtherActivities from '@modules/otherActivities/typeorm/entities/OtherActivities';
+import OtherActivities from '@modules/otherActivities/infra/typeorm/entities/OtherActivities';
 
 class OtherActivitiesRepositoryInMemory implements IOtherActivitiesRepository {
   private otherActivities: OtherActivities[] = [];
