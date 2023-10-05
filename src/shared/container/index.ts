@@ -20,7 +20,7 @@ import AgriculturalInputsRepository from '@modules/agriculturalInputs/infra/type
 import { IOtherActivitiesRepository } from '@modules/otherActivities/domain/repositories/IOtherActivitiesRepository';
 import OtherActivitiesRepository from '@modules/otherActivities/infra/typeorm/repositories/OtherActivitiesRepository';
 import { ICropSaleRepository } from '@modules/cropsSale/domain/repositories/ICropSaleRepository';
-import CropSaleRepository from '@modules/cropsSale/typeorm/repositories/CropSaleRepository';
+import CropSaleRepository from '@modules/cropsSale/infra/typeorm/repositories/CropSaleRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',

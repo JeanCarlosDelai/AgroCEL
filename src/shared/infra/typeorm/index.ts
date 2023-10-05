@@ -18,6 +18,7 @@ import AgriculturalInputs from '@modules/agriculturalInputs/infra/typeorm/entiti
 import { CreateOtherActivities1693744290775 } from './migrations/1693744290775-CreateOtherActivities';
 import OtherActivities from '@modules/otherActivities/infra/typeorm/entities/OtherActivities';
 import { CreateCropsSale1693744290777 } from './migrations/1693744290777-CreateCropsSale';
+import CropSale from '@modules/cropsSale/infra/typeorm/entities/CropSale';
 
 export const dataSource = new DataSource({
   type: 'postgres',
@@ -35,6 +36,7 @@ export const dataSource = new DataSource({
     Application,
     AgriculturalInputs,
     OtherActivities,
+    CropSale,
   ],
   migrations: [
     CreateUsers1607534203339,
