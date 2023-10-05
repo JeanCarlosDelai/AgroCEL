@@ -23,6 +23,10 @@ export class CreateApplication1693744290774 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'used_product',
+            type: 'varchar',
+          },
+          {
             name: 'quantity',
             type: 'int',
           },
@@ -53,11 +57,6 @@ export class CreateApplication1693744290774 implements MigrationInterface {
             type: 'uuid',
             isNullable: true,
           },
-          {
-            name: 'used_product_id',
-            type: 'uuid',
-            isNullable: true,
-          },
         ],
       }),
     );
@@ -71,21 +70,10 @@ export class CreateApplication1693744290774 implements MigrationInterface {
         onDelete: 'SET NULL',
       }),
     );
-    await queryRunner.createForeignKey(
-      'application',
-      new TableForeignKey({
-        name: 'ApplicationsInputs',
-        columnNames: ['used_product_id'],
-        referencedTableName: 'agricultural_inputs',
-        referencedColumnNames: ['id'],
-        onDelete: 'SET NULL',
-      }),
-    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable('application');
     await queryRunner.dropForeignKey('application', 'AreasApplications');
-    await queryRunner.dropForeignKey('application', 'ApplicationsInputs');
   }
 }

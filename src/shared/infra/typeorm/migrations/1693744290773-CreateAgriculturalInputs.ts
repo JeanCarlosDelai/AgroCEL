@@ -26,6 +26,10 @@ export class CreateAgriculturInputs1693744290773 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'description',
+            type: 'varchar',
+          },
+          {
             name: 'created_at',
             type: 'timestamp with time zone',
             default: 'now()',

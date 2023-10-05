@@ -9,7 +9,7 @@ class ApplicationRepositoryInMemory implements IApplicationRepository {
 
   public async create({
     area_id,
-    used_product_id,
+    used_product,
     quantity,
     application_type,
     application_date,
@@ -20,7 +20,7 @@ class ApplicationRepositoryInMemory implements IApplicationRepository {
 
     area.id = uuidv4();
     area.area_id = area_id;
-    area.used_product_id = used_product_id;
+    area.used_product = used_product;
     area.application_type = application_type;
     area.quantity = quantity;
     area.description = description;
