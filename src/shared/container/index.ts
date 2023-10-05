@@ -17,6 +17,8 @@ import { IApplicationRepository } from '@modules/application/domain/repositories
 import ApplicationRepository from '@modules/application/infra/typeorm/repositories/ApplicationRepository';
 import { IAgriculturalInputsRepository } from '@modules/agriculturalInputs/domain/repositories/IAgriculturalInputsRepository';
 import AgriculturalInputsRepository from '@modules/agriculturalInputs/infra/typeorm/repositories/AgriculturalInputsRepository';
+import { IOtherActivitiesRepository } from '@modules/otherActivities/domain/repositories/IOtherActivitiesRepository';
+import OtherActivitiesRepository from '@modules/otherActivities/infra/typeorm/repositories/OtherActivitiesRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -50,4 +52,9 @@ container.registerSingleton<IApplicationRepository>(
 container.registerSingleton<IAgriculturalInputsRepository>(
   'AgriculturalInputsRepository',
   AgriculturalInputsRepository,
+);
+
+container.registerSingleton<IOtherActivitiesRepository>(
+  'OtherActivitiesRepository',
+  OtherActivitiesRepository,
 );
