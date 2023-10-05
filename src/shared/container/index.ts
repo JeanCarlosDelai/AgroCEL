@@ -19,6 +19,8 @@ import { IAgriculturalInputsRepository } from '@modules/agriculturalInputs/domai
 import AgriculturalInputsRepository from '@modules/agriculturalInputs/infra/typeorm/repositories/AgriculturalInputsRepository';
 import { IOtherActivitiesRepository } from '@modules/otherActivities/domain/repositories/IOtherActivitiesRepository';
 import OtherActivitiesRepository from '@modules/otherActivities/infra/typeorm/repositories/OtherActivitiesRepository';
+import { ICropSaleRepository } from '@modules/cropsSale/domain/repositories/ICropSaleRepository';
+import CropSaleRepository from '@modules/cropsSale/typeorm/repositories/CropSaleRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -57,4 +59,9 @@ container.registerSingleton<IAgriculturalInputsRepository>(
 container.registerSingleton<IOtherActivitiesRepository>(
   'OtherActivitiesRepository',
   OtherActivitiesRepository,
+);
+
+container.registerSingleton<ICropSaleRepository>(
+  'CropSaleRepository',
+  CropSaleRepository,
 );
