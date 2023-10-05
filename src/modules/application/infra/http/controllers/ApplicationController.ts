@@ -24,7 +24,7 @@ export default class ApplicationController {
       application_type,
       application_time,
       description,
-      used_product_id,
+      used_product,
     } = request.body;
     const area_id = request.params.area_id;
 
@@ -32,7 +32,7 @@ export default class ApplicationController {
 
     const application = await createApplication.execute({
       area_id,
-      used_product_id,
+      used_product,
       quantity,
       application_type,
       application_date,
@@ -47,7 +47,7 @@ export default class ApplicationController {
     const area_id = request.params.area_id;
     const id = request.params.application_id;
     const {
-      used_product_id,
+      used_product,
       quantity,
       application_type,
       application_date,
@@ -60,7 +60,7 @@ export default class ApplicationController {
     const application = await updateApplication.execute({
       id,
       area_id,
-      used_product_id,
+      used_product,
       quantity,
       application_type,
       application_date,

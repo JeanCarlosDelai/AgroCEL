@@ -100,7 +100,7 @@ describe('List Crops', () => {
 
     const applicationData: ICreateApplication = {
       area_id: area.id,
-      used_product_id: area.id,
+      used_product: area.id,
       quantity: 10000,
       application_type: 'Pulverização',
       application_date: new Date(),
@@ -112,7 +112,7 @@ describe('List Crops', () => {
 
     const applicationData2: ICreateApplication = {
       area_id: area.id,
-      used_product_id: area.id,
+      used_product: area.id,
       quantity: 10000,
       application_type: 'Pulverização',
       application_date: new Date(),

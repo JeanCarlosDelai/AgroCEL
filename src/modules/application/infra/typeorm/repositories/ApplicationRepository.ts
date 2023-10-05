@@ -14,7 +14,7 @@ class ApplicationRepository implements IApplicationRepository {
   }
   public async create({
     area_id,
-    used_product_id,
+    used_product,
     quantity,
     application_type,
     application_date,
@@ -23,7 +23,7 @@ class ApplicationRepository implements IApplicationRepository {
   }: ICreateApplication): Promise<IApplication> {
     const application = this.ormRepository.create({
       area_id,
-      used_product_id,
+      used_product,
       quantity,
       application_type,
       application_date,

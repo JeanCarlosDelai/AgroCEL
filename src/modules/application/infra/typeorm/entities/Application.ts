@@ -16,14 +16,14 @@ class Application implements IApplication {
   id: string;
 
   @Column({ nullable: true })
-  used_product_id: string;
-
-  @Column({ nullable: true })
   area_id: string;
 
   @ManyToOne(() => Area)
   @JoinColumn({ name: 'area_id' })
   area: Area;
+
+  @Column()
+  used_product: string;
 
   @Column()
   application_type: string;

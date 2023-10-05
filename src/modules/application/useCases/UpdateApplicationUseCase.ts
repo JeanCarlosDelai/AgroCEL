@@ -15,7 +15,7 @@ class UpdateApplicationUseCase {
   public async execute({
     id,
     area_id,
-    used_product_id,
+    used_product,
     quantity,
     application_type,
     application_date,
@@ -31,7 +31,7 @@ class UpdateApplicationUseCase {
       throw new CustomAPIError.BadRequestError('Area or Crop not exist.');
     }
 
-    applicationExists.used_product_id = used_product_id;
+    applicationExists.used_product = used_product;
     applicationExists.quantity = quantity;
     applicationExists.application_type = application_type;
     applicationExists.application_date = application_date;

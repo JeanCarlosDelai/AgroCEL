@@ -94,7 +94,7 @@ describe('Create Application', () => {
   it('Should be able to create a new application', async () => {
     const applicationData: ICreateApplication = {
       area_id: area.id,
-      used_product_id: area.id,
+      used_product: area.id,
       quantity: 10000,
       application_type: 'Pulverização',
       application_date: new Date(),

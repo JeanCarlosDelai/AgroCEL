@@ -13,7 +13,7 @@ class CreateApplicationUseCase {
 
   public async execute({
     area_id,
-    used_product_id,
+    used_product,
     quantity,
     application_type,
     application_date,
@@ -22,7 +22,7 @@ class CreateApplicationUseCase {
   }: ICreateApplication): Promise<IApplication> {
     const application = await this.applicationRepository.create({
       area_id,
-      used_product_id,
+      used_product,
       quantity,
       application_type,
       application_date,

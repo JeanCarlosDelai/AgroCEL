@@ -98,7 +98,7 @@ describe('Update Application', () => {
 
     const applicationData: ICreateApplication = {
       area_id: area.id,
-      used_product_id: area.id,
+      used_product: area.id,
       quantity: 10000,
       application_type: 'Pulverização',
       application_date: new Date(),
@@ -113,7 +113,7 @@ describe('Update Application', () => {
     const applicationUpdateData: IUpdateApplication = {
       id: application.id,
       area_id: area.id,
-      used_product_id: area.id,
+      used_product: area.id,
       quantity: 10000,
       application_type: 'Pulverização',
       application_date: new Date(),
@@ -130,7 +130,7 @@ describe('Update Application', () => {
     const applicationUpdateData: IUpdateApplication = {
       id: application.id,
       area_id: 'fakeID',
-      used_product_id: area.id,
+      used_product: area.id,
       quantity: 10000,
       application_type: 'Pulverização',
       application_date: new Date(),

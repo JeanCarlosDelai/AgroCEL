@@ -4,7 +4,7 @@ const updateApplciationSchema = Joi.object({
   body: Joi.object({
     quantity: Joi.number(),
     application_type: Joi.string(),
-    used_product_id: Joi.string(),
+    used_product: Joi.string(),
     description: Joi.string(),
     application_date: Joi.string(),
     application_time: Joi.number(),
