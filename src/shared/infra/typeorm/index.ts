@@ -14,7 +14,7 @@ import CropDestination from '@modules/cropsDestination/infra/typeorm/entities/Cr
 import { CreateAgriculturInputs1693744290773 } from './migrations/1693744290773-CreateAgriculturalInputs';
 import { CreateApplication1693744290774 } from './migrations/1693744290774-CreateApplication';
 import Application from '@modules/application/infra/typeorm/entities/Application';
-import AgriculturalInputs from '@modules/application/infra/typeorm/entities/AgriculturalInputs';
+import AgriculturalInputs from '@modules/agriculturalInputs/infra/typeorm/entities/AgriculturalInputs';
 
 export const dataSource = new DataSource({
   type: 'postgres',

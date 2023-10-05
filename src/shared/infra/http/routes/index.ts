@@ -8,6 +8,7 @@ import areaRouter from '@modules/area/infra/http/routes/area.routes';
 import cropRouter from '@modules/crops/infra/http/routes/crop.routes';
 import cropDestinationRouter from '@modules/cropsDestination/infra/http/routes/cropDestination.routes';
 import applicationRouter from '@modules/application/infra/http/routes/application.routes';
+import agriculturalIputsRouter from '@modules/agriculturalInputs/infra/http/routes/AgriculturalInputs';
 
 const routes = Router();
 
@@ -19,5 +20,6 @@ routes.use('/area', areaRouter);
 routes.use('/crop', cropRouter);
 routes.use('/crop/destination', cropDestinationRouter);
 routes.use('/application', applicationRouter);
+routes.use('/inputs', agriculturalIputsRouter);
 
 export default routes;

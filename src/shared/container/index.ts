@@ -15,6 +15,8 @@ import { ICropDestinationRepository } from '@modules/cropsDestination/domain/rep
 import CropDestinationRepository from '@modules/cropsDestination/infra/typeorm/repositories/CropDestinationRepository';
 import { IApplicationRepository } from '@modules/application/domain/repositories/IApplicationRepository';
 import ApplicationRepository from '@modules/application/infra/typeorm/repositories/ApplicationRepository';
+import { IAgriculturalInputsRepository } from '@modules/agriculturalInputs/domain/repositories/IAgriculturalInputsRepository';
+import AgriculturalInputsRepository from '@modules/agriculturalInputs/infra/typeorm/repositories/AgriculturalInputsRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -43,4 +45,9 @@ container.registerSingleton<ICropDestinationRepository>(
 container.registerSingleton<IApplicationRepository>(
   'ApplicationRepository',
   ApplicationRepository,
+);
+
+container.registerSingleton<IAgriculturalInputsRepository>(
+  'AgriculturalInputsRepository',
+  AgriculturalInputsRepository,
 );
