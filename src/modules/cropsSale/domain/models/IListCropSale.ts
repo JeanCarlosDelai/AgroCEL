@@ -1,5 +1,5 @@
 import { ICropSale } from './ICropSale';
 
-export interface IListCropDestination {
+export interface IListCropSale {
   data: ICropSale[];
 }
