@@ -17,10 +17,11 @@ import AreaRepositoryInMemory from '@modules/area/domain/repositories/in-memory/
 import { ICreateArea } from '@modules/area/domain/models/ICreateArea';
 import { IOtherActivitiesRepository } from '../domain/repositories/IOtherActivitiesRepository';
 import CreateOtherActivitiesUseCase from './CreateOtherActivitiesUseCase';
-import ShowOtherActivitiesUseCase from './ShowOtherActivitiesUseCase';
-import { IOtherActivities } from '../domain/models/IOtherActivities';
+import UpdateOtherActivitiesUseCase from './UpdateOtherActivitiesUseCase';
 import OtherActivitiesRepositoryInMemory from '../domain/repositories/in-memory/OtherActivitiesRepositoryInMemory';
+import { IOtherActivities } from '../domain/models/IOtherActivities';
 import { ICreateOtherActivities } from '../domain/models/ICreateOtherActivities';
+import { IUpdateOtherActivities } from '../domain/models/IUpdateOtherActivities';
 
 let usersRepositoryInMemory: IUsersRepository;
 let propertysRepositoryInMemory: IPropertyRepository;
@@ -31,13 +32,12 @@ let createUserUseCase: CreateUserUseCase;
 let createPropertyUseCase: CreatePropertyUseCase;
 let createAreaUseCase: CreateAreaUseCase;
 let createOtherActivitiesUseCase: CreateOtherActivitiesUseCase;
-let showOtherActivitiesUseCase: ShowOtherActivitiesUseCase;
+let updateOtherActivitiesUseCase: UpdateOtherActivitiesUseCase;
 let user: IUser;
 let property: IProperty;
 let area: IArea;
 let otherActivities: IOtherActivities;
 let id: string;
-let area_id: string;
 
 beforeAll(() => {
   usersRepositoryInMemory = new UsersRepositoryInMemory();
@@ -56,12 +56,12 @@ beforeAll(() => {
   createOtherActivitiesUseCase = new CreateOtherActivitiesUseCase(
     otherActivitiesRepositoryInMemory,
   );
-  showOtherActivitiesUseCase = new ShowOtherActivitiesUseCase(
+  updateOtherActivitiesUseCase = new UpdateOtherActivitiesUseCase(
     otherActivitiesRepositoryInMemory,
   );
 });
 
-describe('Show Other Activities', () => {
+describe('Update Crops', () => {
   beforeAll(async () => {
     const userData: ICreateUser = {
       name: 'Jean teste',
@@ -109,23 +109,40 @@ describe('Show Other Activities', () => {
     otherActivities =
       await createOtherActivitiesUseCase.execute(otherActivitiesData);
     id = otherActivities.id;
-    area_id = otherActivities.area_id;
   });
 
-  it('Should be able to show other activities', async () => {
-    const response = await showOtherActivitiesUseCase.execute({ id, area_id });
+  it('Should be able to update a crop', async () => {
+    const otherActivitiesDataUpdate: IUpdateOtherActivities = {
+      id: id,
+      name: 'Poda da Concord3',
+      area_id: area.id,
+      activitie_category: 'Poda',
+      activitie_date: new Date(),
+      activitie_time: 10,
+      description: 'Foi podado 6 fileiras',
+    };
+    otherActivities = await updateOtherActivitiesUseCase.execute(
+      otherActivitiesDataUpdate,
+    );
 
-    expect(response).toBeTruthy();
-    expect(response).toHaveProperty('name');
+    expect(otherActivities).toBeTruthy();
+    expect(otherActivities.name).toBe(otherActivitiesDataUpdate.name);
   });
 
-  it('Should not be able to show one other activitie', async () => {
-    const id = '1232131321';
-    const area_id = '1232131321';
+  it('Should not be able to update a not exist crop', async () => {
+    const otherActivitiesDataUpdate: IUpdateOtherActivities = {
+      id: id,
+      name: 'Poda da Concord3',
+      area_id: 'fakeID',
+      activitie_category: 'Poda',
+      activitie_date: new Date(),
+      activitie_time: 10,
+      description: 'Foi podado 6 fileiras',
+    };
     const expectErrorResponse = new Error('Area or OtherActivities not exist.');
 
     expect(
-      showOtherActivitiesUseCase.execute({ id, area_id }),
+      updateOtherActivitiesUseCase.execute(otherActivitiesDataUpdate),
     ).rejects.toThrowError(expectErrorResponse);
   });
 });
