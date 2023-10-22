@@ -19,7 +19,7 @@ const initialState = {
   isEditing: false,
   property_id: '',
   areaId: '',
-  areas: [],
+  crops: [],
   selectedAreaData: '',
   selectedAreaName: '',
 };
@@ -56,6 +56,7 @@ const cropSlice = createSlice({
       };
     },
     setEditCrop: (state, { payload }) => {
+      // console.log('ola');
       return { ...state, isEditing: true, ...payload };
     },
   },
@@ -68,14 +69,14 @@ const cropSlice = createSlice({
       })
       .addCase(createCrop.fulfilled, (state) => {
         state.isLoading = false;
-        toast.success('Area criada');
+        toast.success('Colheita criada');
       })
       .addCase(createCrop.rejected, (state, { payload }) => {
         state.isLoading = false;
         toast.error(payload);
       })
       .addCase(deleteCrop.fulfilled, () => {
-        toast.success('Area excluída..');
+        toast.success('Colheita excluída..');
       })
       .addCase(deleteCrop.rejected, (state, { payload }) => {
         toast.error(payload);
@@ -85,7 +86,7 @@ const cropSlice = createSlice({
       })
       .addCase(editCrop.fulfilled, (state) => {
         state.isLoading = false;
-        toast.success('Area modificada...');
+        toast.success('Colheita modificada...');
       })
       .addCase(editCrop.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -96,7 +97,7 @@ const cropSlice = createSlice({
       })
       .addCase(getAllCrops.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.areas = payload;
+        state.crops = payload;
       })
       .addCase(getAllCrops.rejected, (state, { payload }) => {
         state.isLoading = false;

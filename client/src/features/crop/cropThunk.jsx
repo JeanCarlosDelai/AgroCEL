@@ -15,21 +15,17 @@ export const createCropThunk = async ({ area_id, crop }, thunkAPI) => {
 export const deleteCropThunk = async ({ id, area_id }, thunkAPI) => {
   thunkAPI.dispatch(showLoading());
   try {
-    const resp = await customFetch.delete(`/crop/${area_id}/delete/${id}`);
+    const resp = await customFetch.delete(`/crop/${id}/area/${area_id}`);
     return resp.data.msg;
   } catch (error) {
     thunkAPI.dispatch(hideLoading());
     return checkForUnauthorizedResponse(error, thunkAPI);
   }
 };
-export const editCropThunk = async (
-  { property_id, areaId, area },
-  thunkAPI,
-) => {
-  console.log(areaId);
+export const editCropThunk = async ({ crop_id, area_id, area }, thunkAPI) => {
   try {
     const resp = await customFetch.put(
-      `/crop/${property_id}/area/${areaId}`,
+      `/crop/${crop_id}/area/${area_id}`,
       area,
     );
     thunkAPI.dispatch(clearValues());
@@ -41,8 +37,10 @@ export const editCropThunk = async (
 
 export const getAllCropsThunk = async (areaId, thunkAPI) => {
   let url = `/crop/${areaId}`;
+  // console.log(areaId);
   try {
     const resp = await customFetch.get(url);
+    // console.log(resp.data);
     return resp.data;
   } catch (error) {
     return checkForUnauthorizedResponse(error, thunkAPI);

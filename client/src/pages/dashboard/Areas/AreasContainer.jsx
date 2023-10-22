@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 const AreasContainer = () => {
   const { areas, isLoading } = useSelector((store) => store.area);
   const dispatch = useDispatch();
-  console.log(areas);
   useEffect(() => {
     const propertyId = localStorage.getItem('propertyId');
     if (propertyId) {

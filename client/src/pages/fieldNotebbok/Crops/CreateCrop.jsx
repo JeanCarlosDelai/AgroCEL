@@ -15,7 +15,7 @@ const CreateCrop = () => {
   const {
     isLoading,
     area_id,
-    crop_id,
+    id,
     name,
     quantity,
     crop_date,
@@ -26,7 +26,6 @@ const CreateCrop = () => {
   const { areas } = useSelector((store) => store.area);
 
   const dispatch = useDispatch();
-  // const DrivingSystems = ['Latada', 'Espaldeira'];
 
   useEffect(() => {
     const propertyId = localStorage.getItem('propertyId');
@@ -53,10 +52,11 @@ const CreateCrop = () => {
       toast.error('Por favor prencha todos os campos');
       return;
     }
+    console.log(isEditing);
     if (isEditing) {
       dispatch(
         editCrop({
-          crop_id,
+          crop_id: id,
           area_id,
           area: {
             name,
