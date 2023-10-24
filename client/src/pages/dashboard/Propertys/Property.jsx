@@ -5,9 +5,11 @@ import {
   setEditProperty,
 } from '../../../features/property/propertySlice';
 import { addPropertyToLocalStorage } from '../../../utils/localStorage';
-import { Table, Radio, Flowbite } from 'flowbite-react';
+import { Table, Radio, Flowbite, Modal, Button } from 'flowbite-react';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { BsTrash } from 'react-icons/bs';
+import { useState, useRef } from 'react';
+import CreateProperty from './CreateProperty';
 
 const Property = ({ id, name, total_area, cultivated_area, city, state }) => {
   const dispatch = useDispatch();
@@ -16,6 +18,10 @@ const Property = ({ id, name, total_area, cultivated_area, city, state }) => {
     addPropertyToLocalStorage(id, name);
     window.location.reload();
   };
+
+  const [openModal, setOpenModal] = useState();
+  const emailInputRef = useRef(null);
+  const props = { openModal, setOpenModal, emailInputRef };
 
   return (
     <Flowbite>
@@ -30,10 +36,10 @@ const Property = ({ id, name, total_area, cultivated_area, city, state }) => {
         <Table.Cell>{total_area}</Table.Cell>
         <Table.Cell>{cultivated_area}</Table.Cell>
         <Table.Cell>
-          <Link
-            to="/create-property"
-            style={{ color: 'black' }}
-            onClick={() =>
+          <Button
+            gradientDuoTone="greenToBlue"
+            outline
+            onClick={() => {
               dispatch(
                 setEditProperty({
                   property_id: id,
@@ -43,11 +49,24 @@ const Property = ({ id, name, total_area, cultivated_area, city, state }) => {
                   total_area,
                   cultivated_area,
                 }),
-              )
-            }
+              );
+              props.setOpenModal('initial-focus');
+            }}
           >
             <AiOutlineEdit />
-          </Link>
+          </Button>
+          <Modal
+            show={props.openModal === 'initial-focus'}
+            size="md"
+            popup
+            onClose={() => props.setOpenModal(undefined)}
+            initialFocus={props.emailInputRef}
+          >
+            <Modal.Header />
+            <Modal.Body>
+              <CreateProperty />
+            </Modal.Body>
+          </Modal>
         </Table.Cell>
         <Table.Cell>
           <button
