@@ -1,5 +1,4 @@
 import { FormRow } from '../../../components';
-import DashboardFormPage from '../../../assets/wrappers/DashboardFormPage';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import {
@@ -8,6 +7,10 @@ import {
   createProperty,
   editProperty,
 } from '../../../features/property/propertySlice';
+import { Button, Flowbite } from 'flowbite-react';
+import { LiaBroomSolid } from 'react-icons/lia';
+import { AiOutlineSend } from 'react-icons/ai';
+
 const CreateProperty = () => {
   const {
     isLoading,
@@ -60,10 +63,10 @@ const CreateProperty = () => {
   };
 
   return (
-    <DashboardFormPage>
-      <form className="form">
+    <Flowbite>
+      <form className="flex max-w-md flex-col gap-4">
         <h3>{isEditing ? 'Editar Propriedade' : 'Adicionar Propriedade'}</h3>
-        <div className="form-center">
+        <div>
           <FormRow
             type="text"
             name="name"
@@ -99,26 +102,27 @@ const CreateProperty = () => {
             value={cultivated_area}
             handleChange={handlePropertyInput}
           />
-          <div className="btn-container">
-            <button
-              type="button"
-              className="btn btn-block clear-btn"
-              onClick={() => dispatch(clearValues())}
-            >
-              Limpar
-            </button>
-            <button
-              type="submit"
-              className="btn btn-block submit-btn"
-              onClick={handleSubmit}
-              disabled={isLoading}
-            >
-              Enviar
-            </button>
-          </div>
         </div>
+        <Button
+          type="button"
+          onClick={() => dispatch(clearValues())}
+          gradientDuoTone="greenToBlue"
+          outline
+        >
+          <LiaBroomSolid /> Limpar
+        </Button>
+        <Button
+          type="submit"
+          onClick={handleSubmit}
+          disabled={isLoading}
+          gradientDuoTone="greenToBlue"
+          outline
+        >
+          <AiOutlineSend />
+          Enviar
+        </Button>
       </form>
-    </DashboardFormPage>
+    </Flowbite>
   );
 };
 export default CreateProperty;

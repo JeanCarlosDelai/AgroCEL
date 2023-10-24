@@ -1,4 +1,4 @@
-import { FormRow, FormSelect } from '../../../components';
+import { FormRow, FormSelect, DatepickerComponent } from '../../../components';
 import DashboardFormPage from '../../../assets/wrappers/DashboardFormPage';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -8,10 +8,13 @@ import {
   createArea,
   editArea,
 } from '../../../features/area/areaSlice';
-// import { getPropertyIdFromLocalStorage } from '../../../utils/localStorage';
 import { DrivingSystems } from '../../../Arrays/DrivingSystems';
 import { AreaVarietys } from '../../../Arrays/AreaVarietys';
 import { RookstockTypes } from '../../../Arrays/RookstockTypes';
+import { Button, Flowbite } from 'flowbite-react';
+import { LiaBroomSolid } from 'react-icons/lia';
+import { AiOutlineSend } from 'react-icons/ai';
+
 const CreateArea = () => {
   const {
     isLoading,
@@ -32,7 +35,7 @@ const CreateArea = () => {
     isEditing,
   } = useSelector((store) => store.area);
   const dispatch = useDispatch();
-  // const varietyOptions = ['Opção 1', 'Opção 2', 'Opção 3', 'Opção 4'];
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -91,7 +94,7 @@ const CreateArea = () => {
   };
 
   return (
-    <DashboardFormPage>
+    <Flowbite>
       <form className="form">
         <h3>{isEditing ? 'Editar Area' : 'Adicionar Area'}</h3>
         <div className="form-center">
@@ -102,6 +105,7 @@ const CreateArea = () => {
             value={name}
             handleChange={handlePropertyInput}
           />
+          <DatepickerComponent />
           <FormRow
             type="number"
             name="cultivated_area"
@@ -201,7 +205,7 @@ const CreateArea = () => {
           </div>
         </div>
       </form>
-    </DashboardFormPage>
+    </Flowbite>
   );
 };
 export default CreateArea;

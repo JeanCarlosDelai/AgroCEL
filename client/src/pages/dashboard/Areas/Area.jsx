@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom';
-import PropertyWrapper from '../../../assets/wrappers/PropertyWrapper';
 import { useDispatch } from 'react-redux';
 import {
   deleteArea,
   setEditArea,
   getAllAreas,
 } from '../../../features/area/areaSlice';
+import { Table, Flowbite } from 'flowbite-react';
+import { AiOutlineEdit } from 'react-icons/ai';
+import { BsTrash } from 'react-icons/bs';
+import { CgDetailsMore } from 'react-icons/cg';
+
 const Area = ({
   id,
   name,
@@ -30,24 +34,22 @@ const Area = ({
   };
 
   return (
-    <PropertyWrapper>
-      <div className="info">
-        <h2>{name}</h2>
-      </div>
-      <div className="info">
-        <h4>
-          {species} - {variety}
-        </h4>
-      </div>
-      <div className="info">
-        <h4>Área cultivada: {cultivated_area} ha </h4>
-      </div>
-
-      <footer>
-        <div className="actions">
+    <Flowbite>
+      <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+        <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+          {name}
+        </Table.Cell>
+        <Table.Cell>{species}</Table.Cell>
+        <Table.Cell>{variety}</Table.Cell>
+        <Table.Cell>{cultivated_area}</Table.Cell>
+        <Table.Cell className="p-4">
+          <Link to={`/area-info?property_id=${property_id}&area_id=${id}`}>
+            <CgDetailsMore />
+          </Link>
+        </Table.Cell>
+        <Table.Cell>
           <Link
             to="/create-area"
-            className="btn edit-btn"
             onClick={() =>
               dispatch(
                 setEditArea({
@@ -69,24 +71,20 @@ const Area = ({
               )
             }
           >
-            Editar
+            <AiOutlineEdit />
           </Link>
+        </Table.Cell>
+        <Table.Cell>
           <button
             type="button"
-            className="btn delete-btn"
             onClick={() => handleDeleteArea({ id, property_id })}
+            style={{ color: 'red' }}
           >
-            Excluir
+            <BsTrash />
           </button>
-          <Link
-            to={`/area-info?property_id=${property_id}&area_id=${id}`}
-            className="btn select-btn"
-          >
-            Mais informações
-          </Link>
-        </div>
-      </footer>
-    </PropertyWrapper>
+        </Table.Cell>
+      </Table.Row>
+    </Flowbite>
   );
 };
 export default Area;

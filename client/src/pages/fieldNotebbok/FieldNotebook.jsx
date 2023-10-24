@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Loading } from '../../components';
 import { getAllAreas } from '../../features/area/areaSlice';
 import { Link } from 'react-router-dom';
+import { Table, Flowbite, Button } from 'flowbite-react';
 
 const FildsNotebookContainer = () => {
   const { isLoading } = useSelector((store) => store.area);
@@ -34,19 +35,37 @@ const FildsNotebookContainer = () => {
   // }
 
   return (
-    <PropertysContainerWrapper>
-      <Link to="/create-crop" className="btn create-btn">
-        Adicionar nova colheita
-      </Link>
-      <br></br>
-      <Link to="/create-application" className="btn create-btn">
-        Adicionar nova aplicação
-      </Link>
-      <br></br>
-      <Link to="/other-activities" className="btn create-btn">
-        Adicionar Manejo
-      </Link>
-    </PropertysContainerWrapper>
+    <Flowbite>
+      <Table>
+        <Table.Cell>
+          <Link to="/create-crop">
+            <Button gradientDuoTone="greenToBlue" outline>
+              + Adicionar nova colheita
+            </Button>
+          </Link>
+        </Table.Cell>
+      </Table>
+      <br />
+      <Table>
+        <Table.Cell>
+          <Link to="/create-application">
+            <Button gradientDuoTone="greenToBlue" outline>
+              + Adicionar nova aplicação
+            </Button>
+          </Link>
+        </Table.Cell>
+      </Table>
+      <br />
+      <Table>
+        <Table.Cell>
+          <Link to="/other-activities">
+            <Button gradientDuoTone="greenToBlue" outline>
+              + Adicionar novo manejo
+            </Button>
+          </Link>
+        </Table.Cell>
+      </Table>
+    </Flowbite>
   );
 };
 export default FildsNotebookContainer;
