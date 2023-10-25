@@ -1,14 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Area from './Area';
 import { useSelector, useDispatch } from 'react-redux';
 import { Loading } from '../../../components';
 import { getAllAreas } from '../../../features/area/areaSlice';
 import { Link } from 'react-router-dom';
-import { Table, Button, Flowbite } from 'flowbite-react';
+import { Table, Button, Flowbite, Modal } from 'flowbite-react';
+import CreateArea from './CreateArea';
 
 const AreasContainer = () => {
   const { areas, isLoading } = useSelector((store) => store.area);
   const dispatch = useDispatch();
+
+  const [openModal, setOpenModal] = useState();
+  const emailInputRef = useRef(null);
+  const props = { openModal, setOpenModal, emailInputRef };
+
   useEffect(() => {
     const propertyId = localStorage.getItem('propertyId');
     if (propertyId) {
@@ -26,11 +32,25 @@ const AreasContainer = () => {
     return (
       <Table>
         <Table.Cell>
-          <Link gradientDuoTone="greenToBlue" outline to="/create-area">
-            <Button gradientDuoTone="greenToBlue" outline>
-              + Adicionar nova área
-            </Button>
-          </Link>
+          <Button
+            gradientDuoTone="greenToBlue"
+            outline
+            onClick={() => props.setOpenModal('initial-focus')}
+          >
+            + Adicionar nova área
+          </Button>
+          <Modal
+            show={props.openModal === 'initial-focus'}
+            size="md"
+            popup
+            onClose={() => props.setOpenModal(undefined)}
+            initialFocus={props.emailInputRef}
+          >
+            <Modal.Header />
+            <Modal.Body>
+              <CreateArea />
+            </Modal.Body>
+          </Modal>
         </Table.Cell>
         <Table.Cell>
           <h2>Sem áreas para mostrar</h2>
@@ -43,11 +63,25 @@ const AreasContainer = () => {
     <Flowbite>
       <Table>
         <Table.Cell>
-          <Link gradientDuoTone="greenToBlue" outline to="/create-area">
-            <Button gradientDuoTone="greenToBlue" outline>
-              + Adicionar nova área
-            </Button>
-          </Link>
+          <Button
+            gradientDuoTone="greenToBlue"
+            outline
+            onClick={() => props.setOpenModal('initial-focus')}
+          >
+            + Adicionar nova área
+          </Button>
+          <Modal
+            show={props.openModal === 'initial-focus'}
+            size="md"
+            popup
+            onClose={() => props.setOpenModal(undefined)}
+            initialFocus={props.emailInputRef}
+          >
+            <Modal.Header />
+            <Modal.Body>
+              <CreateArea />
+            </Modal.Body>
+          </Modal>
         </Table.Cell>
         <Table.Cell>
           <h6>

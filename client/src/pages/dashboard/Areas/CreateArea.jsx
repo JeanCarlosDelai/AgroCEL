@@ -1,7 +1,7 @@
-import { FormRow, FormSelect, DatepickerComponent } from '../../../components';
-import DashboardFormPage from '../../../assets/wrappers/DashboardFormPage';
+import { FormRow, FormSelect, DateInput } from '../../../components';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { format } from 'date-fns';
 import {
   handleChange,
   clearValues,
@@ -11,15 +11,15 @@ import {
 import { DrivingSystems } from '../../../Arrays/DrivingSystems';
 import { AreaVarietys } from '../../../Arrays/AreaVarietys';
 import { RookstockTypes } from '../../../Arrays/RookstockTypes';
-import { Button, Flowbite } from 'flowbite-react';
+import { Button, Flowbite, Datepicker, Label } from 'flowbite-react';
 import { LiaBroomSolid } from 'react-icons/lia';
 import { AiOutlineSend } from 'react-icons/ai';
+import { useState } from 'react';
 
 const CreateArea = () => {
   const {
     isLoading,
     areaId,
-    property_id,
     name,
     species,
     variety,
@@ -27,14 +27,21 @@ const CreateArea = () => {
     rookstock_type,
     cultivated_area,
     geographic_coordinates,
-    implementation_date,
     number_rows,
     distance_between_rows,
     distance_between_plants,
     number_plants,
     isEditing,
   } = useSelector((store) => store.area);
+  const property_id = JSON.parse(localStorage.getItem('propertyId'));
   const dispatch = useDispatch();
+
+  const [implementation_date, setImplementation_date] = useState(null);
+
+  console.log(implementation_date);
+  const handleDateChange = (date) => {
+    setImplementation_date(date);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -95,9 +102,9 @@ const CreateArea = () => {
 
   return (
     <Flowbite>
-      <form className="form">
+      <form className="flex max-w-md flex-col gap-4">
         <h3>{isEditing ? 'Editar Area' : 'Adicionar Area'}</h3>
-        <div className="form-center">
+        <div>
           <FormRow
             type="text"
             name="name"
@@ -105,7 +112,7 @@ const CreateArea = () => {
             value={name}
             handleChange={handlePropertyInput}
           />
-          <DatepickerComponent />
+          {/* <DatepickerComponent /> */}
           <FormRow
             type="number"
             name="cultivated_area"
@@ -151,13 +158,24 @@ const CreateArea = () => {
             value={geographic_coordinates}
             handleChange={handlePropertyInput}
           />
-          <FormRow
+          <div>
+            <Label>Data de implementação</Label>
+            <DateInput
+              placeholder={'ola'}
+              value={implementation_date}
+              onChange={handleDateChange}
+              name="implementation_date"
+              type="date"
+            />
+          </div>
+          {/* <Datepicker value={implementation_date} /> */}
+          {/* <FormRow
             type="text"
             name="implementation_date"
             labelText="Data de implementação"
             value={implementation_date}
             handleChange={handlePropertyInput}
-          />
+          /> */}
           <FormRow
             type="number"
             name="number_rows"
@@ -186,24 +204,25 @@ const CreateArea = () => {
             value={number_plants}
             handleChange={handlePropertyInput}
           />
-          <div className="btn-container">
-            <button
-              type="button"
-              className="btn btn-block clear-btn"
-              onClick={() => dispatch(clearValues())}
-            >
-              Limpar
-            </button>
-            <button
-              type="submit"
-              className="btn btn-block submit-btn"
-              onClick={handleSubmit}
-              disabled={isLoading}
-            >
-              Enviar
-            </button>
-          </div>
         </div>
+        <Button
+          type="button"
+          onClick={() => dispatch(clearValues())}
+          gradientDuoTone="greenToBlue"
+          outline
+        >
+          <LiaBroomSolid /> Limpar
+        </Button>
+        <Button
+          type="submit"
+          onClick={handleSubmit}
+          disabled={isLoading}
+          gradientDuoTone="greenToBlue"
+          outline
+        >
+          <AiOutlineSend />
+          Enviar
+        </Button>
       </form>
     </Flowbite>
   );

@@ -5,10 +5,12 @@ import {
   setEditArea,
   getAllAreas,
 } from '../../../features/area/areaSlice';
-import { Table, Flowbite } from 'flowbite-react';
+import { useState, useRef } from 'react';
+import { Table, Flowbite, Button, Modal } from 'flowbite-react';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { BsTrash } from 'react-icons/bs';
 import { CgDetailsMore } from 'react-icons/cg';
+import CreateArea from './CreateArea';
 
 const Area = ({
   id,
@@ -27,11 +29,15 @@ const Area = ({
   number_plants,
 }) => {
   const dispatch = useDispatch();
-
+  // console.log(property_id);
   const handleDeleteArea = ({ id, property_id }) => {
     dispatch(deleteArea({ id, property_id }));
     dispatch(getAllAreas(property_id));
   };
+
+  const [openModal, setOpenModal] = useState();
+  const emailInputRef = useRef(null);
+  const props = { openModal, setOpenModal, emailInputRef };
 
   return (
     <Flowbite>
@@ -48,9 +54,9 @@ const Area = ({
           </Link>
         </Table.Cell>
         <Table.Cell>
-          <Link
-            to="/create-area"
-            onClick={() =>
+          <button
+            style={{ color: 'black' }}
+            onClick={() => {
               dispatch(
                 setEditArea({
                   areaId: id,
@@ -68,11 +74,24 @@ const Area = ({
                   distance_between_plants,
                   number_plants,
                 }),
-              )
-            }
+              );
+              props.setOpenModal('initial-focus');
+            }}
           >
             <AiOutlineEdit />
-          </Link>
+          </button>
+          <Modal
+            show={props.openModal === 'initial-focus'}
+            size="md"
+            popup
+            onClose={() => props.setOpenModal(undefined)}
+            initialFocus={props.emailInputRef}
+          >
+            <Modal.Header />
+            <Modal.Body>
+              <CreateArea />
+            </Modal.Body>
+          </Modal>
         </Table.Cell>
         <Table.Cell>
           <button

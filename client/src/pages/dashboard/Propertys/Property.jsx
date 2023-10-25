@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {
   deleteProperty,
@@ -36,9 +35,8 @@ const Property = ({ id, name, total_area, cultivated_area, city, state }) => {
         <Table.Cell>{total_area}</Table.Cell>
         <Table.Cell>{cultivated_area}</Table.Cell>
         <Table.Cell>
-          <Button
-            gradientDuoTone="greenToBlue"
-            outline
+          <button
+            style={{ color: 'black' }}
             onClick={() => {
               dispatch(
                 setEditProperty({
@@ -54,7 +52,7 @@ const Property = ({ id, name, total_area, cultivated_area, city, state }) => {
             }}
           >
             <AiOutlineEdit />
-          </Button>
+          </button>
           <Modal
             show={props.openModal === 'initial-focus'}
             size="md"

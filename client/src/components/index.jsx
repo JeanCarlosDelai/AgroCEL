@@ -9,7 +9,7 @@ import Logo from './Logo';
 import NavbarDashboard from './NavbarDashboard';
 import SmallSidebar from './SmallSidebar';
 import PropertyInfo from './PropertyInfo';
-import DatepickerComponent from './Datepicker';
+import DateInput from './DateInput';
 
 export {
   BigSidebar,
@@ -20,7 +20,7 @@ export {
   Footer,
   Logo,
   // Navbar,
-  DatepickerComponent,
+  DateInput,
   NavbarDashboard,
   SmallSidebar,
   PropertyInfo,
