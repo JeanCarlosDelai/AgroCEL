@@ -91,7 +91,7 @@ const propertySlice = createSlice({
         state.isLoading = false;
         toast.error(payload);
       })
-      .addCase(deleteProperty.fulfilled, (state, { payload }) => {
+      .addCase(deleteProperty.fulfilled, () => {
         toast.success('Propriedade excluída..');
       })
       .addCase(deleteProperty.rejected, (state, { payload }) => {

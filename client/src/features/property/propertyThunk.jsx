@@ -1,8 +1,4 @@
-import {
-  showLoading,
-  hideLoading,
-  getAllPropertys,
-} from '../property/propertySlice';
+import { showLoading, hideLoading } from '../property/propertySlice';
 import customFetch, { checkForUnauthorizedResponse } from '../../utils/axios';
 import { clearValues } from './propertySlice';
 import {
@@ -11,6 +7,7 @@ import {
 } from '../../utils/localStorage';
 
 export const createPropertyThunk = async (property, thunkAPI) => {
+  // console.log(property);
   try {
     const resp = await customFetch.post('/property', property);
     thunkAPI.dispatch(clearValues());

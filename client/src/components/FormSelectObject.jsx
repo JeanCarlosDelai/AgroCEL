@@ -1,6 +1,6 @@
 import { Label, Flowbite, Select } from 'flowbite-react';
 
-const FormSelect = ({
+const FormSelectObject = ({
   type,
   name,
   value,
@@ -14,10 +14,12 @@ const FormSelect = ({
         <Label htmlFor={name}>{labelText || name}</Label>
         {type === 'select' ? (
           <Select id={name} name={name} value={value} onChange={handleChange}>
-            <option value={value}>{value}</option>
+            <option value="" disabled hidden>
+              {value}
+            </option>
             {options.map((option, index) => (
-              <option key={index} value={option}>
-                {option}
+              <option key={index} value={option.value}>
+                {option.label}
               </option>
             ))}
           </Select>
@@ -35,4 +37,4 @@ const FormSelect = ({
   );
 };
 
-export default FormSelect;
+export default FormSelectObject;

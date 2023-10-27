@@ -1,14 +1,18 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Property from './Property';
-import PropertysContainerWrapper from '../../../assets/wrappers/PropertysContainerWrapper';
 import { useSelector, useDispatch } from 'react-redux';
 import { Loading } from '../../../components';
 import { getAllPropertys } from '../../../features/property/propertySlice';
-import { Link } from 'react-router-dom';
+import { Table, Button, Flowbite, Modal } from 'flowbite-react';
+import CreateProperty from './CreateProperty';
 
 const PropertysContainer = () => {
   const { propertys, isLoading } = useSelector((store) => store.property);
   const dispatch = useDispatch();
+
+  const [openModal, setOpenModal] = useState();
+  const emailInputRef = useRef(null);
+  const props = { openModal, setOpenModal, emailInputRef };
 
   useEffect(() => {
     dispatch(getAllPropertys());
@@ -22,30 +26,95 @@ const PropertysContainer = () => {
 
   if (propertyArray.length === 0) {
     return (
-      <PropertysContainerWrapper>
-        <Link to="/create-property" className="btn create-btn">
-          Criar nova propriedade
-        </Link>
-        <h2>Sem Viagens para mostrar...</h2>
-      </PropertysContainerWrapper>
+      <Flowbite>
+        <Table>
+          <Table.Body>
+            <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+              <Table.Cell>
+                <Button
+                  gradientDuoTone="greenToBlue"
+                  outline
+                  onClick={() => props.setOpenModal('initial-focus')}
+                >
+                  + Adicionar nova propriedade
+                </Button>
+                <Modal
+                  show={props.openModal === 'initial-focus'}
+                  size="md"
+                  popup
+                  onClose={() => props.setOpenModal(undefined)}
+                  initialFocus={props.emailInputRef}
+                >
+                  <Modal.Header />
+                  <Modal.Body>
+                    <CreateProperty />
+                  </Modal.Body>
+                </Modal>
+              </Table.Cell>
+              <Table.Cell>
+                <h2>Sem Propriedades para mostrar...</h2>
+              </Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table>
+      </Flowbite>
     );
   }
 
   return (
-    <PropertysContainerWrapper>
-      <Link to="/create-property" className="btn create-btn">
-        Criar nova propriedade
-      </Link>
-      <h5>
-        {propertyArray.length} Propriedade{propertyArray.length > 1 && 's'}{' '}
-        encontrada{propertyArray.length > 1 && 's'}{' '}
-      </h5>
-      <div className="jobs">
-        {propertyArray.map((property) => {
-          return <Property key={property.id} {...property} />;
-        })}
-      </div>
-    </PropertysContainerWrapper>
+    <Flowbite>
+      <Table>
+        <Table.Body>
+          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell>
+              <Button
+                gradientDuoTone="greenToBlue"
+                outline
+                onClick={() => props.setOpenModal('initial-focus')}
+              >
+                + Adicionar nova propriedade
+              </Button>
+              <Modal
+                show={props.openModal === 'initial-focus'}
+                size="md"
+                popup
+                onClose={() => props.setOpenModal(undefined)}
+                initialFocus={props.emailInputRef}
+              >
+                <Modal.Header />
+                <Modal.Body>
+                  <CreateProperty />
+                </Modal.Body>
+              </Modal>
+            </Table.Cell>
+            <Table.Cell>
+              <h6>
+                {propertyArray.length} Propriedade
+                {propertyArray.length > 1 && 's'} encontrada
+                {propertyArray.length > 1 && 's'}{' '}
+              </h6>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+      <br />
+      <Table hoverable>
+        <Table.Head>
+          <Table.HeadCell></Table.HeadCell>
+          <Table.HeadCell>Nome da Propriedade</Table.HeadCell>
+          <Table.HeadCell>Cidade</Table.HeadCell>
+          <Table.HeadCell>Área total</Table.HeadCell>
+          <Table.HeadCell>Área Cultivada</Table.HeadCell>
+          <Table.HeadCell>Editar</Table.HeadCell>
+          <Table.HeadCell>Excluir</Table.HeadCell>
+        </Table.Head>
+        <Table.Body className="divide-y">
+          {propertyArray.map((property) => {
+            return <Property key={property.id} {...property} />;
+          })}
+        </Table.Body>
+      </Table>
+    </Flowbite>
   );
 };
 export default PropertysContainer;

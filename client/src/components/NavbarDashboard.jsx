@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleSidebar, clearStore } from '../features/user/userSlice';
 import { Link } from 'react-router-dom';
 import { getPropertyNameFromLocalStorage } from '../utils/localStorage';
+import { DarkThemeToggle } from 'flowbite-react';
 
 const NavbarDashboard = () => {
   const [showLogout, setShowLogout] = useState(false);
@@ -49,6 +50,7 @@ const NavbarDashboard = () => {
             >
               logout
             </button>
+            <DarkThemeToggle />
           </div>
         </div>
       </div>

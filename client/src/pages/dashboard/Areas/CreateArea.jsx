@@ -1,5 +1,4 @@
 import { FormRow, FormSelect } from '../../../components';
-import DashboardFormPage from '../../../assets/wrappers/DashboardFormPage';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import {
@@ -8,31 +7,44 @@ import {
   createArea,
   editArea,
 } from '../../../features/area/areaSlice';
-// import { getPropertyIdFromLocalStorage } from '../../../utils/localStorage';
 import { DrivingSystems } from '../../../Arrays/DrivingSystems';
 import { AreaVarietys } from '../../../Arrays/AreaVarietys';
 import { RookstockTypes } from '../../../Arrays/RookstockTypes';
+import { Button, Flowbite, Datepicker, Label } from 'flowbite-react';
+import { LiaBroomSolid } from 'react-icons/lia';
+import { AiOutlineSend } from 'react-icons/ai';
+import { useState } from 'react';
+
 const CreateArea = () => {
   const {
     isLoading,
     areaId,
-    property_id,
     name,
     species,
     variety,
     driving_system,
     rookstock_type,
     cultivated_area,
-    geographic_coordinates,
     implementation_date,
+    geographic_coordinates,
     number_rows,
     distance_between_rows,
     distance_between_plants,
     number_plants,
     isEditing,
   } = useSelector((store) => store.area);
+  const property_id = JSON.parse(localStorage.getItem('propertyId'));
   const dispatch = useDispatch();
-  // const varietyOptions = ['Opção 1', 'Opção 2', 'Opção 3', 'Opção 4'];
+
+  const [
+    implementation_date_use = implementation_date,
+    setImplementation_date,
+  ] = useState('');
+
+  const handleDateChange = (e) => {
+    setImplementation_date(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -74,7 +86,7 @@ const CreateArea = () => {
           rookstock_type,
           cultivated_area,
           geographic_coordinates,
-          implementation_date,
+          implementation_date: implementation_date_use,
           number_rows,
           distance_between_rows,
           distance_between_plants,
@@ -91,10 +103,10 @@ const CreateArea = () => {
   };
 
   return (
-    <DashboardFormPage>
-      <form className="form">
+    <Flowbite>
+      <form className="flex max-w-md flex-col gap-4">
         <h3>{isEditing ? 'Editar Area' : 'Adicionar Area'}</h3>
-        <div className="form-center">
+        <div>
           <FormRow
             type="text"
             name="name"
@@ -147,13 +159,16 @@ const CreateArea = () => {
             value={geographic_coordinates}
             handleChange={handlePropertyInput}
           />
-          <FormRow
-            type="text"
-            name="implementation_date"
-            labelText="Data de implementação"
-            value={implementation_date}
-            handleChange={handlePropertyInput}
-          />
+          <Label htmlFor="">Data de implantação</Label>
+          <div>
+            <input
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              type="date"
+              name="implementation_date"
+              value={implementation_date_use}
+              onChange={handleDateChange}
+            />
+          </div>
           <FormRow
             type="number"
             name="number_rows"
@@ -182,26 +197,27 @@ const CreateArea = () => {
             value={number_plants}
             handleChange={handlePropertyInput}
           />
-          <div className="btn-container">
-            <button
-              type="button"
-              className="btn btn-block clear-btn"
-              onClick={() => dispatch(clearValues())}
-            >
-              Limpar
-            </button>
-            <button
-              type="submit"
-              className="btn btn-block submit-btn"
-              onClick={handleSubmit}
-              disabled={isLoading}
-            >
-              Enviar
-            </button>
-          </div>
         </div>
+        <Button
+          type="button"
+          onClick={() => dispatch(clearValues())}
+          gradientDuoTone="greenToBlue"
+          outline
+        >
+          <LiaBroomSolid className="mr-2" /> Limpar
+        </Button>
+        <Button
+          type="submit"
+          onClick={handleSubmit}
+          disabled={isLoading}
+          gradientDuoTone="greenToBlue"
+          outline
+        >
+          <AiOutlineSend className="mr-2" />
+          Enviar
+        </Button>
       </form>
-    </DashboardFormPage>
+    </Flowbite>
   );
 };
 export default CreateArea;

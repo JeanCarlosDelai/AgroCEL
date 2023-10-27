@@ -1,11 +1,15 @@
-import { Link } from 'react-router-dom';
-import PropertyWrapper from '../../../assets/wrappers/PropertyWrapper';
 import { useDispatch } from 'react-redux';
 import {
   deleteProperty,
   setEditProperty,
 } from '../../../features/property/propertySlice';
 import { addPropertyToLocalStorage } from '../../../utils/localStorage';
+import { Table, Radio, Flowbite, Modal, Button } from 'flowbite-react';
+import { AiOutlineEdit } from 'react-icons/ai';
+import { BsTrash } from 'react-icons/bs';
+import { useState, useRef } from 'react';
+import CreateProperty from './CreateProperty';
+
 const Property = ({ id, name, total_area, cultivated_area, city, state }) => {
   const dispatch = useDispatch();
 
@@ -14,29 +18,26 @@ const Property = ({ id, name, total_area, cultivated_area, city, state }) => {
     window.location.reload();
   };
 
-  return (
-    <PropertyWrapper>
-      <div className="info">
-        <h2>{name}</h2>
-      </div>
-      <div className="info">
-        <h3>
-          {city} - {state}
-        </h3>
-      </div>
-      <div className="info">
-        <h4>Área total:{total_area} </h4>
-      </div>
-      <div className="info">
-        <h4>Área cultivada:{cultivated_area} </h4>
-      </div>
+  const [openModal, setOpenModal] = useState();
+  const emailInputRef = useRef(null);
+  const props = { openModal, setOpenModal, emailInputRef };
 
-      <footer>
-        <div className="actions">
-          <Link
-            to="/create-property"
-            className="btn edit-btn"
-            onClick={() =>
+  return (
+    <Flowbite>
+      <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+        <Table.Cell className="p-4">
+          <Radio onClick={handleSelectProperty} />
+        </Table.Cell>
+        <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+          {name}
+        </Table.Cell>
+        <Table.Cell>{city}</Table.Cell>
+        <Table.Cell>{total_area}</Table.Cell>
+        <Table.Cell>{cultivated_area}</Table.Cell>
+        <Table.Cell>
+          <button
+            style={{ color: 'black' }}
+            onClick={() => {
               dispatch(
                 setEditProperty({
                   property_id: id,
@@ -46,28 +47,36 @@ const Property = ({ id, name, total_area, cultivated_area, city, state }) => {
                   total_area,
                   cultivated_area,
                 }),
-              )
-            }
+              );
+              props.setOpenModal('initial-focus');
+            }}
           >
-            Editar
-          </Link>
+            <AiOutlineEdit />
+          </button>
+          <Modal
+            show={props.openModal === 'initial-focus'}
+            size="md"
+            popup
+            onClose={() => props.setOpenModal(undefined)}
+            initialFocus={props.emailInputRef}
+          >
+            <Modal.Header />
+            <Modal.Body>
+              <CreateProperty />
+            </Modal.Body>
+          </Modal>
+        </Table.Cell>
+        <Table.Cell>
           <button
             type="button"
-            className="btn delete-btn"
             onClick={() => dispatch(deleteProperty(id))}
+            style={{ color: 'red' }}
           >
-            Excluir
+            <BsTrash />
           </button>
-          <button
-            type="button"
-            className="btn select-btn"
-            onClick={handleSelectProperty}
-          >
-            Selecionar
-          </button>
-        </div>
-      </footer>
-    </PropertyWrapper>
+        </Table.Cell>
+      </Table.Row>
+    </Flowbite>
   );
 };
 export default Property;

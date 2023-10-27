@@ -26,7 +26,7 @@ cropRouter.post(
 );
 
 cropRouter.put(
-  '/:area_id/area/:crop_id',
+  '/:crop_id/area/:area_id',
   validator(updateCropSchema),
   cropController.update,
 );
