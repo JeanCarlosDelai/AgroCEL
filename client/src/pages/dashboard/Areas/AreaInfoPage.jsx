@@ -40,7 +40,7 @@ function AreaInfoPage() {
 
   return (
     <Flowbite>
-      <DarkThemeToggle />
+      {/* <DarkThemeToggle /> */}
       <Accordion>
         <Accordion.Panel>
           <Accordion.Title style={{ color: 'black' }}>

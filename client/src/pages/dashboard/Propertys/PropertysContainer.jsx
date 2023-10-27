@@ -18,10 +18,6 @@ const PropertysContainer = () => {
     dispatch(getAllPropertys());
   }, []);
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
   const propertyArray = propertys.data || [];
 
   if (propertyArray.length === 0) {

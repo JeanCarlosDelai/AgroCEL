@@ -1,4 +1,8 @@
-import { showLoading, hideLoading } from '../property/propertySlice';
+import {
+  showLoading,
+  hideLoading,
+  getAllPropertys,
+} from '../property/propertySlice';
 import customFetch, { checkForUnauthorizedResponse } from '../../utils/axios';
 import { clearValues } from './propertySlice';
 import {
@@ -7,7 +11,6 @@ import {
 } from '../../utils/localStorage';
 
 export const createPropertyThunk = async (property, thunkAPI) => {
-  // console.log(property);
   try {
     const resp = await customFetch.post('/property', property);
     thunkAPI.dispatch(clearValues());
@@ -21,7 +24,7 @@ export const deletePropertyThunk = async (propertyId, thunkAPI) => {
   try {
     const resp = await customFetch.delete(`/property/${propertyId}`);
     removePropertyFromLocalStorage();
-    window.location.reload();
+    thunkAPI.dispatch(getAllPropertys());
     return resp.data.msg;
   } catch (error) {
     thunkAPI.dispatch(hideLoading());
@@ -36,6 +39,7 @@ export const editPropertyThunk = async (
     const resp = await customFetch.put(`/property/${property_id}`, property);
     thunkAPI.dispatch(clearValues());
     addPropertyToLocalStorage(property_id, property.name);
+    thunkAPI.dispatch(getAllPropertys());
     return resp.data;
   } catch (error) {
     return checkForUnauthorizedResponse(error, thunkAPI);

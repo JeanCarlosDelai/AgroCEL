@@ -28,10 +28,6 @@ const AreasContainer = () => {
     }
   }, []);
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
   const areaArray = areas.data || [];
 
   if (areaArray.length === 0) {
