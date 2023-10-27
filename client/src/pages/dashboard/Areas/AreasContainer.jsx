@@ -31,30 +31,34 @@ const AreasContainer = () => {
   if (areaArray.length === 0) {
     return (
       <Table>
-        <Table.Cell>
-          <Button
-            gradientDuoTone="greenToBlue"
-            outline
-            onClick={() => props.setOpenModal('initial-focus')}
-          >
-            + Adicionar nova área
-          </Button>
-          <Modal
-            show={props.openModal === 'initial-focus'}
-            size="md"
-            popup
-            onClose={() => props.setOpenModal(undefined)}
-            initialFocus={props.emailInputRef}
-          >
-            <Modal.Header />
-            <Modal.Body>
-              <CreateArea />
-            </Modal.Body>
-          </Modal>
-        </Table.Cell>
-        <Table.Cell>
-          <h2>Sem áreas para mostrar</h2>
-        </Table.Cell>
+        <Table.Body>
+          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell>
+              <Button
+                gradientDuoTone="greenToBlue"
+                outline
+                onClick={() => props.setOpenModal('initial-focus')}
+              >
+                + Adicionar nova área
+              </Button>
+              <Modal
+                show={props.openModal === 'initial-focus'}
+                size="md"
+                popup
+                onClose={() => props.setOpenModal(undefined)}
+                initialFocus={props.emailInputRef}
+              >
+                <Modal.Header />
+                <Modal.Body>
+                  <CreateArea />
+                </Modal.Body>
+              </Modal>
+            </Table.Cell>
+            <Table.Cell>
+              <h2>Sem áreas para mostrar</h2>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
       </Table>
     );
   }
@@ -62,33 +66,37 @@ const AreasContainer = () => {
   return (
     <Flowbite>
       <Table>
-        <Table.Cell>
-          <Button
-            gradientDuoTone="greenToBlue"
-            outline
-            onClick={() => props.setOpenModal('initial-focus')}
-          >
-            + Adicionar nova área
-          </Button>
-          <Modal
-            show={props.openModal === 'initial-focus'}
-            size="md"
-            popup
-            onClose={() => props.setOpenModal(undefined)}
-            initialFocus={props.emailInputRef}
-          >
-            <Modal.Header />
-            <Modal.Body>
-              <CreateArea />
-            </Modal.Body>
-          </Modal>
-        </Table.Cell>
-        <Table.Cell>
-          <h6>
-            {areaArray.length} Área{areaArray.length > 1 && 's'} encontrada
-            {areaArray.length > 1 && 's'}{' '}
-          </h6>
-        </Table.Cell>
+        <Table.Body>
+          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell>
+              <Button
+                gradientDuoTone="greenToBlue"
+                outline
+                onClick={() => props.setOpenModal('initial-focus')}
+              >
+                + Adicionar nova área
+              </Button>
+              <Modal
+                show={props.openModal === 'initial-focus'}
+                size="md"
+                popup
+                onClose={() => props.setOpenModal(undefined)}
+                initialFocus={props.emailInputRef}
+              >
+                <Modal.Header />
+                <Modal.Body>
+                  <CreateArea />
+                </Modal.Body>
+              </Modal>
+            </Table.Cell>
+            <Table.Cell>
+              <h6>
+                {areaArray.length} Área{areaArray.length > 1 && 's'} encontrada
+                {areaArray.length > 1 && 's'}{' '}
+              </h6>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
       </Table>
       <br />
       <Table hoverable>

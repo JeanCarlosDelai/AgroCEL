@@ -1,13 +1,11 @@
-import { useEffect } from 'react';
-import PropertysContainerWrapper from '../../assets/wrappers/PropertysContainerWrapper';
-import { useSelector, useDispatch } from 'react-redux';
-import { Loading } from '../../components';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { getAllAreas } from '../../features/area/areaSlice';
 import { Link } from 'react-router-dom';
-import { Table, Flowbite, Button } from 'flowbite-react';
+import { Table, Flowbite, Button, Modal } from 'flowbite-react';
+import CreateCrop from './Crops/CreateCrop';
 
 const FildsNotebookContainer = () => {
-  const { isLoading } = useSelector((store) => store.area);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,53 +15,66 @@ const FildsNotebookContainer = () => {
     }
   }, []);
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  // const areaArray = areas.data || [];
-
-  // if (areaArray.length === 0) {
-  //   return (
-  //     <PropertysContainerWrapper>
-  //       <Link to="/create-area" className="btn create-btn">
-  //         Criar nova Area
-  //       </Link>
-  //       <h2>Sem Areas para mostrar...</h2>
-  //     </PropertysContainerWrapper>
-  //   );
-  // }
+  const [openModal, setOpenModal] = useState();
+  const emailInputRef = useRef(null);
+  const props = { openModal, setOpenModal, emailInputRef };
 
   return (
     <Flowbite>
-      <Table>
-        <Table.Cell>
-          <Link to="/create-crop">
-            <Button gradientDuoTone="greenToBlue" outline>
-              + Adicionar nova colheita
-            </Button>
-          </Link>
-        </Table.Cell>
+      <Table className="mb-4">
+        <Table.Body>
+          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell>
+              <Button
+                gradientDuoTone="greenToBlue"
+                outline
+                onClick={() => props.setOpenModal('initial-focus')}
+              >
+                + Adicionar nova colheita
+              </Button>
+              <Modal
+                show={props.openModal === 'initial-focus'}
+                size="md"
+                popup
+                onClose={() => props.setOpenModal(undefined)}
+                initialFocus={props.emailInputRef}
+              >
+                <Modal.Header />
+                <Modal.Body>
+                  <CreateCrop />
+                </Modal.Body>
+              </Modal>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
       </Table>
-      <br />
-      <Table>
-        <Table.Cell>
-          <Link to="/create-application">
-            <Button gradientDuoTone="greenToBlue" outline>
-              + Adicionar nova aplicação
-            </Button>
-          </Link>
-        </Table.Cell>
+
+      <Table className="mb-4">
+        <Table.Body>
+          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell>
+              <Link to="/create-application">
+                <Button gradientDuoTone="greenToBlue" outline>
+                  + Adicionar nova aplicação
+                </Button>
+              </Link>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
       </Table>
-      <br />
+
       <Table>
-        <Table.Cell>
-          <Link to="/other-activities">
-            <Button gradientDuoTone="greenToBlue" outline>
-              + Adicionar novo manejo
-            </Button>
-          </Link>
-        </Table.Cell>
+        <Table.Body>
+          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell>
+              <Link to="/other-activities">
+                <Button gradientDuoTone="greenToBlue" outline>
+                  + Adicionar novo manejo
+                </Button>
+              </Link>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
       </Table>
     </Flowbite>
   );

@@ -28,30 +28,34 @@ const PropertysContainer = () => {
     return (
       <Flowbite>
         <Table>
-          <Table.Cell>
-            <Button
-              gradientDuoTone="greenToBlue"
-              outline
-              onClick={() => props.setOpenModal('initial-focus')}
-            >
-              + Adicionar nova propriedade
-            </Button>
-            <Modal
-              show={props.openModal === 'initial-focus'}
-              size="md"
-              popup
-              onClose={() => props.setOpenModal(undefined)}
-              initialFocus={props.emailInputRef}
-            >
-              <Modal.Header />
-              <Modal.Body>
-                <CreateProperty />
-              </Modal.Body>
-            </Modal>
-          </Table.Cell>
-          <Table.Cell>
-            <h2>Sem Propriedades para mostrar...</h2>
-          </Table.Cell>
+          <Table.Body>
+            <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+              <Table.Cell>
+                <Button
+                  gradientDuoTone="greenToBlue"
+                  outline
+                  onClick={() => props.setOpenModal('initial-focus')}
+                >
+                  + Adicionar nova propriedade
+                </Button>
+                <Modal
+                  show={props.openModal === 'initial-focus'}
+                  size="md"
+                  popup
+                  onClose={() => props.setOpenModal(undefined)}
+                  initialFocus={props.emailInputRef}
+                >
+                  <Modal.Header />
+                  <Modal.Body>
+                    <CreateProperty />
+                  </Modal.Body>
+                </Modal>
+              </Table.Cell>
+              <Table.Cell>
+                <h2>Sem Propriedades para mostrar...</h2>
+              </Table.Cell>
+            </Table.Row>
+          </Table.Body>
         </Table>
       </Flowbite>
     );
@@ -60,33 +64,38 @@ const PropertysContainer = () => {
   return (
     <Flowbite>
       <Table>
-        <Table.Cell>
-          <Button
-            gradientDuoTone="greenToBlue"
-            outline
-            onClick={() => props.setOpenModal('initial-focus')}
-          >
-            + Adicionar nova propriedade
-          </Button>
-          <Modal
-            show={props.openModal === 'initial-focus'}
-            size="md"
-            popup
-            onClose={() => props.setOpenModal(undefined)}
-            initialFocus={props.emailInputRef}
-          >
-            <Modal.Header />
-            <Modal.Body>
-              <CreateProperty />
-            </Modal.Body>
-          </Modal>
-        </Table.Cell>
-        <Table.Cell>
-          <h6>
-            {propertyArray.length} Propriedade{propertyArray.length > 1 && 's'}{' '}
-            encontrada{propertyArray.length > 1 && 's'}{' '}
-          </h6>
-        </Table.Cell>
+        <Table.Body>
+          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell>
+              <Button
+                gradientDuoTone="greenToBlue"
+                outline
+                onClick={() => props.setOpenModal('initial-focus')}
+              >
+                + Adicionar nova propriedade
+              </Button>
+              <Modal
+                show={props.openModal === 'initial-focus'}
+                size="md"
+                popup
+                onClose={() => props.setOpenModal(undefined)}
+                initialFocus={props.emailInputRef}
+              >
+                <Modal.Header />
+                <Modal.Body>
+                  <CreateProperty />
+                </Modal.Body>
+              </Modal>
+            </Table.Cell>
+            <Table.Cell>
+              <h6>
+                {propertyArray.length} Propriedade
+                {propertyArray.length > 1 && 's'} encontrada
+                {propertyArray.length > 1 && 's'}{' '}
+              </h6>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
       </Table>
       <br />
       <Table hoverable>

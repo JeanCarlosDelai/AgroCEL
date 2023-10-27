@@ -36,11 +36,10 @@ const CreateArea = () => {
   const property_id = JSON.parse(localStorage.getItem('propertyId'));
   const dispatch = useDispatch();
 
-  const [implementation_date, setImplementation_date] = useState(null);
+  const [implementation_date, setImplementation_date] = useState('');
 
-  console.log(implementation_date);
-  const handleDateChange = (date) => {
-    setImplementation_date(date);
+  const handleDateChange = (e) => {
+    setImplementation_date(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -112,7 +111,6 @@ const CreateArea = () => {
             value={name}
             handleChange={handlePropertyInput}
           />
-          {/* <DatepickerComponent /> */}
           <FormRow
             type="number"
             name="cultivated_area"
@@ -158,24 +156,15 @@ const CreateArea = () => {
             value={geographic_coordinates}
             handleChange={handlePropertyInput}
           />
+          <Label htmlFor="">Data de implantação</Label>
           <div>
-            <Label>Data de implementação</Label>
-            <DateInput
-              placeholder={'ola'}
+            <input
+              type="date"
+              name="implementation_date"
               value={implementation_date}
               onChange={handleDateChange}
-              name="implementation_date"
-              type="date"
             />
           </div>
-          {/* <Datepicker value={implementation_date} /> */}
-          {/* <FormRow
-            type="text"
-            name="implementation_date"
-            labelText="Data de implementação"
-            value={implementation_date}
-            handleChange={handlePropertyInput}
-          /> */}
           <FormRow
             type="number"
             name="number_rows"

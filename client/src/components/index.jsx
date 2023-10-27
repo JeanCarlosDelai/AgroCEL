@@ -10,6 +10,7 @@ import NavbarDashboard from './NavbarDashboard';
 import SmallSidebar from './SmallSidebar';
 import PropertyInfo from './PropertyInfo';
 import DateInput from './DateInput';
+import MapInput from './MapInput';
 
 export {
   BigSidebar,
@@ -21,6 +22,7 @@ export {
   Logo,
   // Navbar,
   DateInput,
+  MapInput,
   NavbarDashboard,
   SmallSidebar,
   PropertyInfo,
