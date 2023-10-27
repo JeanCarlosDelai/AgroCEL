@@ -1,3 +1,5 @@
+import { Label, Flowbite, Select } from 'flowbite-react';
+
 const FormSelectObject = ({
   type,
   name,
@@ -7,38 +9,31 @@ const FormSelectObject = ({
   options,
 }) => {
   return (
-    <div className="form-row">
-      <label htmlFor={name} className="form-label">
-        {labelText || name}
-      </label>
-      {type === 'select' ? (
-        <select
-          id={name}
-          name={name}
-          value={value}
-          onChange={handleChange}
-          className="form-select"
-        >
-          <option value="" disabled hidden>
-            {value}
-          </option>
-          {options.map((option, index) => (
-            <option key={index} value={option.value}>
-              {option.label}
+    <Flowbite>
+      <div>
+        <Label htmlFor={name}>{labelText || name}</Label>
+        {type === 'select' ? (
+          <Select id={name} name={name} value={value} onChange={handleChange}>
+            <option value="" disabled hidden>
+              {value}
             </option>
-          ))}
-        </select>
-      ) : (
-        <input
-          id={name}
-          type={type}
-          name={name}
-          value={value}
-          onChange={handleChange}
-          className="form-input"
-        />
-      )}
-    </div>
+            {options.map((option, index) => (
+              <option key={index} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </Select>
+        ) : (
+          <input
+            id={name}
+            type={type}
+            name={name}
+            value={value}
+            onChange={handleChange}
+          />
+        )}
+      </div>
+    </Flowbite>
   );
 };
 

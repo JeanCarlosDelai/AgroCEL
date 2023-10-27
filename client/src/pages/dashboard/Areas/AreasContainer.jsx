@@ -4,7 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Loading } from '../../../components';
 import { getAllAreas } from '../../../features/area/areaSlice';
 import { Link } from 'react-router-dom';
-import { Table, Button, Flowbite, Modal } from 'flowbite-react';
+import {
+  Table,
+  Button,
+  Flowbite,
+  Modal,
+  DarkThemeToggle,
+} from 'flowbite-react';
 import CreateArea from './CreateArea';
 
 const AreasContainer = () => {
@@ -95,6 +101,9 @@ const AreasContainer = () => {
                 {areaArray.length > 1 && 's'}{' '}
               </h6>
             </Table.Cell>
+            {/* <Table.Cell>
+              <DarkThemeToggle />
+            </Table.Cell> */}
           </Table.Row>
         </Table.Body>
       </Table>

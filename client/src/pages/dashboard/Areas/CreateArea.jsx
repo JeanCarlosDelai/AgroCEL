@@ -1,7 +1,6 @@
-import { FormRow, FormSelect, DateInput } from '../../../components';
+import { FormRow, FormSelect } from '../../../components';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { format } from 'date-fns';
 import {
   handleChange,
   clearValues,
@@ -26,6 +25,7 @@ const CreateArea = () => {
     driving_system,
     rookstock_type,
     cultivated_area,
+    implementation_date,
     geographic_coordinates,
     number_rows,
     distance_between_rows,
@@ -36,7 +36,10 @@ const CreateArea = () => {
   const property_id = JSON.parse(localStorage.getItem('propertyId'));
   const dispatch = useDispatch();
 
-  const [implementation_date, setImplementation_date] = useState('');
+  const [
+    implementation_date_use = implementation_date,
+    setImplementation_date,
+  ] = useState('');
 
   const handleDateChange = (e) => {
     setImplementation_date(e.target.value);
@@ -83,7 +86,7 @@ const CreateArea = () => {
           rookstock_type,
           cultivated_area,
           geographic_coordinates,
-          implementation_date,
+          implementation_date: implementation_date_use,
           number_rows,
           distance_between_rows,
           distance_between_plants,
@@ -159,9 +162,10 @@ const CreateArea = () => {
           <Label htmlFor="">Data de implantação</Label>
           <div>
             <input
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               type="date"
               name="implementation_date"
-              value={implementation_date}
+              value={implementation_date_use}
               onChange={handleDateChange}
             />
           </div>
@@ -200,7 +204,7 @@ const CreateArea = () => {
           gradientDuoTone="greenToBlue"
           outline
         >
-          <LiaBroomSolid /> Limpar
+          <LiaBroomSolid className="mr-2" /> Limpar
         </Button>
         <Button
           type="submit"
@@ -209,7 +213,7 @@ const CreateArea = () => {
           gradientDuoTone="greenToBlue"
           outline
         >
-          <AiOutlineSend />
+          <AiOutlineSend className="mr-2" />
           Enviar
         </Button>
       </form>

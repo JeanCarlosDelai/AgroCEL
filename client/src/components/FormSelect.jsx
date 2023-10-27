@@ -1,4 +1,4 @@
-import { Label, TextInput, Flowbite, Select } from 'flowbite-react';
+import { Label, Flowbite, Select } from 'flowbite-react';
 
 const FormSelect = ({
   type,

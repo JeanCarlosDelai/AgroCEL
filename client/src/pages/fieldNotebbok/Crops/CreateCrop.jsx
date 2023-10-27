@@ -1,8 +1,7 @@
 import { FormRow, FormSelectObject, Loading } from '../../../components';
-import DashboardFormPage from '../../../assets/wrappers/DashboardFormPage';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   handleChange,
   clearValues,
@@ -10,6 +9,9 @@ import {
   editCrop,
 } from '../../../features/crop/cropSlice';
 import { getAllAreas } from '../../../features/area/areaSlice';
+import { Button, Flowbite, Label } from 'flowbite-react';
+import { AiOutlineSend } from 'react-icons/ai';
+import { LiaBroomSolid } from 'react-icons/lia';
 
 const CreateCrop = () => {
   const {
@@ -17,8 +19,8 @@ const CreateCrop = () => {
     area_id,
     id,
     name,
-    quantity,
     crop_date,
+    quantity,
     crop_time,
     isEditing,
   } = useSelector((store) => store.crop);
@@ -26,6 +28,12 @@ const CreateCrop = () => {
   const { areas } = useSelector((store) => store.area);
 
   const dispatch = useDispatch();
+
+  const [crop_dateUse = crop_date, setCrop_date] = useState('');
+
+  const handleDateChange = (e) => {
+    setCrop_date(e.target.value);
+  };
 
   useEffect(() => {
     const propertyId = localStorage.getItem('propertyId');
@@ -52,7 +60,6 @@ const CreateCrop = () => {
       toast.error('Por favor prencha todos os campos');
       return;
     }
-    console.log(isEditing);
     if (isEditing) {
       dispatch(
         editCrop({
@@ -74,7 +81,7 @@ const CreateCrop = () => {
         crop: {
           name,
           quantity,
-          crop_date,
+          crop_date: crop_dateUse,
           crop_time,
         },
       }),
@@ -88,10 +95,10 @@ const CreateCrop = () => {
   };
 
   return (
-    <DashboardFormPage>
-      <form className="form">
+    <Flowbite>
+      <form className="flex max-w-md flex-col gap-4">
         <h3>{isEditing ? 'Editar Colheita' : 'Adicionar Colheita'}</h3>
-        <div className="form-center">
+        <div>
           <FormRow
             type="text"
             name="name"
@@ -114,13 +121,16 @@ const CreateCrop = () => {
             handleChange={handlePropertyInput}
             options={areaOptions}
           />
-          <FormRow
-            type="text"
-            name="crop_date"
-            labelText="Data da colheita"
-            value={crop_date}
-            handleChange={handlePropertyInput}
-          />
+          <div>
+            <Label htmlFor="crop_date">Data da colheita</Label>
+            <input
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              type="date"
+              name="crop_date"
+              value={crop_dateUse}
+              onChange={handleDateChange}
+            />
+          </div>
           <FormRow
             type="number"
             name="crop_time"
@@ -128,26 +138,27 @@ const CreateCrop = () => {
             value={crop_time}
             handleChange={handlePropertyInput}
           />
-          <div className="btn-container">
-            <button
-              type="button"
-              className="btn btn-block clear-btn"
-              onClick={() => dispatch(clearValues())}
-            >
-              Limpar
-            </button>
-            <button
-              type="submit"
-              className="btn btn-block submit-btn"
-              onClick={handleSubmit}
-              disabled={isLoading}
-            >
-              Enviar
-            </button>
-          </div>
         </div>
+        <Button
+          type="button"
+          gradientDuoTone="greenToBlue"
+          outline
+          onClick={() => dispatch(clearValues())}
+        >
+          <LiaBroomSolid className="mr-2" /> Limpar
+        </Button>
+        <Button
+          type="submit"
+          onClick={handleSubmit}
+          disabled={isLoading}
+          gradientDuoTone="greenToBlue"
+          outline
+        >
+          <AiOutlineSend className="mr-2" />
+          Enviar
+        </Button>
       </form>
-    </DashboardFormPage>
+    </Flowbite>
   );
 };
 export default CreateCrop;

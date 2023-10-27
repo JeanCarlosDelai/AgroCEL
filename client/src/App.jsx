@@ -4,7 +4,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { Landing, Register, Error, ProtectedRoute } from './pages';
 import { SharedLayout, Profile } from './pages/dashboard';
-import { Footer } from './components/index';
 import PropertysContainer from './pages/dashboard/Propertys/PropertysContainer';
 import CreateProperty from './pages/dashboard/Propertys/CreateProperty';
 import PropertysArea from './pages/dashboard/Areas/AreasContainer';
@@ -41,7 +40,6 @@ function App() {
           <Route path="*" element={<Error />} />
         </Routes>
         <ToastContainer position="top-center" />
-        <Footer />
       </BrowserRouter>
     </Flowbite>
   );

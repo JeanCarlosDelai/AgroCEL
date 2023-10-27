@@ -26,7 +26,7 @@ html {
   --primary-600: #55dd67;
   --primary-700: #49d449;
   --primary-800: #18b92d;
-  --primary-900: #379E29;
+  --primary-900: #9bb697;
 
   /* grey */
   --grey-50: #f0f4f8;
@@ -41,10 +41,10 @@ html {
   --grey-900: #1a2630;
   /* rest of the colors */
   --black: #222;
-  --white: #fff;
+  --white: #e4e4e4;
   --red-light: #f8d7da;
   --red-dark: #842029;
-  --green-light: #d1e7dd;
+  --green-light: #284538;
   --green-dark: #0f5132;
 
   /* fonts  */
@@ -53,7 +53,7 @@ html {
   --small-text: 0.875rem;
   --extra-small-text: 0.7em;
   /* rest of the vars */
-  --backgroundColor: var(--grey-100);
+  --backgroundColor: var(--primary-900);
   --textColor: var(--grey-900);
   --borderRadius: 0.25rem;
   --letterSpacing: 1px;

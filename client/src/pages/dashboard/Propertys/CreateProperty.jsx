@@ -109,7 +109,7 @@ const CreateProperty = () => {
           gradientDuoTone="greenToBlue"
           outline
         >
-          <LiaBroomSolid /> Limpar
+          <LiaBroomSolid className="mr-2" /> Limpar
         </Button>
         <Button
           type="submit"
@@ -118,7 +118,7 @@ const CreateProperty = () => {
           gradientDuoTone="greenToBlue"
           outline
         >
-          <AiOutlineSend />
+          <AiOutlineSend className="mr-2" />
           Enviar
         </Button>
       </form>
