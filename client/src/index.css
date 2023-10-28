@@ -26,7 +26,7 @@ html {
   --primary-600: #55dd67;
   --primary-700: #49d449;
   --primary-800: #18b92d;
-  --primary-900: #9bb697;
+  --primary-900: #dee9dc;
 
   /* grey */
   --grey-50: #f0f4f8;
@@ -53,7 +53,7 @@ html {
   --small-text: 0.875rem;
   --extra-small-text: 0.7em;
   /* rest of the vars */
-  --backgroundColor: var(--primary-900);
+  --backgroundColor: black;
   --textColor: var(--grey-900);
   --borderRadius: 0.25rem;
   --letterSpacing: 1px;
