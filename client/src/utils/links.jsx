@@ -11,27 +11,27 @@ const links = () => {
       id: 1,
       text: 'Propriedades',
       path: '/propertys',
-      icon: <FaMapMarkedAlt />,
+      icon: FaMapMarkedAlt,
     },
-    { id: 2, text: 'Áreas', path: '/areas', icon: <TbChartAreaLineFilled /> },
+    { id: 2, text: 'Áreas', path: '/areas', icon: TbChartAreaLineFilled },
     {
       id: 3,
       text: 'Caderno de campo',
       path: '/field-notebook',
-      icon: <GiNotebook />,
+      icon: GiNotebook,
     },
-    { id: 4, text: 'Vendas', path: '/vendas', icon: <AiFillDollarCircle /> },
+    { id: 4, text: 'Vendas', path: '/vendas', icon: AiFillDollarCircle },
     {
       id: 5,
       text: 'Produção Própria',
       path: '/crop',
-      icon: <BiSolidWine />,
+      icon: BiSolidWine,
     },
     {
       id: 6,
       text: 'Relatórios',
       path: '/report',
-      icon: <SiGoogledocs />,
+      icon: SiGoogledocs,
     },
   ];
   return links;

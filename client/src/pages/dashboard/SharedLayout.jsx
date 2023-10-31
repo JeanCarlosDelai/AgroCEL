@@ -1,19 +1,19 @@
 import { Outlet } from 'react-router-dom';
-import { SidebarDashboard, NavbarDashboard } from '../../components';
-import Wrapper from '../../assets/wrappers/SharedLayout';
+import { SidebarDashboard, SelectedProperty, DropDown } from '../../components';
 const SharedLayout = () => {
   return (
-    <Wrapper>
-      <main className="dashboard">
+    <>
+      <main className="dashboard bg-gray-400 flex">
         <SidebarDashboard />
+        <div className="flex-1 mx-4 mt-4">
+          <SelectedProperty />
+          <Outlet />
+        </div>
         <div>
-          <NavbarDashboard />
-          <div className="dashboard-page">
-            <Outlet />
-          </div>
+          <DropDown />
         </div>
       </main>
-    </Wrapper>
+    </>
   );
 };
 export default SharedLayout;

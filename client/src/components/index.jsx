@@ -8,6 +8,8 @@ import Logo from './Logo';
 import NavbarDashboard from './NavbarDashboard';
 import DateInput from './DateInput';
 import MapInput from './MapInput';
+import DropDown from './DropDown';
+import SelectedProperty from './SelectedProperty';
 
 export {
   FormRow,
@@ -20,4 +22,6 @@ export {
   DateInput,
   MapInput,
   NavbarDashboard,
+  DropDown,
+  SelectedProperty,
 };

@@ -30,40 +30,40 @@ const AreasContainer = () => {
 
   const areaArray = areas.data || [];
 
-  if (areaArray.length === 0) {
-    return (
-      <Table>
-        <Table.Body>
-          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            <Table.Cell>
-              <Button
-                gradientDuoTone="greenToBlue"
-                outline
-                onClick={() => props.setOpenModal('initial-focus')}
-              >
-                + Adicionar nova área
-              </Button>
-              <Modal
-                show={props.openModal === 'initial-focus'}
-                size="md"
-                popup
-                onClose={() => props.setOpenModal(undefined)}
-                initialFocus={props.emailInputRef}
-              >
-                <Modal.Header />
-                <Modal.Body>
-                  <CreateArea />
-                </Modal.Body>
-              </Modal>
-            </Table.Cell>
-            <Table.Cell>
-              <h2>Sem áreas para mostrar</h2>
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
-    );
-  }
+  // if (areaArray.length === 0) {
+  //   return (
+  //     <Table>
+  //       <Table.Body>
+  //         <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+  //           <Table.Cell>
+  //             <Button
+  //               gradientDuoTone="greenToBlue"
+  //               outline
+  //               onClick={() => props.setOpenModal('initial-focus')}
+  //             >
+  //               + Adicionar nova área
+  //             </Button>
+  //             <Modal
+  //               show={props.openModal === 'initial-focus'}
+  //               size="md"
+  //               popup
+  //               onClose={() => props.setOpenModal(undefined)}
+  //               initialFocus={props.emailInputRef}
+  //             >
+  //               <Modal.Header />
+  //               <Modal.Body>
+  //                 <CreateArea />
+  //               </Modal.Body>
+  //             </Modal>
+  //           </Table.Cell>
+  //           <Table.Cell>
+  //             <h2>Sem áreas para mostrar</h2>
+  //           </Table.Cell>
+  //         </Table.Row>
+  //       </Table.Body>
+  //     </Table>
+  //   );
+  // }
 
   return (
     <Flowbite>
@@ -104,8 +104,9 @@ const AreasContainer = () => {
         </Table.Body>
       </Table>
       <br />
+
       <Table hoverable>
-        <Table.Head>
+        <Table.Head border className="border-gray-300">
           <Table.HeadCell>Nome da Área</Table.HeadCell>
           <Table.HeadCell>Espécie</Table.HeadCell>
           <Table.HeadCell>Variedade</Table.HeadCell>
