@@ -1,10 +1,13 @@
-import { useQuery } from 'react-query';
+import { useQuery, useMutation } from 'react-query';
 import customFetch from '../../utils/axios';
 import { toast } from 'react-toastify';
+import queryClient from '../../services/queryClient';
 
 async function getPropertys() {
-  const { data } = await customFetch.get(`/property/user`);
-
+  const { data, error } = await customFetch.get(`/property/user`);
+  if (error) {
+    toast.success(error);
+  }
   return data.data;
 }
 
@@ -15,9 +18,8 @@ export function useFetchProperty() {
 export const createProperty = async (property) => {
   try {
     await customFetch.post('/property', property);
+    await queryClient.invalidateQueries('propertys');
     toast.success('Propriedade criada com sucesso!');
-    window.location.reload();
-    return response.data;
   } catch (error) {
     toast.error(error.response.data.msg);
   }
@@ -29,7 +31,7 @@ export const updateProperty = async (property_id, property) => {
       `/property/${property_id}`,
       property,
     );
-    window.location.reload();
+    await queryClient.invalidateQueries('propertys');
     toast.success('Propriedade alterada com sucesso!');
     return response.data;
   } catch (error) {
@@ -40,9 +42,8 @@ export const updateProperty = async (property_id, property) => {
 export const deleteProperty = async (property_id) => {
   try {
     await customFetch.delete(`/property/${property_id}`);
-    window.location.reload();
+    await queryClient.invalidateQueries('propertys');
     toast.success('Propriedade apagada com sucesso!');
-    return response.data;
   } catch (error) {
     toast.error(error.response.data.msg);
   }
