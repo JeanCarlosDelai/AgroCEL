@@ -1,14 +1,17 @@
 import { useState } from 'react';
-import { updateProperty } from '../../queries/propertys/propertys';
-import { useForm } from 'react-hook-form';
+import { updateArea } from '../../queries/areas/areas';
+import { Controller, useForm } from 'react-hook-form';
 import FormRow from '../FormRow';
 import OpenCloseModal from '../OpenCloseModal';
 import ClearButtonForm from '../Buttons/ClearButtonForm';
 import SubmitButton from '../Buttons/SubmitButton';
+import { AreaVarietys } from '../../Arrays/AreaVarietys';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CreateAreaSchema } from '../../schemas/CreateAreaSchema';
-import usePropertyStore from '../../store/propertys/usePropertyStore';
 import { AiOutlineEdit } from 'react-icons/ai';
+import ReactDatePicker from 'react-datepicker';
+import { DrivingSystems } from '../../Arrays/DrivingSystems';
+import { RookstockTypes } from '../../Arrays/RookstockTypes';
 
 const UpdateAreaModal = (area) => {
   const [isModalCreateOpen, setCreateModalOpen] = useState(false);
@@ -17,6 +20,7 @@ const UpdateAreaModal = (area) => {
     handleSubmit,
     control,
     reset,
+    register,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -46,7 +50,7 @@ const UpdateAreaModal = (area) => {
   const handlerUpdate = async (areas) => {
     console.log(areas);
     setCreateModalOpen(false);
-    await updateProperty(area.value.property_id, area.value.id, areas);
+    await updateArea(area.value.property_id, area.value.id, areas);
   };
 
   return (
@@ -95,22 +99,41 @@ const UpdateAreaModal = (area) => {
               control={control}
               hasError={JSON.stringify(errors.geographic_coordinates?.message)}
             />
-            <FormRow
-              type="text"
-              name="implementation_date"
-              labelText="Data de implantação"
-              placeholder="Data de implantação"
+            {/* <Controller
               control={control}
-              hasError={JSON.stringify(errors.implementation_date?.message)}
+              name="implementation_date"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <ReactDatePicker
+                  onChange={onChange} // send value to hook form
+                  onBlur={onBlur} // notify when input is touched/blur
+                  selected={value}
+                />
+              )}
+            /> */}
+            <FormRow
+              type="select"
+              name="driving_system"
+              labelText="Sistema de condução"
+              placeholder="Coloque o sistema de condução"
+              options={DrivingSystems}
+              control={control}
+              hasError={JSON.stringify(errors.driving_system?.message)}
+            />
+            <FormRow
+              type="select"
+              name="rookstock_type"
+              labelText="Tipo de porta Enxerto"
+              placeholder="Coloque o tipo de porta enxerto"
+              options={RookstockTypes}
+              control={control}
+              hasError={JSON.stringify(errors.rookstock_type?.message)}
             />
             <FormRow
               type="select"
               name="variety"
               labelText="Variedade"
-              options={AreaVarietys}
               placeholder="Coloque a variedade"
-              // value={selectedValue}
-              // handleChange={handleSelectChange}
+              options={AreaVarietys}
               control={control}
               hasError={JSON.stringify(errors.variety?.message)}
             />

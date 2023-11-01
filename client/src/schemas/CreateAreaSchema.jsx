@@ -23,6 +23,10 @@ export const CreateAreaSchema = yup
       .string()
       .required('Por favor, selecione um sistema de condução')
       .min(2, 'O sistema de condução deve ter no mínimo 2 caracteres'),
+    rookstock_type: yup
+      .string()
+      .required('Por favor, selecione o tipo do porta enxerto')
+      .min(2, 'O tipo de porta enxerto deve ter no mínimo 2 caracteres'),
     geographic_coordinates: yup
       .string()
       .required('Por favor, coloque a Coordenada da área')

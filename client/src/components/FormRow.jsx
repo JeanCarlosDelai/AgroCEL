@@ -1,4 +1,5 @@
 import { Controller } from 'react-hook-form';
+import { format } from 'date-fns';
 
 const FormRow = ({
   type,
@@ -14,7 +15,7 @@ const FormRow = ({
   } text-gray-900 text-sm rounded-lg focus:ring-primary-600 ${
     hasError ? 'focus:border-red-500' : 'focus:border-primary-600'
   } block w-full p-2 placeholder-gray-100 dark:focus:ring-primary-500 dark:focus:border-primary-500`;
-
+  console.log();
   return (
     <div>
       <div className="mb-2 block">
@@ -56,7 +57,11 @@ const FormRow = ({
                 type={type}
                 name={field.name}
                 placeholder={placeholder}
-                value={field.value}
+                value={
+                  type === 'date'
+                    ? format(new Date(field.value), 'yyyy-MM-dd')
+                    : field.value
+                }
                 onChange={field.onChange}
                 className={inputClass}
               />

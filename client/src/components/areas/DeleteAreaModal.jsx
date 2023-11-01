@@ -7,17 +7,17 @@ import { DeleteConfirmation } from '../DeleteConfirmation';
 export default function DeleteAreaModal(area) {
   const [isModalDeleteOpen, setDeleteModalOpen] = useState(false);
 
-  function openDeleteModal(data) {
+  function openDeleteModal() {
     setDeleteModalOpen(true);
   }
 
   function closeDeleteModal() {
     setDeleteModalOpen(false);
   }
-
+  // console.log(area.value.id);
   async function handlerDelete() {
     setDeleteModalOpen(false);
-    await deleteArea(area.value.id);
+    await deleteArea(area.value.property_id, area.value.id);
   }
 
   return (

@@ -11,13 +11,14 @@ async function getAreas(property_id) {
   return data.data;
 }
 
-export function useFetchArea() {
-  return useQuery(['areas'], getAreas);
+export function useFetchArea(property_id) {
+  return useQuery(['areas', property_id], () => getAreas(property_id));
 }
 
 export const createArea = async (property_id, area) => {
+  console.log(property_id.property_id);
   try {
-    await customFetch.post(`/area/${property_id}`, area);
+    await customFetch.post(`/area/${property_id.property_id}`, area);
     await queryClient.invalidateQueries('areas');
     toast.success('Área criada com sucesso!');
   } catch (error) {
@@ -40,8 +41,9 @@ export const updateArea = async (property_id, area_id, area) => {
 };
 
 export const deleteArea = async (property_id, area_id) => {
+  console.log(property_id);
   try {
-    await customFetch.delete(`/area/${property_id}/delete/${area_id}`, area);
+    await customFetch.delete(`/area/${property_id}/delete/${area_id}`);
     await queryClient.invalidateQueries('areas');
     toast.success('Área apagada com sucesso!');
   } catch (error) {
