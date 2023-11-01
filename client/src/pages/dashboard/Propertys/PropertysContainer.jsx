@@ -1,5 +1,5 @@
-import Property from '../../../components/propertys/Property';
-import CreatePropertyModal from '../../../components/propertys/CreatePropertyModal';
+import Property from '../../../components/Propertys/Property';
+import CreatePropertyModal from '../../../components/Propertys/CreatePropertyModal';
 import { useFetchProperty } from '../../../queries/propertys/propertys';
 
 const PropertysContainer = () => {
