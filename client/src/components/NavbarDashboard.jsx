@@ -1,60 +1,51 @@
-import Wrapper from '../assets/wrappers/NavbarDashboard';
-import { FaAlignLeft, FaUserCircle, FaCaretDown } from 'react-icons/fa';
-import Logo from './Logo';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleSidebar, clearStore } from '../features/user/userSlice';
+import { clearStore } from '../features/user/userSlice';
 import { Link } from 'react-router-dom';
 import { getPropertyNameFromLocalStorage } from '../utils/localStorage';
-import { DarkThemeToggle } from 'flowbite-react';
+import { Avatar, Button, Dropdown } from 'flowbite-react';
+import { Navbar } from 'flowbite-react';
+import Logo from './Logo';
 
 const NavbarDashboard = () => {
-  const [showLogout, setShowLogout] = useState(false);
   const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const propertyName = getPropertyNameFromLocalStorage();
 
-  const toggle = () => {
-    dispatch(toggleSidebar());
-  };
-
   return (
-    <Wrapper>
-      <div className="nav-center">
-        <button type="button" className="toggle-btn" onClick={toggle}>
-          <FaAlignLeft />
-        </button>
-        <div>
-          <Logo />
-          <h3 className="logo-text">{propertyName}</h3>
-        </div>
-        <div className="btn-container">
-          <button
-            type="button"
-            className="btn"
-            onClick={() => setShowLogout(!showLogout)}
-          >
-            <FaUserCircle />
-            {user?.name}
-            <FaCaretDown />
-          </button>
-          <div className={showLogout ? 'dropdown show-dropdown' : 'dropdown'}>
-            <button className="profile-btn">
-              <Link to="/profile">Perfil</Link>
-            </button>
-            <hr color="black" />
-            <button
-              type="button"
-              className="dropdown-btn"
-              onClick={() => dispatch(clearStore('Saindooo...'))}
-            >
-              logout
-            </button>
-            <DarkThemeToggle />
-          </div>
-        </div>
+    <Navbar fluid className="bg-black/90">
+      <Navbar.Brand>
+        <Logo />
+      </Navbar.Brand>
+      <Navbar.Brand>
+        <span className=" text-white self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+          {propertyName}
+        </span>
+      </Navbar.Brand>
+      <div className="flex md:order-2 mr-4">
+        <Dropdown
+          arrowIcon={false}
+          inline
+          // Adicionar futuramente a imagem do usuário
+          label={<Avatar alt="User settings" img="" rounded />}
+        >
+          <Dropdown.Header>
+            <span className="block text-sm">{user?.name}</span>
+            <span className="block truncate text-sm font-medium">
+              {user?.email}
+            </span>
+          </Dropdown.Header>
+          <Dropdown.Item>
+            <Link to="/profile">Perfil</Link>
+          </Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item onClick={() => dispatch(clearStore('Saindooo...'))}>
+            Sair
+          </Dropdown.Item>
+        </Dropdown>
+        <Navbar.Toggle />
       </div>
-    </Wrapper>
+    </Navbar>
   );
 };
+
 export default NavbarDashboard;

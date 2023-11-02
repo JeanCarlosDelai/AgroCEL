@@ -1,120 +1,86 @@
-import { useEffect, useRef, useState } from 'react';
-import Property from './Property';
-import { useSelector, useDispatch } from 'react-redux';
-import { Loading } from '../../../components';
-import { getAllPropertys } from '../../../features/property/propertySlice';
-import { Table, Button, Flowbite, Modal } from 'flowbite-react';
-import CreateProperty from './CreateProperty';
+import Property from '../../../components/Propertys/Property';
+import CreatePropertyModal from '../../../components/Propertys/CreatePropertyModal';
+import { useFetchProperty } from '../../../queries/propertys/propertys';
 
 const PropertysContainer = () => {
-  const { propertys, isLoading } = useSelector((store) => store.property);
-  const dispatch = useDispatch();
+  // Está sendo renderizado duas vezes
+  const propertys = useFetchProperty();
 
-  const [openModal, setOpenModal] = useState();
-  const emailInputRef = useRef(null);
-  const props = { openModal, setOpenModal, emailInputRef };
-
-  useEffect(() => {
-    dispatch(getAllPropertys());
-  }, []);
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  const propertyArray = propertys.data || [];
-
-  if (propertyArray.length === 0) {
+  if (propertys?.data?.length <= 0) {
     return (
-      <Flowbite>
-        <Table>
-          <Table.Body>
-            <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-              <Table.Cell>
-                <Button
-                  gradientDuoTone="greenToBlue"
-                  outline
-                  onClick={() => props.setOpenModal('initial-focus')}
-                >
-                  + Adicionar nova propriedade
-                </Button>
-                <Modal
-                  show={props.openModal === 'initial-focus'}
-                  size="md"
-                  popup
-                  onClose={() => props.setOpenModal(undefined)}
-                  initialFocus={props.emailInputRef}
-                >
-                  <Modal.Header />
-                  <Modal.Body>
-                    <CreateProperty />
-                  </Modal.Body>
-                </Modal>
-              </Table.Cell>
-              <Table.Cell>
-                <h2>Sem Propriedades para mostrar...</h2>
-              </Table.Cell>
-            </Table.Row>
-          </Table.Body>
-        </Table>
-      </Flowbite>
+      <div className="flex">
+        <section className="p-4">
+          <div className="mx-auto max-w-screen-xl ">
+            <div className="bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden border border-gray-300">
+              <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+                <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center md:space-x-3 flex-shrink-0">
+                  <CreatePropertyModal />
+                  <h6>Nenhuma propriedade encontrada</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     );
   }
 
   return (
-    <Flowbite>
-      <Table>
-        <Table.Body>
-          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            <Table.Cell>
-              <Button
-                gradientDuoTone="greenToBlue"
-                outline
-                onClick={() => props.setOpenModal('initial-focus')}
-              >
-                + Adicionar nova propriedade
-              </Button>
-              <Modal
-                show={props.openModal === 'initial-focus'}
-                size="md"
-                popup
-                onClose={() => props.setOpenModal(undefined)}
-                initialFocus={props.emailInputRef}
-              >
-                <Modal.Header />
-                <Modal.Body>
-                  <CreateProperty />
-                </Modal.Body>
-              </Modal>
-            </Table.Cell>
-            <Table.Cell>
-              <h6>
-                {propertyArray.length} Propriedade
-                {propertyArray.length > 1 && 's'} encontrada
-                {propertyArray.length > 1 && 's'}{' '}
-              </h6>
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
-      <br />
-      <Table hoverable>
-        <Table.Head>
-          <Table.HeadCell></Table.HeadCell>
-          <Table.HeadCell>Nome da Propriedade</Table.HeadCell>
-          <Table.HeadCell>Cidade</Table.HeadCell>
-          <Table.HeadCell>Área total</Table.HeadCell>
-          <Table.HeadCell>Área Cultivada</Table.HeadCell>
-          <Table.HeadCell>Editar</Table.HeadCell>
-          <Table.HeadCell>Excluir</Table.HeadCell>
-        </Table.Head>
-        <Table.Body className="divide-y">
-          {propertyArray.map((property) => {
-            return <Property key={property.id} {...property} />;
-          })}
-        </Table.Body>
-      </Table>
-    </Flowbite>
+    <div className="flex">
+      <section className="p-4">
+        <div className="mx-auto max-w-screen-xl ">
+          <div className="bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden border border-gray-300">
+            <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+              <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center md:space-x-3 flex-shrink-0">
+                <CreatePropertyModal />
+                <h6>
+                  {propertys?.data?.length} Propriedade
+                  {propertys?.data?.length > 1 && 's'} encontrada
+                  {propertys?.data?.length > 1 && 's'}{' '}
+                </h6>
+              </div>
+            </div>
+            <div className="mx-auto">
+              <table className="w-full text-sm text-left text-gray-500  border border-black300">
+                <thead className="text-xs text-gray-300 uppercase bg-black border border-gray-300">
+                  <tr>
+                    <th scope="col" className="px-4 py-3 ">
+                      <span className="sr-only">Actions</span>
+                    </th>
+                    <th scope="col" className="px-4 py-4">
+                      Nome
+                    </th>
+                    <th scope="col" className="px-4 py-3">
+                      Cidade
+                    </th>
+                    <th scope="col" className="px-4 py-3">
+                      Estado
+                    </th>
+                    <th scope="col" className="px-4 py-3">
+                      Area Cultivada
+                    </th>
+                    <th scope="col" className="px-4 py-3">
+                      Area Total
+                    </th>
+                    <th scope="col" className="px-4 py-3">
+                      Editar
+                    </th>
+                    <th scope="col" className="px-4 py-3">
+                      Excluir
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-gray-800 text-gray-300">
+                  {propertys?.data?.map((property) => {
+                    return <Property key={property.id} property={property} />;
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 export default PropertysContainer;

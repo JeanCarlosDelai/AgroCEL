@@ -1,94 +1,88 @@
-import { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { Logo, FormRow } from '../components';
-import Wrapper from '../assets/wrappers/RegisterPage';
-import { toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginUser, registerUser } from '../features/user/userSlice';
-import { useNavigate } from 'react-router-dom';
-
-const initialState = {
-  name: '',
-  email: '',
-  password: '',
-  isMember: true,
-};
+import { createUser } from '../queries/users/users';
+import SubmitButton from '../components/Buttons/SubmitButton';
+import ClearButtonForm from '../components/Buttons/ClearButtonForm';
+import { Link } from 'react-router-dom';
+import { CreateUserSchema } from '../schemas/CreateUserSchema';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 function Register() {
-  const [values, setValues] = useState(initialState);
-  const { user, isLoading } = useSelector((store) => store.user);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+    },
+    resolver: yupResolver(CreateUserSchema),
+  });
 
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    setValues({ ...values, [name]: value });
-  };
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const { name, email, password, isMember } = values;
-    if (!email || !password || (!isMember && !name)) {
-      toast.error('Por favor providencie todos os campos');
-      return;
-    }
-    if (isMember) {
-      dispatch(loginUser({ email, password }));
-      return;
-    }
-    dispatch(registerUser({ name, email, password }));
+  const handlerCreateUser = async (user) => {
+    await createUser(user);
+    reset();
   };
 
-  const toggleMember = () => {
-    setValues({ ...values, isMember: !values.isMember });
-  };
-  useEffect(() => {
-    if (user) {
-      setTimeout(() => {
-        navigate('/');
-      }, 2000);
-    }
-  }, [user]);
   return (
-    <Wrapper className="full-page">
-      <form className="form" onSubmit={onSubmit}>
-        <h3>{values.isMember ? 'Login' : 'Registrar-se'}</h3>
-        {/* name field */}
-        {!values.isMember && (
-          <FormRow
-            type="text"
-            labelText="nome"
-            name="name"
-            value={values.name}
-            handleChange={handleChange}
-          />
-        )}
-        {/* email field */}
+    <form
+      className="flex h-screen items-center justify-center bg-gray-800"
+      onSubmit={handleSubmit(handlerCreateUser)}
+    >
+      <div className="w-full max-w-sm p-4 bg-gray-600 border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8">
+        <div className="flex justify-center mr-14">
+          <Logo />
+        </div>
+        <h5 className="text-xl font-medium text-gray-900">
+          Se registre na plataforma
+        </h5>
+        <br />
+        <FormRow
+          type="text"
+          name="name"
+          labelText="Nome"
+          placeholder="Nome"
+          control={control}
+          hasError={JSON.stringify(errors.name?.message)}
+        />
+        <br />
         <FormRow
           type="email"
           name="email"
-          value={values.email}
-          handleChange={handleChange}
+          labelText="Email"
+          placeholder="agrocel@.com.br"
+          control={control}
+          hasError={JSON.stringify(errors.email?.message)}
         />
-        {/* password field */}
+        <br />
         <FormRow
           type="password"
-          labelText="senha"
           name="password"
-          value={values.password}
-          handleChange={handleChange}
+          labelText="Senha"
+          placeholder="*********"
+          control={control}
+          hasError={JSON.stringify(errors.password?.message)}
         />
-        <button type="submit" className="btn btn-block" disabled={isLoading}>
-          {isLoading ? 'Carregando...' : 'Login'}
-        </button>
-        <p>
-          {values.isMember ? 'Ainda não se cadastrou?' : 'Já é um membro?'}
-          <button type="button" onClick={toggleMember} className="member-btn">
-            {values.isMember ? 'Registrar-se' : 'Login'}
-          </button>
-        </p>
-      </form>
-    </Wrapper>
+        <br />
+        <div className="relative inline-flex items-center justify-center">
+          <ClearButtonForm onClick={() => reset()} />
+          <SubmitButton label="Registrar" />
+        </div>
+        <div className="text-sm font-medium text-gray-300 mt-4 ">
+          Já registrado?
+          <Link
+            className="text-green-500 hover:underline ml-2"
+            onClick={() => reset()}
+            to="/login"
+          >
+            Faça Login
+          </Link>
+        </div>
+      </div>
+    </form>
   );
 }
 export default Register;

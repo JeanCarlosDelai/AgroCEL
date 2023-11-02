@@ -1,130 +1,88 @@
-import { useEffect, useRef, useState } from 'react';
-import Area from './Area';
-import { useSelector, useDispatch } from 'react-redux';
-import { Loading } from '../../../components';
-import { getAllAreas } from '../../../features/area/areaSlice';
-import { Link } from 'react-router-dom';
-import {
-  Table,
-  Button,
-  Flowbite,
-  Modal,
-  DarkThemeToggle,
-} from 'flowbite-react';
-import CreateArea from './CreateArea';
+import Area from '../../../components/areas/Area';
+import CreateAreaModal from '../../../components/areas/CreateAreaModal';
+import { useFetchArea } from '../../../queries/areas/areas';
+import usePropertyStore from '../../../store/propertys/usePropertyStore';
 
 const AreasContainer = () => {
-  const { areas, isLoading } = useSelector((store) => store.area);
-  const dispatch = useDispatch();
+  // Está sendo renderizado duas vezes
+  const selectedProperty = usePropertyStore((state) => state.selectedProperty);
+  // console.log(selectedProperty.property_id);
+  const property_id = selectedProperty.property_id;
 
-  const [openModal, setOpenModal] = useState();
-  const emailInputRef = useRef(null);
-  const props = { openModal, setOpenModal, emailInputRef };
+  const areas = useFetchArea(property_id);
 
-  useEffect(() => {
-    const propertyId = localStorage.getItem('propertyId');
-    if (propertyId) {
-      dispatch(getAllAreas(JSON.parse(propertyId)));
-    }
-  }, []);
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  const areaArray = areas.data || [];
-
-  if (areaArray.length === 0) {
+  if (areas?.data?.length <= 0) {
     return (
-      <Table>
-        <Table.Body>
-          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            <Table.Cell>
-              <Button
-                gradientDuoTone="greenToBlue"
-                outline
-                onClick={() => props.setOpenModal('initial-focus')}
-              >
-                + Adicionar nova área
-              </Button>
-              <Modal
-                show={props.openModal === 'initial-focus'}
-                size="md"
-                popup
-                onClose={() => props.setOpenModal(undefined)}
-                initialFocus={props.emailInputRef}
-              >
-                <Modal.Header />
-                <Modal.Body>
-                  <CreateArea />
-                </Modal.Body>
-              </Modal>
-            </Table.Cell>
-            <Table.Cell>
-              <h2>Sem áreas para mostrar</h2>
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
+      <div className="flex">
+        <section className="p-4">
+          <div className="mx-auto max-w-screen-xl ">
+            <div className="bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden border border-gray-300">
+              <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+                <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center md:space-x-3 flex-shrink-0">
+                  <CreateAreaModal />
+                  <h6>Nenhuma área encontrada</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     );
   }
 
   return (
-    <Flowbite>
-      <Table>
-        <Table.Body>
-          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            <Table.Cell>
-              <Button
-                gradientDuoTone="greenToBlue"
-                outline
-                onClick={() => props.setOpenModal('initial-focus')}
-              >
-                + Adicionar nova área
-              </Button>
-              <Modal
-                show={props.openModal === 'initial-focus'}
-                size="md"
-                popup
-                onClose={() => props.setOpenModal(undefined)}
-                initialFocus={props.emailInputRef}
-              >
-                <Modal.Header />
-                <Modal.Body>
-                  <CreateArea />
-                </Modal.Body>
-              </Modal>
-            </Table.Cell>
-            <Table.Cell>
-              <h6>
-                {areaArray.length} Área{areaArray.length > 1 && 's'} encontrada
-                {areaArray.length > 1 && 's'}{' '}
-              </h6>
-            </Table.Cell>
-            {/* <Table.Cell>
-              <DarkThemeToggle />
-            </Table.Cell> */}
-          </Table.Row>
-        </Table.Body>
-      </Table>
-      <br />
-      <Table hoverable>
-        <Table.Head>
-          <Table.HeadCell>Nome da Área</Table.HeadCell>
-          <Table.HeadCell>Espécie</Table.HeadCell>
-          <Table.HeadCell>Variedade</Table.HeadCell>
-          <Table.HeadCell>Área Cultivada</Table.HeadCell>
-          <Table.HeadCell>Detalhes</Table.HeadCell>
-          <Table.HeadCell>Editar</Table.HeadCell>
-          <Table.HeadCell>Excluir</Table.HeadCell>
-        </Table.Head>
-        <Table.Body className="divide-y">
-          {areaArray.map((area) => {
-            return <Area key={area.id} {...area} />;
-          })}
-        </Table.Body>
-      </Table>
-    </Flowbite>
+    <div className="flex">
+      <section className="p-4">
+        <div className="mx-auto max-w-screen-xl ">
+          <div className="bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden border border-gray-300">
+            <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+              <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center md:space-x-3 flex-shrink-0">
+                <CreateAreaModal property_id={property_id} />
+                <h6>
+                  {areas?.data?.length} Área
+                  {areas?.data?.length > 1 && 's'} encontrada
+                  {areas?.data?.length > 1 && 's'}{' '}
+                </h6>
+              </div>
+            </div>
+            <div className="mx-auto">
+              <table className="w-full text-sm text-left text-gray-500  border border-black300">
+                <thead className="text-xs text-gray-300 uppercase bg-black border border-gray-300">
+                  <tr>
+                    <th scope="col" className="px-4 py-4">
+                      Nome da área
+                    </th>
+                    <th scope="col" className="px-4 py-3">
+                      Espécie
+                    </th>
+                    <th scope="col" className="px-4 py-3">
+                      Variedade
+                    </th>
+                    <th scope="col" className="px-4 py-3">
+                      Area Cultivada
+                    </th>
+                    <th scope="col" className="px-4 py-3">
+                      Detalhes
+                    </th>
+                    <th scope="col" className="px-4 py-3">
+                      Editar
+                    </th>
+                    <th scope="col" className="px-4 py-3">
+                      Excluir
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-gray-800 text-gray-300">
+                  {areas?.data?.map((area) => {
+                    return <Area key={area.id} area={area} />;
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 export default AreasContainer;

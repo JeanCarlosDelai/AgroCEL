@@ -1,24 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { getAllAreas } from '../../features/area/areaSlice';
 import { Link } from 'react-router-dom';
 import { Table, Flowbite, Button, Modal } from 'flowbite-react';
-import CreateCrop from './Crops/CreateCrop';
 
 const FildsNotebookContainer = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const propertyId = localStorage.getItem('propertyId');
-    if (propertyId) {
-      dispatch(getAllAreas(JSON.parse(propertyId)));
-    }
-  }, []);
-
-  const [openModal, setOpenModal] = useState();
-  const emailInputRef = useRef(null);
-  const props = { openModal, setOpenModal, emailInputRef };
-
   return (
     <Flowbite>
       <Table className="mb-4">
@@ -40,9 +23,7 @@ const FildsNotebookContainer = () => {
                 initialFocus={props.emailInputRef}
               >
                 <Modal.Header />
-                <Modal.Body>
-                  <CreateCrop />
-                </Modal.Body>
+                <Modal.Body>{/* <CreateCrop /> */}</Modal.Body>
               </Modal>
             </Table.Cell>
           </Table.Row>

@@ -1,29 +1,27 @@
-import BigSidebar from './BigSidebar';
+import SidebarDashboard from './SidebarDashboard';
 import Footer from './Footer';
 import FormRow from './FormRow';
 import FormSelect from './FormSelect';
 import FormSelectObject from './FormSelectObject';
 import Loading from './Loading';
 import Logo from './Logo';
-// import Navbar from './Navbar';
 import NavbarDashboard from './NavbarDashboard';
-import SmallSidebar from './SmallSidebar';
-import PropertyInfo from './PropertyInfo';
-import DateInput from './DateInput';
 import MapInput from './MapInput';
+import DropDown from './DropDown';
+import SelectedProperty from './SelectedProperty';
+import Accordion from './Accordion';
 
 export {
-  BigSidebar,
   FormRow,
+  SidebarDashboard,
   FormSelect,
   FormSelectObject,
   Loading,
   Footer,
   Logo,
-  // Navbar,
-  DateInput,
   MapInput,
   NavbarDashboard,
-  SmallSidebar,
-  PropertyInfo,
+  DropDown,
+  SelectedProperty,
+  Accordion,
 };
