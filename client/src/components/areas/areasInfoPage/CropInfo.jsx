@@ -1,7 +1,7 @@
 import React from 'react';
 import { TableRow } from './TableRow';
 
-function TableAreainfo({ crop }) {
+function CropInfo({ crop }) {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
       <table className="w-full text-sm text-left text-gray-200  ">
@@ -13,4 +13,4 @@ function TableAreainfo({ crop }) {
   );
 }
 
-export default TableAreainfo;
+export default CropInfo;
