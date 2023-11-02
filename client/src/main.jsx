@@ -13,7 +13,7 @@ const root = createRoot(container);
 root.render(
   <Provider store={store}>
     <QueryClientProvider client={queryClient}>
-      <App tab="home" />
+      <App tab="home" />s
     </QueryClientProvider>
   </Provider>,
 );

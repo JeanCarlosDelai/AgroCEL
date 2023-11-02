@@ -3,25 +3,23 @@ import customFetch from '../../utils/axios';
 import { toast } from 'react-toastify';
 import queryClient from '../../services/queryClient';
 
-// async function getPropertys() {
-//   const { data, error } = await customFetch.get(`/property/user`);
-//   if (error) {
-//     toast.success(error);
-//   }
-//   return data.data;
-// }
-
-// export function useFetchProperty() {
-//   return useQuery(['propertys'], getPropertys);
-// }
-
 export const createUser = async (user) => {
   try {
     await customFetch.post('/users', user);
-    // await queryClient.invalidateQueries('propertys');
     toast.success('Usuário criado com sucesso!');
   } catch (error) {
     toast.error(error.response.data.msg);
+  }
+};
+
+export const login = async (userLogin) => {
+  try {
+    const response = await customFetch.post('/sessions', userLogin);
+
+    toast.success('Usuário logado com sucesso!');
+    return response;
+  } catch (error) {
+    toast.error(error.response?.data.msg);
   }
 };
 

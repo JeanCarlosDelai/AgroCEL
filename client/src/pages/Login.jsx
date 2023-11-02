@@ -1,13 +1,19 @@
 import { useForm } from 'react-hook-form';
 import { Logo, FormRow } from '../components';
-import { createUser } from '../queries/users/users';
+import { login } from '../queries/users/users';
 import SubmitButton from '../components/Buttons/SubmitButton';
 import ClearButtonForm from '../components/Buttons/ClearButtonForm';
 import { Link } from 'react-router-dom';
-import { CreateUserSchema } from '../schemas/CreateUserSchema';
+import { LoginSchema } from '../schemas/LoginSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router-dom';
+import {
+  addTokenToLocalStorage,
+  addUserToLocalStorage,
+} from '../utils/localStorage';
 
-function Register() {
+function Login() {
+  const navigate = useNavigate();
   const {
     handleSubmit,
     control,
@@ -15,16 +21,17 @@ function Register() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: '',
       email: '',
       password: '',
     },
-    resolver: yupResolver(CreateUserSchema),
+    resolver: yupResolver(LoginSchema),
   });
 
   const handlerCreateUser = async (user) => {
-    await createUser(user);
-    reset();
+    const response = await login(user);
+    addUserToLocalStorage(response.data.user);
+    addTokenToLocalStorage(response.data.token);
+    navigate('/');
   };
 
   return (
@@ -37,17 +44,8 @@ function Register() {
           <Logo />
         </div>
         <h5 className="text-xl font-medium text-gray-900">
-          Se registre na plataforma
+          Faça login na plataforma
         </h5>
-        <br />
-        <FormRow
-          type="text"
-          name="name"
-          labelText="Nome"
-          placeholder="Nome"
-          control={control}
-          hasError={JSON.stringify(errors.name?.message)}
-        />
         <br />
         <FormRow
           type="email"
@@ -69,20 +67,21 @@ function Register() {
         <br />
         <div className="relative inline-flex items-center justify-center">
           <ClearButtonForm onClick={() => reset()} />
-          <SubmitButton label="Registrar" />
+          <SubmitButton label="Login" />
         </div>
         <div className="text-sm font-medium text-gray-300 mt-4 ">
-          Já registrado?
+          Não é registrado?
           <Link
             className="text-green-500 hover:underline ml-2"
             onClick={() => reset()}
-            to="/login"
+            to="/register"
           >
-            Faça Login
+            Registre-se
           </Link>
         </div>
       </div>
     </form>
   );
 }
-export default Register;
+
+export default Login;

@@ -9,7 +9,7 @@ const Navbar = () => {
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border  rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
             <li>
               <a
-                href="/register"
+                href="/login"
                 className="block py-2 pl-3 pr-4  text-gray-300  rounded md:bg-transparent md:text-green-500 md:p-0 md:hover:text-gray-300"
                 aria-current="page"
               >
