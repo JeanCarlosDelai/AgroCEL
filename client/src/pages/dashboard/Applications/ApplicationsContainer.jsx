@@ -1,6 +1,6 @@
+import CreateApplicationModal from '../../../components/applications/CreateApplicationModal';
 import Application from '../../../components/applications/Application';
 import { useFetchApplications } from '../../../queries/applications/applications';
-// import CreateCropModal from '../../../components/crops/CreateCropModal';
 
 const ApplicationsContainer = ({ area }) => {
   const area_id = area.data.id;
@@ -14,7 +14,7 @@ const ApplicationsContainer = ({ area }) => {
             <div className="bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden border border-gray-300">
               <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                 <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center md:space-x-3 flex-shrink-0">
-                  {/* <CreateCropModal area_id={area_id} /> */}
+                  <CreateApplicationModal area_id={area_id} />
                   <h6>Nenhuma aplicação encontrada</h6>
                 </div>
               </div>
@@ -32,7 +32,7 @@ const ApplicationsContainer = ({ area }) => {
           <div className="bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden border border-gray-300">
             <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
               <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center md:space-x-3 flex-shrink-0">
-                {/* <CreateCropModal area_id={area_id} /> */}
+                <CreateApplicationModal area_id={area_id} />
                 <h6>
                   {applications?.data?.length} Aplicação
                   {applications?.data?.length > 1 && 's'} encontrada
