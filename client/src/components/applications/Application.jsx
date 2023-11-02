@@ -1,6 +1,4 @@
-// import DeleteCropModal from './DeleteCropModal';
-// import UpdateCropModal from './UpdateCropModal';
-
+import DeleteApplicationModal from './DeleteApplicationModal';
 import UpdateApplicationModal from './UpdateApplicationModal';
 
 const Application = ({ application }) => {
@@ -18,7 +16,9 @@ const Application = ({ application }) => {
         <td className="flex-1 m-0 p-3 justify-end">
           <UpdateApplicationModal application={application} />
         </td>
-        <td className="flex-1 p-3">{/* <DeleteCropModal crop={crop} /> */}</td>
+        <td className="flex-1 p-3">
+          <DeleteApplicationModal application={application} />
+        </td>
       </tr>
     </>
   );

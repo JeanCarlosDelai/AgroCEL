@@ -61,7 +61,7 @@ export const updateApplication = async (
 
 export const deleteApplication = async (area_id, application_id) => {
   try {
-    await customFetch.delete(`/application/${application_id}/area/${area_id}`);
+    await customFetch.delete(`/application/${area_id}/area/${application_id}`);
     await queryClient.invalidateQueries('applications');
     toast.success('Aplicação apagada com sucesso!');
   } catch (error) {
