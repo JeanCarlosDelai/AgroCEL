@@ -32,7 +32,6 @@ export function useFetchCrops(area_id) {
 // }
 
 export const createCrop = async (area_id, crop) => {
-  console.log(area_id.area_id);
   try {
     await customFetch.post(`/area/${area_id.area_id}`, crop);
     await queryClient.invalidateQueries('crops');
@@ -56,13 +55,12 @@ export const createCrop = async (area_id, crop) => {
 //   }
 // };
 
-// export const deleteArea = async (property_id, area_id) => {
-//   console.log(property_id);
-//   try {
-//     await customFetch.delete(`/area/${property_id}/delete/${area_id}`);
-//     await queryClient.invalidateQueries('areas');
-//     toast.success('Área apagada com sucesso!');
-//   } catch (error) {
-//     toast.error(error.response.data.msg);
-//   }
-// };
+export const deleteCrop = async (area_id, crop_id) => {
+  try {
+    await customFetch.delete(`/crop/${crop_id}/area/${area_id}`);
+    await queryClient.invalidateQueries('crops');
+    toast.success('Colheita apagada com sucesso!');
+  } catch (error) {
+    toast.error(error.response.data.msg);
+  }
+};

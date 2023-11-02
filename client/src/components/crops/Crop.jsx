@@ -1,3 +1,5 @@
+import DeleteCropModal from './DeleteCropModal';
+
 const Crop = ({ crop }) => {
   return (
     <>
@@ -11,7 +13,9 @@ const Crop = ({ crop }) => {
         <td className="flex-1 m-0 p-3 justify-end">
           {/* <UpdateAreaModal value={area} /> */}
         </td>
-        <td className="flex-1 p-3">{/* <DeleteAreaModal value={area} /> */}</td>
+        <td className="flex-1 p-3">
+          <DeleteCropModal crop={crop} />
+        </td>
       </tr>
     </>
   );
