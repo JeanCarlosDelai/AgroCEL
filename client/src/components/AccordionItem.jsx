@@ -32,7 +32,7 @@ function AccordionItem({ title, content }) {
           <motion.div
             initial={{ opacity: 0, height: 2 }}
             animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
+            exit={{ opacity: 0, height: 1 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
           >
             {content}
