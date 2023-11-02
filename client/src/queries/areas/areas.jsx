@@ -15,6 +15,22 @@ export function useFetchArea(property_id) {
   return useQuery(['areas', property_id], () => getAreas(property_id));
 }
 
+async function getOneArea(property_id, area_id) {
+  const { data, error } = await customFetch.get(
+    `/area/${property_id}/property/${area_id}`,
+  );
+  if (error) {
+    toast.success(error);
+  }
+  return data;
+}
+
+export function useFetchOneArea(property_id, area_id) {
+  return useQuery(['area', property_id, area_id], () =>
+    getOneArea(property_id, area_id),
+  );
+}
+
 export const createArea = async (property_id, area) => {
   console.log(property_id.property_id);
   try {

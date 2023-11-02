@@ -9,6 +9,7 @@ import NavbarDashboard from './NavbarDashboard';
 import MapInput from './MapInput';
 import DropDown from './DropDown';
 import SelectedProperty from './SelectedProperty';
+import Accordion from './Accordion';
 
 export {
   FormRow,
@@ -22,4 +23,5 @@ export {
   NavbarDashboard,
   DropDown,
   SelectedProperty,
+  Accordion,
 };

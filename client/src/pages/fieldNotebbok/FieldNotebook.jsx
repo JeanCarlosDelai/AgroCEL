@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { getAllAreas } from '../../features/area/areaSlice';
 import { Link } from 'react-router-dom';
 import { Table, Flowbite, Button, Modal } from 'flowbite-react';
-import CreateCrop from './Crops/CreateCrop';
 
 const FildsNotebookContainer = () => {
   const dispatch = useDispatch();
@@ -40,9 +39,7 @@ const FildsNotebookContainer = () => {
                 initialFocus={props.emailInputRef}
               >
                 <Modal.Header />
-                <Modal.Body>
-                  <CreateCrop />
-                </Modal.Body>
+                <Modal.Body>{/* <CreateCrop /> */}</Modal.Body>
               </Modal>
             </Table.Cell>
           </Table.Row>

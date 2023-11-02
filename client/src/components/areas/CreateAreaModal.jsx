@@ -24,9 +24,9 @@ const CreateAreaModal = (property_id) => {
     defaultValues: {
       name: '',
       species: '',
-      variety: '',
-      rookstock_type: '',
-      driving_system: '',
+      variety: 'Selecione',
+      rookstock_type: 'Selecione',
+      driving_system: 'Selecione',
       cultivated_area: '',
       geographic_coordinates: '',
       implementation_date: '',
