@@ -62,6 +62,12 @@ const ApplicationsContainer = ({ area }) => {
                     <th scope="col" className="px-4 py-3">
                       Descrição
                     </th>
+                    <th scope="col" className="px-4 py-3">
+                      Editar
+                    </th>
+                    <th scope="col" className="px-4 py-3">
+                      Excluir
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-gray-800 text-gray-300">
