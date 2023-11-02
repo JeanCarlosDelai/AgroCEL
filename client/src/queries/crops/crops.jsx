@@ -41,19 +41,19 @@ export const createCrop = async (area_id, crop) => {
   }
 };
 
-// export const updateArea = async (property_id, area_id, area) => {
-//   try {
-//     const response = await customFetch.put(
-//       `/area/${property_id}/put/${area_id}`,
-//       area,
-//     );
-//     await queryClient.invalidateQueries('areas');
-//     toast.success('Área alterada com sucesso!');
-//     return response.data;
-//   } catch (error) {
-//     toast.error(error.response.data.msg);
-//   }
-// };
+export const updateCrop = async (area_id, crop_id, crop) => {
+  try {
+    const response = await customFetch.put(
+      `/crop/${crop_id}/area/${area_id}`,
+      crop,
+    );
+    await queryClient.invalidateQueries('crops');
+    toast.success('Colheita alterada com sucesso!');
+    return response.data;
+  } catch (error) {
+    toast.error(error.response.data.msg);
+  }
+};
 
 export const deleteCrop = async (area_id, crop_id) => {
   try {

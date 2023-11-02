@@ -6,7 +6,6 @@ import { DeleteConfirmation } from '../DeleteConfirmation';
 
 export default function DeleteCropModal(crop) {
   const [isModalDeleteOpen, setDeleteModalOpen] = useState(false);
-  // console.log(crop);
   function openDeleteModal() {
     setDeleteModalOpen(true);
   }
@@ -14,7 +13,6 @@ export default function DeleteCropModal(crop) {
   function closeDeleteModal() {
     setDeleteModalOpen(false);
   }
-  // console.log(area.value.id);
   async function handlerDelete() {
     setDeleteModalOpen(false);
     console.log();

@@ -1,4 +1,5 @@
 import DeleteCropModal from './DeleteCropModal';
+import UpdateCropModal from './UpdateCropModal';
 
 const Crop = ({ crop }) => {
   return (
@@ -11,7 +12,7 @@ const Crop = ({ crop }) => {
         <td className="px-4 py-3">{crop?.crop_date}</td>
         <td className="px-4 py-3">{crop?.crop_time}</td>
         <td className="flex-1 m-0 p-3 justify-end">
-          {/* <UpdateAreaModal value={area} /> */}
+          <UpdateCropModal crop={crop} />
         </td>
         <td className="flex-1 p-3">
           <DeleteCropModal crop={crop} />

@@ -19,7 +19,6 @@ const Area = ({ area }) => {
           >
             <CgDetailsMore />
           </Link>
-          {/* <AreaInfoPage /> */}
         </td>
         <td className="flex-1 m-0 p-3 justify-end">
           <UpdateAreaModal value={area} />

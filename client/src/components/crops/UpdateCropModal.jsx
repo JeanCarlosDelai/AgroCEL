@@ -1,58 +1,61 @@
 import { useState } from 'react';
+import { updateCrop } from '../../queries/crops/crops';
 import { Controller, useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { CreateCropSchema } from '../../schemas/CreateCropSchema';
-import OpenCloseModal from '../OpenCloseModal';
 import FormRow from '../FormRow';
+import OpenCloseModal from '../OpenCloseModal';
 import ClearButtonForm from '../Buttons/ClearButtonForm';
 import SubmitButton from '../Buttons/SubmitButton';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { CreateCropSchema } from '../../schemas/CreateCropSchema';
+import { AiOutlineEdit } from 'react-icons/ai';
 import ReactDatePicker from 'react-datepicker';
-import { createCrop } from '../../queries/crops/crops';
 
-const CreateCropModal = (area_id) => {
+const UpdateCropModal = (crop) => {
   const [isModalCreateOpen, setCreateModalOpen] = useState(false);
 
   const {
     handleSubmit,
     control,
     reset,
+    register,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: '',
-      quantity: '',
-      crop_date: '',
-      crop_time: '',
+      name: crop.crop.name,
+      quantity: crop.crop.quantity,
+      crop_date: crop.crop.crop_date,
+      crop_time: crop.crop.crop_time,
     },
     resolver: yupResolver(CreateCropSchema),
   });
 
-  function openCreateModal() {
+  function openUpdateModal() {
     setCreateModalOpen(true);
   }
 
-  function closeCreateModal() {
+  function closeUpdateModal() {
     setCreateModalOpen(false);
   }
 
-  const handlerCreate = async (crops) => {
+  const handlerUpdate = async (crops) => {
+    console.log(crops);
     setCreateModalOpen(false);
-    await createCrop(area_id, crops);
+    await updateCrop(crop.crop.area_id, crop.crop.id, crops);
   };
 
   return (
     <div className="flex items-center justify-center">
       <OpenCloseModal
         isModalOpen={isModalCreateOpen}
-        openModal={openCreateModal}
-        closeModal={closeCreateModal}
-        modalName={'Adicionar colheita'}
-        modalButton={' + Adicionar colheita'}
-        classStyle={true}
+        openModal={openUpdateModal}
+        closeModal={closeUpdateModal}
+        modalName={'Editar colheita'}
+        colorText={'text-green-600'}
         backdrop={false}
-        colorText={'text-gray-300'}
+        modalButton={<AiOutlineEdit />}
+        classStyle={false}
       >
-        <form onSubmit={handleSubmit(handlerCreate)}>
+        <form onSubmit={handleSubmit(handlerUpdate)}>
           <div className="grid gap-4 mb-4 sm:grid-cols-2">
             <FormRow
               type="text"
@@ -88,4 +91,5 @@ const CreateCropModal = (area_id) => {
     </div>
   );
 };
-export default CreateCropModal;
+
+export default UpdateCropModal;
