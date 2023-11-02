@@ -21,7 +21,7 @@ const UpdateCropModal = (crop) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: crop.crop.name,
+      name: crop?.crop?.name,
       quantity: crop.crop.quantity,
       crop_date: crop.crop.crop_date,
       crop_time: crop.crop.crop_time,
