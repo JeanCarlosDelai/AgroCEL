@@ -1,6 +1,8 @@
 // import DeleteCropModal from './DeleteCropModal';
 // import UpdateCropModal from './UpdateCropModal';
 
+import UpdateOtherActivitieModal from './UpdateOtherActivitieModal';
+
 const OtherActivitie = ({ otherActivitie }) => {
   return (
     <>
@@ -13,7 +15,7 @@ const OtherActivitie = ({ otherActivitie }) => {
         <td className="px-4 py-3">{otherActivitie?.activitie_time}</td>
         <td className="px-4 py-3">{otherActivitie?.description}</td>
         <td className="flex-1 m-0 p-3 justify-end">
-          {/* <UpdateCropModal crop={otherActivitie} /> */}
+          <UpdateOtherActivitieModal otherActivitie={otherActivitie} />
         </td>
         <td className="flex-1 p-3">
           {/* <DeleteCropModal crop={otherActivitie} /> */}
