@@ -1,63 +1,51 @@
-import { Link } from 'react-router-dom';
-import { Table, Flowbite, Button, Modal } from 'flowbite-react';
+import CreateCropModal from '../../components/crops/CreateCropModal';
+import { TableRow } from '../../components/areas/areasInfoPage/TableRow';
+import CreateApplicationModal from '../../components/applications/CreateApplicationModal';
+import CreateOtherActivitieModal from '../../components/otherActivities/CreateOtherActivitieModal';
 
 const FildsNotebookContainer = () => {
   return (
-    <Flowbite>
-      <Table className="mb-4">
-        <Table.Body>
-          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            <Table.Cell>
-              <Button
-                gradientDuoTone="greenToBlue"
-                outline
-                onClick={() => props.setOpenModal('initial-focus')}
-              >
-                + Adicionar nova colheita
-              </Button>
-              <Modal
-                show={props.openModal === 'initial-focus'}
-                size="md"
-                popup
-                onClose={() => props.setOpenModal(undefined)}
-                initialFocus={props.emailInputRef}
-              >
-                <Modal.Header />
-                <Modal.Body>{/* <CreateCrop /> */}</Modal.Body>
-              </Modal>
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
-
-      <Table className="mb-4">
-        <Table.Body>
-          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            <Table.Cell>
-              <Link to="/create-application">
-                <Button gradientDuoTone="greenToBlue" outline>
-                  + Adicionar nova aplicação
-                </Button>
-              </Link>
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
-
-      <Table>
-        <Table.Body>
-          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            <Table.Cell>
-              <Link to="/other-activities">
-                <Button gradientDuoTone="greenToBlue" outline>
-                  + Adicionar novo manejo
-                </Button>
-              </Link>
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
-    </Flowbite>
+    <>
+      <div className="flex">
+        <section className="p-4">
+          <div className="mx-auto max-w-screen-xl ">
+            <div className="bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden border border-gray-300">
+              <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+                <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center md:space-x-3 flex-shrink-0">
+                  <CreateCropModal />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div className="flex">
+        <section className="p-4">
+          <div className="mx-auto max-w-screen-xl ">
+            <div className="bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden border border-gray-300">
+              <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+                <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center md:space-x-3 flex-shrink-0">
+                  <CreateApplicationModal />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div className="flex">
+        <section className="p-4">
+          <div className="mx-auto max-w-screen-xl ">
+            <div className="bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden border border-gray-300">
+              <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+                <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center md:space-x-3 flex-shrink-0">
+                  <CreateOtherActivitieModal />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 export default FildsNotebookContainer;
