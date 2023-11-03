@@ -1,5 +1,5 @@
+import CreateOtherActivitieModal from '../../../components/otherActivities/CreateOtherActivitieModal';
 import OtherActivitie from '../../../components/otherActivities/OtherActivitie';
-// import CreateCropModal from '../../../components/crops/CreateCropModal';
 import { useFetchOtherActivities } from '../../../queries/otherActivities/otherActivities';
 
 const OtherActivitiesContainer = ({ area }) => {
@@ -14,7 +14,7 @@ const OtherActivitiesContainer = ({ area }) => {
             <div className="bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden border border-gray-300">
               <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                 <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center md:space-x-3 flex-shrink-0">
-                  {/* <CreateCropModal area_id={area_id} /> */}
+                  <CreateOtherActivitieModal area_id={area_id} />
                   <h6>Nenhum manejo encontrada</h6>
                 </div>
               </div>
@@ -32,7 +32,7 @@ const OtherActivitiesContainer = ({ area }) => {
           <div className="bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden border border-gray-300">
             <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
               <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center md:space-x-3 flex-shrink-0">
-                {/* <CreateCropModal area_id={area_id} /> */}
+                <CreateOtherActivitieModal area_id={area_id} />
                 <h6>
                   {otherActivities?.data?.length} Manejo
                   {otherActivities?.data?.length > 1 && 's'} encontrada
