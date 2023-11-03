@@ -15,7 +15,6 @@ function AreaInfoPage() {
 
   return (
     <div className="App">
-      <h1>{area?.data?.name}</h1>
       <Accordion items={accordionItems} />
     </div>
   );

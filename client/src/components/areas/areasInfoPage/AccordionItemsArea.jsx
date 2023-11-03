@@ -6,7 +6,7 @@ import TableAreainfo from './TableAreaInfo';
 function AccordionItemsArea({ area }) {
   return [
     {
-      title: 'Informações da área ',
+      title: `Informações da área - ${area?.data?.name} `,
       content: <TableAreainfo area={area} />,
     },
     {

@@ -62,8 +62,9 @@ export const updateOtherActivitie = async (
 };
 
 export const deleteOtherActivitie = async (area_id, other_activities_id) => {
+  console.log(area_id);
   try {
-    await customFetch.delete(`/other/${other_activities_id}/area/${area_id}`);
+    await customFetch.delete(`/other/${area_id}/area/${other_activities_id}`);
     await queryClient.invalidateQueries('otherActivities');
     toast.success('Manejo apagado com sucesso!');
   } catch (error) {

@@ -1,6 +1,4 @@
-// import DeleteCropModal from './DeleteCropModal';
-// import UpdateCropModal from './UpdateCropModal';
-
+import DeleteOtherActivitieModal from './DeleteOtherActivitieModal';
 import UpdateOtherActivitieModal from './UpdateOtherActivitieModal';
 
 const OtherActivitie = ({ otherActivitie }) => {
@@ -18,7 +16,7 @@ const OtherActivitie = ({ otherActivitie }) => {
           <UpdateOtherActivitieModal otherActivitie={otherActivitie} />
         </td>
         <td className="flex-1 p-3">
-          {/* <DeleteCropModal crop={otherActivitie} /> */}
+          <DeleteOtherActivitieModal otherActivitie={otherActivitie} />
         </td>
       </tr>
     </>
