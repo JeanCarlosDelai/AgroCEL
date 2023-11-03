@@ -1,3 +1,4 @@
+import OtherActivitiesContainer from '../../../pages/dashboard/OtherActivities/OtherActivitiesContainer';
 import ApplicationsContainer from '../../../pages/dashboard/Applications/ApplicationsContainer';
 import CropsContainer from '../../../pages/dashboard/Crops/CropsContainer';
 import TableAreainfo from './TableAreaInfo';
@@ -5,7 +6,7 @@ import TableAreainfo from './TableAreaInfo';
 function AccordionItemsArea({ area }) {
   return [
     {
-      title: 'Informações da área ',
+      title: `Informações da área - ${area?.data?.name} `,
       content: <TableAreainfo area={area} />,
     },
     {
@@ -18,8 +19,7 @@ function AccordionItemsArea({ area }) {
     },
     {
       title: 'Manejo',
-      content:
-        'The main difference is that the core components from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product. Another difference is that Flowbite relies on smaller and standalone components, whereas Tailwind UI offers sections of pages.',
+      content: <OtherActivitiesContainer area={area} />,
     },
   ];
 }

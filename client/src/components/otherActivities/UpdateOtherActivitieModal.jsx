@@ -6,11 +6,10 @@ import OpenCloseModal from '../OpenCloseModal';
 import ClearButtonForm from '../Buttons/ClearButtonForm';
 import SubmitButton from '../Buttons/SubmitButton';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { CreateCropSchema } from '../../schemas/CreateCropSchema';
 import { AiOutlineEdit } from 'react-icons/ai';
-import ReactDatePicker from 'react-datepicker';
+import { CreateOtherActivitieSchema } from '../../schemas/CreateOtherActivitieSchema';
 
-const UpdateCropModal = (crop) => {
+const UpdateOtherActivitieModal = (otherActivitie) => {
   const [isModalCreateOpen, setCreateModalOpen] = useState(false);
 
   const {
@@ -21,12 +20,13 @@ const UpdateCropModal = (crop) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: crop?.crop?.name,
-      quantity: crop.crop.quantity,
-      crop_date: crop.crop.crop_date,
-      crop_time: crop.crop.crop_time,
+      name: otherActivitie.otherActivitie.name,
+      activitie_category: otherActivitie.otherActivitie.activitie_category,
+      activitie_date: otherActivitie.otherActivitie.activitie_date,
+      activitie_time: otherActivitie.otherActivitie.activitie_time,
+      description: otherActivitie.otherActivitie.description,
     },
-    resolver: yupResolver(CreateCropSchema),
+    resolver: yupResolver(CreateOtherActivitieSchema),
   });
 
   function openUpdateModal() {
@@ -37,10 +37,14 @@ const UpdateCropModal = (crop) => {
     setCreateModalOpen(false);
   }
 
-  const handlerUpdate = async (crops) => {
-    console.log(crops);
+  const handlerUpdate = async (otherActivities) => {
+    console.log(otherActivities);
     setCreateModalOpen(false);
-    await updateCrop(crop.crop.area_id, crop.crop.id, crops);
+    await updateCrop(
+      otherActivitie.otherActivitie.area_id,
+      otherActivitie.otherActivitie.id,
+      otherActivities,
+    );
   };
 
   return (
@@ -49,7 +53,7 @@ const UpdateCropModal = (crop) => {
         isModalOpen={isModalCreateOpen}
         openModal={openUpdateModal}
         closeModal={closeUpdateModal}
-        modalName={'Editar colheita'}
+        modalName={'Editar manejo'}
         colorText={'text-green-600'}
         backdrop={false}
         modalButton={<AiOutlineEdit />}
@@ -67,19 +71,27 @@ const UpdateCropModal = (crop) => {
             />
             <FormRow
               type="number"
-              name="quantity"
-              labelText="Quantidade"
-              placeholder="Quantidade"
+              name="activitie_category"
+              labelText="Categoria da atividade"
+              placeholder="Categoria"
               control={control}
-              hasError={JSON.stringify(errors.quantity?.message)}
+              hasError={JSON.stringify(errors.activitie_category?.message)}
+            />
+            <FormRow
+              type="text"
+              name="description"
+              labelText="Descrição"
+              placeholder="Descrição"
+              control={control}
+              hasError={JSON.stringify(errors.description?.message)}
             />
             <FormRow
               type="number"
-              name="crop_time"
-              labelText="Tempo de colheita"
+              name="activitie_time"
+              labelText="Tempo de manejo"
               placeholder="Tempo"
               control={control}
-              hasError={JSON.stringify(errors.crop_time?.message)}
+              hasError={JSON.stringify(errors.activitie_time?.message)}
             />
           </div>
           <div className="relative inline-flex items-center justify-center">
@@ -92,4 +104,4 @@ const UpdateCropModal = (crop) => {
   );
 };
 
-export default UpdateCropModal;
+export default UpdateOtherActivitieModal;
