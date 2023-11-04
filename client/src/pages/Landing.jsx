@@ -1,6 +1,6 @@
 import main from '../assets/images/main.svg';
-import { Footer } from '../components';
-import Navbar from '../components/Navbar';
+import Footer from '../components/sharedLayout/Footer';
+import Navbar from '../components/pages/Landing/Navbar';
 
 const Landing = () => {
   return (

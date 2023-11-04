@@ -1,5 +1,5 @@
 import { useFetchProfile } from '../../../queries/users/profile';
-import ProfileCard from '../../../components/Profile/ProfileCard';
+import ProfileCard from '../../../components/pages/profile/ProfileCard';
 import React from 'react';
 import { getUserFromLocalStorage } from '../../../utils/localStorage';
 

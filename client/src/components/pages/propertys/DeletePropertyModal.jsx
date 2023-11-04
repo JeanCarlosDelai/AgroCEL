@@ -1,22 +1,31 @@
 import { useState } from 'react';
-import { deleteArea } from '../../queries/areas/areas';
+import { deleteProperty } from '../../../queries/propertys/propertys';
+import usePropertyStore from '../../../store/propertys/usePropertyStore';
 import { BsTrashFill } from 'react-icons/bs';
-import OpenCloseModal from '../modal/OpenCloseModal';
-import { DeleteConfirmation } from '../modal/DeleteConfirmation';
+import OpenCloseModal from '../../modal/OpenCloseModal';
+import { DeleteConfirmation } from '../../modal/DeleteConfirmation';
 
-export default function DeleteAreaModal(area) {
+export default function DeletePropertyModal(property) {
+  const removeSelectProperty = usePropertyStore(
+    (state) => state.removeSelectProperty,
+  );
   const [isModalDeleteOpen, setDeleteModalOpen] = useState(false);
 
-  function openDeleteModal() {
+  function openDeleteModal(data) {
     setDeleteModalOpen(true);
   }
 
   function closeDeleteModal() {
     setDeleteModalOpen(false);
   }
+
   async function handlerDelete() {
     setDeleteModalOpen(false);
-    await deleteArea(area.value.property_id, area.value.id);
+    await deleteProperty(property.value.id);
+    removeSelectProperty({
+      name: name,
+      property_id: property.id,
+    });
   }
 
   return (
@@ -35,7 +44,7 @@ export default function DeleteAreaModal(area) {
           isOpen={isModalDeleteOpen}
           onCancel={closeDeleteModal}
           onConfirm={handlerDelete}
-          message="Tem certeza que deseja excluir essa área?"
+          message="Tem certeza que deseja excluir essa propriedade?"
         />
       </OpenCloseModal>
     </div>

@@ -1,5 +1,5 @@
-import CreateOtherActivitieModal from '../../../components/otherActivities/CreateOtherActivitieModal';
-import OtherActivitie from '../../../components/otherActivities/OtherActivitie';
+import CreateOtherActivitieModal from '../../../components/pages/otherActivities/CreateOtherActivitieModal';
+import OtherActivitie from '../../../components/pages/otherActivities/OtherActivitie';
 import { useFetchOtherActivities } from '../../../queries/otherActivities/otherActivities';
 
 const OtherActivitiesContainer = ({ area }) => {

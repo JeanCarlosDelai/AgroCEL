@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { updateArea } from '../../queries/areas/areas';
 import { Controller, useForm } from 'react-hook-form';
-import FormRow from '../FormRow';
-import OpenCloseModal from '../OpenCloseModal';
+import FormRow from '../Form/FormRow';
+import OpenCloseModal from '../modal/OpenCloseModal';
 import ClearButtonForm from '../Buttons/ClearButtonForm';
 import SubmitButton from '../Buttons/SubmitButton';
 import { AreaVarietys } from '../../Arrays/AreaVarietys';

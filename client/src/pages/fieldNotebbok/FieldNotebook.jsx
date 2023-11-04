@@ -1,7 +1,7 @@
-import CreateCropModal from '../../components/crops/CreateCropModal';
+import CreateCropModal from '../../components/pages/crops/CreateCropModal';
 import { TableRow } from '../../components/areas/areasInfoPage/TableRow';
-import CreateApplicationModal from '../../components/applications/CreateApplicationModal';
-import CreateOtherActivitieModal from '../../components/otherActivities/CreateOtherActivitieModal';
+import CreateApplicationModal from '../../components/pages/applications/CreateApplicationModal';
+import CreateOtherActivitieModal from '../../components/pages/otherActivities/CreateOtherActivitieModal';
 
 const FildsNotebookContainer = () => {
   return (

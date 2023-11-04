@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { deleteArea } from '../../queries/areas/areas';
+import { deleteCrop } from '../../../queries/crops/crops';
 import { BsTrashFill } from 'react-icons/bs';
-import OpenCloseModal from '../modal/OpenCloseModal';
-import { DeleteConfirmation } from '../modal/DeleteConfirmation';
+import OpenCloseModal from '../../modal/OpenCloseModal';
+import { DeleteConfirmation } from '../../modal/DeleteConfirmation';
 
-export default function DeleteAreaModal(area) {
+export default function DeleteCropModal(crop) {
   const [isModalDeleteOpen, setDeleteModalOpen] = useState(false);
-
   function openDeleteModal() {
     setDeleteModalOpen(true);
   }
@@ -16,7 +15,8 @@ export default function DeleteAreaModal(area) {
   }
   async function handlerDelete() {
     setDeleteModalOpen(false);
-    await deleteArea(area.value.property_id, area.value.id);
+    console.log();
+    await deleteCrop(crop.crop.area_id, crop.crop.id);
   }
 
   return (
@@ -35,7 +35,7 @@ export default function DeleteAreaModal(area) {
           isOpen={isModalDeleteOpen}
           onCancel={closeDeleteModal}
           onConfirm={handlerDelete}
-          message="Tem certeza que deseja excluir essa área?"
+          message="Tem certeza que deseja excluir essa colheita?"
         />
       </OpenCloseModal>
     </div>

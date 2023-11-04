@@ -1,5 +1,5 @@
-import CreateApplicationModal from '../../../components/applications/CreateApplicationModal';
-import Application from '../../../components/applications/Application';
+import CreateApplicationModal from '../../../components/pages/applications/CreateApplicationModal';
+import Application from '../../../components/pages/applications/Application';
 import { useFetchApplications } from '../../../queries/applications/applications';
 
 const ApplicationsContainer = ({ area }) => {

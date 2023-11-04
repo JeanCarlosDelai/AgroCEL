@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { deleteArea } from '../../queries/areas/areas';
+import { deleteApplication } from '../../../queries/applications/applications';
 import { BsTrashFill } from 'react-icons/bs';
-import OpenCloseModal from '../modal/OpenCloseModal';
-import { DeleteConfirmation } from '../modal/DeleteConfirmation';
+import OpenCloseModal from '../../modal/OpenCloseModal';
+import { DeleteConfirmation } from '../../modal/DeleteConfirmation';
 
-export default function DeleteAreaModal(area) {
+export default function DeleteApplicationModal(application) {
   const [isModalDeleteOpen, setDeleteModalOpen] = useState(false);
-
   function openDeleteModal() {
     setDeleteModalOpen(true);
   }
@@ -16,7 +15,10 @@ export default function DeleteAreaModal(area) {
   }
   async function handlerDelete() {
     setDeleteModalOpen(false);
-    await deleteArea(area.value.property_id, area.value.id);
+    await deleteApplication(
+      application.application.area_id,
+      application.application.id,
+    );
   }
 
   return (
@@ -35,7 +37,7 @@ export default function DeleteAreaModal(area) {
           isOpen={isModalDeleteOpen}
           onCancel={closeDeleteModal}
           onConfirm={handlerDelete}
-          message="Tem certeza que deseja excluir essa área?"
+          message="Tem certeza que deseja excluir essa aplicação?"
         />
       </OpenCloseModal>
     </div>

@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form';
-import { Logo, FormRow } from '../components';
 import { login } from '../queries/users/users';
 import SubmitButton from '../components/Buttons/SubmitButton';
 import ClearButtonForm from '../components/Buttons/ClearButtonForm';
@@ -11,6 +10,8 @@ import {
   addTokenToLocalStorage,
   addUserToLocalStorage,
 } from '../utils/localStorage';
+import Logo from '../components/logo/Logo';
+import FormRow from '../components/Form/FormRow';
 
 function Login() {
   const navigate = useNavigate();
