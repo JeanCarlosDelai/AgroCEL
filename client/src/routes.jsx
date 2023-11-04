@@ -6,7 +6,7 @@ import PropertysArea from './pages/dashboard/Areas/AreasContainer';
 import AreaInfoPage from './pages/dashboard/Areas/AreaInfoPage';
 import FildsNotebookContainer from './pages/fieldNotebbok/FieldNotebook';
 import Login from './pages/Login';
-import CardHome from './pages/CardHome';
+import CardHome from './pages/dashboard/CardHome';
 
 export function AppRoutes() {
   return (

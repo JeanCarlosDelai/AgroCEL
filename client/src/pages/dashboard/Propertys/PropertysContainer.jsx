@@ -9,7 +9,7 @@ const PropertysContainer = () => {
   if (propertys?.data?.length <= 0) {
     return (
       <div className="flex">
-        <section className="p-4">
+        <section>
           <div className="mx-auto max-w-screen-xl ">
             <div className="bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden border border-gray-300">
               <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
@@ -27,8 +27,8 @@ const PropertysContainer = () => {
 
   return (
     <div className="flex">
-      <section className="p-4">
-        <div className="mx-auto max-w-screen-xl ">
+      <section>
+        <div className=" max-w-screen-xl ">
           <div className="bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden border border-gray-300">
             <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
               <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center md:space-x-3 flex-shrink-0">

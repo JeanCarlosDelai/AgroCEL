@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { clearStore } from '../features/user/userSlice';
 import {
   getUserFromLocalStorage,
   getTokenFromLocalStorage,
@@ -21,7 +20,6 @@ customFetch.interceptors.request.use((config) => {
 
 export const checkForUnauthorizedResponse = (error, thunkAPI) => {
   if (error.response.status === 401) {
-    thunkAPI.dispatch(clearStore());
     return thunkAPI.rejectWithValue('Não autorizado! Deslogando...');
   }
   return thunkAPI.rejectWithValue(error.response.data.msg);

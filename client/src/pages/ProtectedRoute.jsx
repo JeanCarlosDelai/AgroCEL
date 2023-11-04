@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { getUserFromLocalStorage } from '../utils/localStorage';
 
 const ProtectedRoute = ({ children, checkAccess }) => {
-  const { user } = useSelector((store) => store.user);
+  const user = getUserFromLocalStorage();
 
   if (!user || (checkAccess && !checkAccess())) {
     return <Navigate to="/landing" />;
