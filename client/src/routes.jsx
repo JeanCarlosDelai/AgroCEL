@@ -6,6 +6,7 @@ import PropertysArea from './pages/dashboard/Areas/AreasContainer';
 import AreaInfoPage from './pages/dashboard/Areas/AreaInfoPage';
 import FildsNotebookContainer from './pages/fieldNotebbok/FieldNotebook';
 import Login from './pages/Login';
+import CardHome from './pages/CardHome';
 
 export function AppRoutes() {
   return (
@@ -23,6 +24,7 @@ export function AppRoutes() {
         <Route path="areas" element={<PropertysArea />} />
         <Route path="area-info" element={<AreaInfoPage />} />
         <Route path="field-notebook" element={<FildsNotebookContainer />} />
+        <Route path="/" element={<CardHome />} />
       </Route>
       <Route path="landing" element={<Landing />} />
       <Route path="register" element={<Register />} />
