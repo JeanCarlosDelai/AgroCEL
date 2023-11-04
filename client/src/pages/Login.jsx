@@ -27,17 +27,21 @@ function Login() {
     resolver: yupResolver(LoginSchema),
   });
 
-  const handlerCreateUser = async (user) => {
-    const response = await login(user);
-    addUserToLocalStorage(response.data.user);
-    addTokenToLocalStorage(response.data.token);
-    navigate('/');
+  const handlerLogin = async (user) => {
+    try {
+      const response = await login(user);
+      addUserToLocalStorage(response.data.user);
+      addTokenToLocalStorage(response.data.token);
+      navigate('/propertys');
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
     <form
       className="flex h-screen items-center justify-center bg-gray-800"
-      onSubmit={handleSubmit(handlerCreateUser)}
+      onSubmit={handleSubmit(handlerLogin)}
     >
       <div className="w-full max-w-sm p-4 bg-gray-600 border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8">
         <div className="flex justify-center mr-14">

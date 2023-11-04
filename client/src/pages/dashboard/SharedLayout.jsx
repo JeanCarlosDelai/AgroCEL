@@ -1,5 +1,10 @@
 import { Outlet } from 'react-router-dom';
-import { SidebarDashboard, SelectedProperty, DropDown } from '../../components';
+import {
+  SidebarDashboard,
+  SelectedProperty,
+  DropDown,
+  Footer,
+} from '../../components';
 const SharedLayout = () => {
   return (
     <>
@@ -13,6 +18,7 @@ const SharedLayout = () => {
           <DropDown />
         </div>
       </main>
+      <Footer />
     </>
   );
 };

@@ -2,7 +2,7 @@ import Logo from './Logo';
 
 const Navbar = () => {
   return (
-    <nav className="bg-gray-800 border-gray-200">
+    <nav className="bg-black border-gray-200">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Logo />
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">

@@ -1,33 +1,30 @@
-// import './Footer.css';
 import Logo from './Logo';
-import Wrapper from '../assets/wrappers/Footer';
 
-const Footer = () => {
+function Footer() {
   return (
-    <Wrapper>
-      <div className="footer">
-        <div className="center">
-          <div className="foo-left">
-            <Logo />
-          </div>
-          <div className="foo-center">
-            <h1>AgroCEL</h1>
-            <p>Caderno de campo digital</p>
-            <p>Coronel Pilar - RS</p>
-          </div>
-          <div className="foo-right">
-            <h1>Contatos</h1>
-            <p>
-              <span className="icon-phone"></span>(54) 99905 8249
-            </p>
-            <a href="mailto:jean_outlook.com?subject=Contato">
-              <span className="icon-mail"></span>
-            </a>
-          </div>
+    <footer className="bg-gray-800 rounded-lg shadow  mt-5 mr-4 ml-4">
+      <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+        <div className="sm:flex sm:items-center sm:justify-between">
+          <Logo />
+          <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+            <li>
+              <a href="jean_vieceli@outlook.com" className="hover:underline">
+                Contato
+              </a>
+            </li>
+          </ul>
         </div>
+        <hr className=" border-gray-200 " />
+        <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          © 2023{' '}
+          <a href="/" className="hover:underline">
+            Agrocel™
+          </a>
+          . Todos os direitos reservados.
+        </span>
       </div>
-    </Wrapper>
+    </footer>
   );
-};
+}
 
 export default Footer;
