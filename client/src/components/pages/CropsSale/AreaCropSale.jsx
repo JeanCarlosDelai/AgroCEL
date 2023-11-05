@@ -1,4 +1,5 @@
 import FormatDate from '../../../utils/FormatDate';
+import CreateCropSaleModal from './CreateCropSaleModal';
 
 const AreaCropSale = ({ crop }) => {
   const crop_date_format = FormatDate(crop?.crop_date);
@@ -10,7 +11,9 @@ const AreaCropSale = ({ crop }) => {
         </td>
         <td className="px-4 py-3">{crop?.quantity}</td>
         <td className="px-4 py-3">{crop_date_format}</td>
-        <td className="flex-1 m-0 p-3 justify-end"></td>
+        <td className="flex-1 m-0 p-3 justify-end">
+          <CreateCropSaleModal area_id={crop?.area_id} />
+        </td>
       </tr>
     </>
   );

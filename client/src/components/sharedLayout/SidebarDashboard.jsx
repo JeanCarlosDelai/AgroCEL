@@ -12,6 +12,8 @@ import Logo from '../logo/Logo';
 import { links, linksSale, linksProduction } from '../../utils/links';
 import { AiFillDollarCircle } from 'react-icons/ai';
 import { BiSolidWine } from 'react-icons/bi';
+import { CgGlass } from 'react-icons/cg';
+import { TbGlass } from 'react-icons/tb';
 
 const SidebarDashboard = () => {
   const location = useLocation();
@@ -145,7 +147,7 @@ const SidebarDashboard = () => {
             onClick={toggleDropdownProduction}
           >
             <div className="flex items-center">
-              <BiSolidWine size={20} />
+              <TbGlass size={22} />
               <h2 className="ml-4">Produção Própria</h2>
               <span className="ml-2">
                 {isDropdownProductionOpen ? (

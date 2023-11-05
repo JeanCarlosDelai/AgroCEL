@@ -1,9 +1,14 @@
-import { FaMapMarkedAlt } from 'react-icons/fa';
+import {
+  FaFileInvoiceDollar,
+  FaMapMarkedAlt,
+  FaWineBottle,
+} from 'react-icons/fa';
 import { SiGoogledocs } from 'react-icons/si';
 import { TbChartAreaLineFilled } from 'react-icons/tb';
 import { GiNotebook } from 'react-icons/gi';
 import { AiFillDollarCircle } from 'react-icons/ai';
 import { BiSolidWine } from 'react-icons/bi';
+import { FaSackDollar } from 'react-icons/fa6';
 
 const links = [
   {
@@ -28,22 +33,22 @@ const links = [
 ];
 
 const linksSale = [
-  { id: 1, text: 'Vender', path: '/sale', icon: AiFillDollarCircle },
+  { id: 1, text: 'Vender', path: '/sale', icon: FaSackDollar },
   {
     id: 2,
     text: 'Visualizar Vendas',
     path: '/view-sale',
-    icon: AiFillDollarCircle,
+    icon: FaFileInvoiceDollar,
   },
 ];
 
 const linksProduction = [
-  { id: 1, text: 'Produzir', path: '/production', icon: AiFillDollarCircle },
+  { id: 1, text: 'Produzir', path: '/production', icon: BiSolidWine },
   {
     id: 2,
     text: 'Visualizar Produção',
     path: '/view-production',
-    icon: AiFillDollarCircle,
+    icon: FaWineBottle,
   },
 ];
 
