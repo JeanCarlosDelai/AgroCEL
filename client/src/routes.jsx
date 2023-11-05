@@ -8,7 +8,8 @@ import FildsNotebookContainer from './pages/fieldNotebbok/FieldNotebook';
 import Login from './pages/Login';
 import CardHome from './pages/dashboard/CardHome';
 import CropsSaleContainer from './pages/dashboard/CropSale/CropsSaleContainer';
-import CropsDestinationContainer from './pages/dashboard/CropDestination/CropsDestinationContainer';
+import CropsSaleListContainer from './pages/dashboard/CropSale/CropsSaleListContainer';
+import CropSaleInfoPage from './pages/dashboard/CropSale/CropSaleInfoPage';
 
 export function AppRoutes() {
   return (
@@ -27,7 +28,8 @@ export function AppRoutes() {
         <Route path="area-info" element={<AreaInfoPage />} />
         <Route path="field-notebook" element={<FildsNotebookContainer />} />
         <Route path="sale" element={<CropsSaleContainer />} />
-        <Route path="view-sale" element={<CropsDestinationContainer />} />
+        <Route path="view-sale" element={<CropsSaleListContainer />} />
+        <Route path="crop-sale-info" element={<CropSaleInfoPage />} />
         <Route path="/" element={<CardHome />} />
       </Route>
       <Route path="landing" element={<Landing />} />
@@ -37,3 +39,4 @@ export function AppRoutes() {
     </Routes>
   );
 }
+CropSaleInfoPage;

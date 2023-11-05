@@ -13,14 +13,9 @@ class ListCropSaleUseCase {
   ) // eslint-disable-next-line prettier/prettier
   { }
 
-  public async execute(crop_Id: string): Promise<IListCropSale> {
-    const cropSaleExist = await this.cropsRepository.findById(crop_Id);
+  public async execute(area_id: string): Promise<IListCropSale> {
 
-    if (!cropSaleExist) {
-      throw new CustomAPIError.BadRequestError('Crop sale does not exists.');
-    }
-
-    const cropSale = await this.cropSaleRepository.findAll(crop_Id);
+    const cropSale = await this.cropSaleRepository.findAll(area_id);
 
     return cropSale;
   }

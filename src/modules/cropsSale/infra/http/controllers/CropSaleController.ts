@@ -9,10 +9,10 @@ import { container } from 'tsyringe';
 
 export default class CropSaleController {
   public async index(request: Request, response: Response): Promise<Response> {
-    const crop_id = request.params.crop_id;
+    const area_id = request.params.area_id;
 
     const listCropsSale = container.resolve(ListCropSaleUseCase);
-    const cropsSale = await listCropsSale.execute(crop_id);
+    const cropsSale = await listCropsSale.execute(area_id);
 
     return response.status(StatusCodes.OK).json(cropsSale);
   }

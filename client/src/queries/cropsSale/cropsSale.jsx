@@ -3,22 +3,38 @@ import customFetch from '../../utils/axios';
 import { toast } from 'react-toastify';
 import queryClient from '../../services/queryClient';
 
-async function getCropsSale(crop_id) {
-  const { data, error } = await customFetch.get(`/crop/sale/${crop_id}`);
+async function getCropsSale(area_id) {
+  const { data, error } = await customFetch.get(`/crop/sale/${area_id}`);
   if (error) {
     toast.success(error);
   }
   return data.data;
 }
 
-export function useFetchCrops(crop_id) {
+export function useFetchCropsSale(crop_id) {
   return useQuery(['cropsSale', crop_id], () => getCropsSale(crop_id));
+}
+
+async function getOneCropSale(area_id, crop_id) {
+  const { data, error } = await customFetch.get(
+    `/crop/sale/${area_id}/crop/${crop_id}`,
+  );
+  if (error) {
+    toast.success(error);
+  }
+  return data;
+}
+
+export function useFetchOneCropSale(crop_id, crop_sale_id) {
+  return useQuery(['cropSalee', crop_id, crop_sale_id], () =>
+    getOneCropSale(crop_id, crop_sale_id),
+  );
 }
 
 export const createCropSale = async (crop, cropSale) => {
   try {
     await customFetch.post(
-      `/crop/sale/${crop.crop.area_id}/crop/${crop.crop.id}`,
+      `/crop/sale/${crop.crop.crop_id}/crop/${crop.crop.id}`,
       cropSale,
     );
     await queryClient.invalidateQueries('cropsSale');
