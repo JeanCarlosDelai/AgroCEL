@@ -50,7 +50,7 @@ export const updateOtherActivitie = async (
 ) => {
   try {
     const response = await customFetch.put(
-      `/other/${other_activities_id}/area/${area_id}`,
+      `/other/${area_id}/area/${other_activities_id}`,
       otherActivitie,
     );
     await queryClient.invalidateQueries('otherActivities');

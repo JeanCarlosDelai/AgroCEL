@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CreateApplicationSchema } from '../../../schemas/CreateApplicationSchema';
 import OpenCloseModal from '../../modal/OpenCloseModal';
 import FormRow from '../../Form/FormRow';
 import ClearButtonForm from '../../Buttons/ClearButtonForm';
 import SubmitButton from '../../Buttons/SubmitButton';
-import ReactDatePicker from 'react-datepicker';
 import { createApplication } from '../../../queries/applications/applications';
 
 const CreateApplicationModal = (area_id) => {
@@ -22,7 +21,7 @@ const CreateApplicationModal = (area_id) => {
       used_product: '',
       quantity: '',
       application_type: '',
-      application_date: '',
+      application_date: new Date().toISOString().split('T')[0],
       application_time: '',
       description: '',
     },
@@ -71,6 +70,13 @@ const CreateApplicationModal = (area_id) => {
               placeholder="Tipo de aplicação"
               control={control}
               hasError={JSON.stringify(errors.application_type?.message)}
+            />
+            <FormRow
+              type="date"
+              name="application_date"
+              labelText="Data da aplicação"
+              control={control}
+              hasError={JSON.stringify(errors.application_date?.message)}
             />
             <FormRow
               type="text"

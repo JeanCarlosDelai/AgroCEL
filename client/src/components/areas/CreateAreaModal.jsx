@@ -29,7 +29,7 @@ const CreateAreaModal = (property_id) => {
       driving_system: 'Selecione',
       cultivated_area: '',
       geographic_coordinates: '',
-      implementation_date: '',
+      implementation_date: new Date().toISOString().split('T')[0],
       number_rows: '',
       distance_between_rows: '',
       distance_between_plants: '',
@@ -98,25 +98,13 @@ const CreateAreaModal = (property_id) => {
               control={control}
               hasError={JSON.stringify(errors.geographic_coordinates?.message)}
             />
-            {/* <FormRow
+            <FormRow
               type="date"
               name="implementation_date"
-              labelText="Data de implantação"
-              placeholder="Data de implantação"
+              labelText="Data de Implantação"
               control={control}
               hasError={JSON.stringify(errors.implementation_date?.message)}
-            /> */}
-            {/* <Controller
-              control={control}
-              name="implementation_date"
-              render={({ field: { onChange, onBlur, value } }) => (
-                <ReactDatePicker
-                  onChange={onChange} // send value to hook form
-                  onBlur={onBlur} // notify when input is touched/blur
-                  selected={value}
-                />
-              )}
-            /> */}
+            />
             <FormRow
               type="select"
               name="driving_system"

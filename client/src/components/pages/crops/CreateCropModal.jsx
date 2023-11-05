@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CreateCropSchema } from '../../../schemas/CreateCropSchema';
 import OpenCloseModal from '../../modal/OpenCloseModal';
 import FormRow from '../../Form/FormRow';
 import ClearButtonForm from '../../Buttons/ClearButtonForm';
 import SubmitButton from '../../Buttons/SubmitButton';
-import ReactDatePicker from 'react-datepicker';
 import { createCrop } from '../../../queries/crops/crops';
 
 const CreateCropModal = (area_id) => {
@@ -21,7 +20,7 @@ const CreateCropModal = (area_id) => {
     defaultValues: {
       name: '',
       quantity: '',
-      crop_date: '',
+      crop_date: new Date().toISOString().split('T')[0],
       crop_time: '',
     },
     resolver: yupResolver(CreateCropSchema),
@@ -69,6 +68,13 @@ const CreateCropModal = (area_id) => {
               placeholder="Quantidade"
               control={control}
               hasError={JSON.stringify(errors.quantity?.message)}
+            />
+            <FormRow
+              type="date"
+              name="crop_date"
+              labelText="Data da colheita"
+              control={control}
+              hasError={JSON.stringify(errors.crop_date?.message)}
             />
             <FormRow
               type="number"

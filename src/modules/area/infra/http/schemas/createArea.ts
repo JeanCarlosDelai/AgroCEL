@@ -9,7 +9,7 @@ const createAreaSchema = Joi.object({
     rookstock_type: Joi.string().required().max(50).min(3),
     cultivated_area: Joi.number().required(),
     geographic_coordinates: Joi.string().required().min(3),
-    // implementation_date: Joi.date().required().max(50).min(3),
+    implementation_date: Joi.date().required().min(3),
     number_rows: Joi.number().required(),
     distance_between_rows: Joi.number().required(),
     distance_between_plants: Joi.number().required(),

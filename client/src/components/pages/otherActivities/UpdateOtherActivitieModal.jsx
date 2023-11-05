@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { updateCrop } from '../../../queries/crops/crops';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import FormRow from '../../Form/FormRow';
 import OpenCloseModal from '../../modal/OpenCloseModal';
 import ClearButtonForm from '../../Buttons/ClearButtonForm';
@@ -8,6 +7,7 @@ import SubmitButton from '../../Buttons/SubmitButton';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { CreateOtherActivitieSchema } from '../../../schemas/CreateOtherActivitieSchema';
+import { updateOtherActivitie } from '../../../queries/otherActivities/otherActivities';
 
 const UpdateOtherActivitieModal = (otherActivitie) => {
   const [isModalCreateOpen, setCreateModalOpen] = useState(false);
@@ -16,13 +16,14 @@ const UpdateOtherActivitieModal = (otherActivitie) => {
     handleSubmit,
     control,
     reset,
-    register,
     formState: { errors },
   } = useForm({
     defaultValues: {
       name: otherActivitie.otherActivitie.name,
       activitie_category: otherActivitie.otherActivitie.activitie_category,
-      activitie_date: otherActivitie.otherActivitie.activitie_date,
+      activitie_date: new Date(otherActivitie.otherActivitie.activitie_date)
+        .toISOString()
+        .slice(0, 10),
       activitie_time: otherActivitie.otherActivitie.activitie_time,
       description: otherActivitie.otherActivitie.description,
     },
@@ -38,9 +39,8 @@ const UpdateOtherActivitieModal = (otherActivitie) => {
   }
 
   const handlerUpdate = async (otherActivities) => {
-    console.log(otherActivities);
     setCreateModalOpen(false);
-    await updateCrop(
+    await updateOtherActivitie(
       otherActivitie.otherActivitie.area_id,
       otherActivitie.otherActivitie.id,
       otherActivities,
@@ -70,7 +70,7 @@ const UpdateOtherActivitieModal = (otherActivitie) => {
               hasError={JSON.stringify(errors.name?.message)}
             />
             <FormRow
-              type="number"
+              type="text"
               name="activitie_category"
               labelText="Categoria da atividade"
               placeholder="Categoria"
@@ -84,6 +84,14 @@ const UpdateOtherActivitieModal = (otherActivitie) => {
               placeholder="Descrição"
               control={control}
               hasError={JSON.stringify(errors.description?.message)}
+            />
+
+            <FormRow
+              type="date"
+              name="activitie_date"
+              labelText="Data do manejo"
+              control={control}
+              hasError={JSON.stringify(errors.activitie_date?.message)}
             />
             <FormRow
               type="number"

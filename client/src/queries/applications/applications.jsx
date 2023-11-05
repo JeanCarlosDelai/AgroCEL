@@ -48,7 +48,7 @@ export const updateApplication = async (
 ) => {
   try {
     const response = await customFetch.put(
-      `/application/${application_id}/area/${area_id}`,
+      `/application/${area_id}/area/${application_id}`,
       application,
     );
     await queryClient.invalidateQueries('applications');

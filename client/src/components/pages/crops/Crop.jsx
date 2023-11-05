@@ -1,7 +1,9 @@
+import FormatDate from '../../../utils/FormatDate';
 import DeleteCropModal from './DeleteCropModal';
 import UpdateCropModal from './UpdateCropModal';
 
 const Crop = ({ crop }) => {
+  const crop_date_format = FormatDate(crop?.crop_date);
   return (
     <>
       <tr className="border-b dark:border-gray-700">
@@ -9,7 +11,7 @@ const Crop = ({ crop }) => {
           {crop?.name}
         </td>
         <td className="px-4 py-3">{crop?.quantity}</td>
-        <td className="px-4 py-3">{crop?.crop_date}</td>
+        <td className="px-4 py-3">{crop_date_format}</td>
         <td className="px-4 py-3">{crop?.crop_time}</td>
         <td className="flex-1 m-0 p-3 justify-end">
           <UpdateCropModal crop={crop} />

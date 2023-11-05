@@ -21,7 +21,7 @@ const CreateOtherActivitieModal = (area_id) => {
     defaultValues: {
       name: '',
       activitie_category: '',
-      activitie_date: '',
+      activitie_date: new Date().toISOString().split('T')[0],
       activitie_time: '',
       description: '',
     },
@@ -64,12 +64,19 @@ const CreateOtherActivitieModal = (area_id) => {
               hasError={JSON.stringify(errors.name?.message)}
             />
             <FormRow
-              type="number"
+              type="text"
               name="activitie_category"
               labelText="Categoria da atividade"
               placeholder="Categoria"
               control={control}
               hasError={JSON.stringify(errors.activitie_category?.message)}
+            />
+            <FormRow
+              type="date"
+              name="activitie_date"
+              labelText="Data do manejo"
+              control={control}
+              hasError={JSON.stringify(errors.activitie_date?.message)}
             />
             <FormRow
               type="text"

@@ -29,8 +29,11 @@ const UpdateAreaModal = (area) => {
       variety: area.value.variety,
       driving_system: area.value.driving_system,
       cultivated_area: area.value.cultivated_area,
+      rookstock_type: area.value.rookstock_type,
       geographic_coordinates: area.value.geographic_coordinates,
-      implementation_date: area.value.implementation_date,
+      implementation_date: new Date(area.value.implementation_date)
+        .toISOString()
+        .slice(0, 10),
       number_rows: area.value.number_rows,
       distance_between_rows: area.value.distance_between_rows,
       distance_between_plants: area.value.distance_between_plants,
@@ -99,17 +102,13 @@ const UpdateAreaModal = (area) => {
               control={control}
               hasError={JSON.stringify(errors.geographic_coordinates?.message)}
             />
-            {/* <Controller
-              control={control}
+            <FormRow
+              type="date"
               name="implementation_date"
-              render={({ field: { onChange, onBlur, value } }) => (
-                <ReactDatePicker
-                  onChange={onChange} // send value to hook form
-                  onBlur={onBlur} // notify when input is touched/blur
-                  selected={value}
-                />
-              )}
-            /> */}
+              labelText="Data de implantação"
+              control={control}
+              hasError={JSON.stringify(errors.implementation_date?.message)}
+            />
             <FormRow
               type="select"
               name="driving_system"

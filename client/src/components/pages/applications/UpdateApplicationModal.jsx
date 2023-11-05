@@ -17,14 +17,15 @@ const UpdateApplicationModal = (application) => {
     handleSubmit,
     control,
     reset,
-    register,
     formState: { errors },
   } = useForm({
     defaultValues: {
       used_product: application.application.used_product,
       quantity: application.application.quantity,
       application_type: application.application.application_type,
-      application_date: application.application.application_date,
+      application_date: new Date(application.application.application_date)
+        .toISOString()
+        .slice(0, 10),
       application_time: application.application.application_time,
       description: application.application.description,
     },
@@ -39,12 +40,12 @@ const UpdateApplicationModal = (application) => {
     setCreateModalOpen(false);
   }
 
-  const handlerUpdate = async (application) => {
+  const handlerUpdate = async (applications) => {
     setCreateModalOpen(false);
     await updateApplication(
-      application.application.area_id,
-      application.application.id,
-      application,
+      application?.application?.area_id,
+      application?.application?.id,
+      applications,
     );
   };
 
@@ -85,6 +86,13 @@ const UpdateApplicationModal = (application) => {
               placeholder="Descrição"
               control={control}
               hasError={JSON.stringify(errors.description?.message)}
+            />
+            <FormRow
+              type="date"
+              name="application_date"
+              labelText="Data da aplicação"
+              control={control}
+              hasError={JSON.stringify(errors.application_date?.message)}
             />
             <FormRow
               type="number"

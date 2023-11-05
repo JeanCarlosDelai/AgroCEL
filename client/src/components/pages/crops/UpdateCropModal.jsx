@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { updateCrop } from '../../../queries/crops/crops';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import FormRow from '../../Form/FormRow';
 import OpenCloseModal from '../../modal/OpenCloseModal';
 import ClearButtonForm from '../../Buttons/ClearButtonForm';
@@ -8,22 +8,19 @@ import SubmitButton from '../../Buttons/SubmitButton';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CreateCropSchema } from '../../../schemas/CreateCropSchema';
 import { AiOutlineEdit } from 'react-icons/ai';
-import ReactDatePicker from 'react-datepicker';
 
 const UpdateCropModal = (crop) => {
   const [isModalCreateOpen, setCreateModalOpen] = useState(false);
-
   const {
     handleSubmit,
     control,
     reset,
-    register,
     formState: { errors },
   } = useForm({
     defaultValues: {
       name: crop?.crop?.name,
       quantity: crop.crop.quantity,
-      crop_date: crop.crop.crop_date,
+      crop_date: new Date(crop.crop.crop_date).toISOString().slice(0, 10),
       crop_time: crop.crop.crop_time,
     },
     resolver: yupResolver(CreateCropSchema),
@@ -38,7 +35,6 @@ const UpdateCropModal = (crop) => {
   }
 
   const handlerUpdate = async (crops) => {
-    console.log(crops);
     setCreateModalOpen(false);
     await updateCrop(crop.crop.area_id, crop.crop.id, crops);
   };
@@ -72,6 +68,13 @@ const UpdateCropModal = (crop) => {
               placeholder="Quantidade"
               control={control}
               hasError={JSON.stringify(errors.quantity?.message)}
+            />
+            <FormRow
+              type="date"
+              name="crop_date"
+              labelText="Data da colheita"
+              control={control}
+              hasError={JSON.stringify(errors.crop_date?.message)}
             />
             <FormRow
               type="number"
