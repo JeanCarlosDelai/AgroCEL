@@ -14,9 +14,10 @@ const CropSale = (cropSale) => {
         <td className="px-4 py-3">{cropSale?.cropsSale?.quantity} Kg</td>
         <td className="px-4 py-3">{cropSale?.cropsSale?.purchasing_entity}</td>
         <td className="px-4 py-3">{discharge_date_format}</td>
-        <td className="flex-1 m-0 p-3 justify-center">
+        <td>
           <Link
             to={`/crop-sale-info?crop_id=${cropSale.cropsSale.crop_id}&crop_sale_id=${cropSale.cropsSale.id}`}
+            className="flex items-center justify-center"
           >
             <CgDetailsMore />
           </Link>

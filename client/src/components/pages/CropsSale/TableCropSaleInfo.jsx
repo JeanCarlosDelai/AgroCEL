@@ -1,6 +1,6 @@
 import React from 'react';
 import FormatDate from '../../../utils/FormatDate';
-import { TableRow } from '../../../components/areas/areasInfoPage/TableRow';
+import { TableRow } from '../../areas/areasInfoPage/TableRow';
 
 function TableCropSaleInfo({ cropSale }) {
   const discharge_date_format = FormatDate(cropSale?.data?.discharge_date);

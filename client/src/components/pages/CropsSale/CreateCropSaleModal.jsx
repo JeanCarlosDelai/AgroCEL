@@ -38,9 +38,9 @@ const CreateCropSaleModal = (crop) => {
     setCreateModalOpen(false);
   }
 
-  const handlerCreate = async (crops) => {
+  const handlerCreate = async (cropsSale) => {
     setCreateModalOpen(false);
-    await createCropSale(crop, crops);
+    await createCropSale(crop, cropsSale);
   };
 
   return (

@@ -34,7 +34,7 @@ export function useFetchOneCropSale(crop_id, crop_sale_id) {
 export const createCropSale = async (crop, cropSale) => {
   try {
     await customFetch.post(
-      `/crop/sale/${crop.crop.crop_id}/crop/${crop.crop.id}`,
+      `/crop/sale/${crop.crop.area_id}/crop/${crop.crop.id}`,
       cropSale,
     );
     await queryClient.invalidateQueries('cropsSale');
@@ -45,7 +45,6 @@ export const createCropSale = async (crop, cropSale) => {
 };
 
 export const updateCropSale = async (cropSale, cropSales) => {
-  console.log(cropSale);
   try {
     const response = await customFetch.put(
       `/crop/sale/${cropSale.cropSale.area_id}/area/${cropSale.cropSale.crop_id}/crop/${cropSale.cropSale.id}`,

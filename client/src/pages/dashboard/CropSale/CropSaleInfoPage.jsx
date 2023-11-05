@@ -3,7 +3,7 @@ import { useFetchOneArea } from '../../../queries/areas/areas';
 import AccordionItemsArea from '../../../components/areas/areasInfoPage/AccordionItemsArea';
 import Accordion from '../../../components/Accordion/Accordion';
 import { useFetchOneCropSale } from '../../../queries/cropsSale/cropsSale';
-import TableCropSaleInfo from './TableCropSaleInfo';
+import TableCropSaleInfo from '../../../components/pages/CropsSale/TableCropSaleInfo';
 
 function CropSaleInfoPage() {
   const location = useLocation();

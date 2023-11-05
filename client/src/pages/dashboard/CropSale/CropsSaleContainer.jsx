@@ -138,6 +138,15 @@ const CropsSaleContainer = () => {
                     <th scope="col" className="px-4 py-3">
                       Vender
                     </th>
+                    <th scope="col" className="px-4 py-3">
+                      Produzir
+                    </th>
+                    <th scope="col" className="px-4 py-3">
+                      Nome da Destinação
+                    </th>
+                    <th scope="col" className="px-4 py-3">
+                      Detalhes da Destinação
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-gray-800 text-gray-300">

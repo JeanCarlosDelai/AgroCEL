@@ -18,7 +18,7 @@ cropDestinationRouter.get(
 );
 
 cropDestinationRouter.get(
-  '/:crop_id',
+  '/:area_id',
   validator(CropIdSchema),
   cropDestinationController.index,
 );

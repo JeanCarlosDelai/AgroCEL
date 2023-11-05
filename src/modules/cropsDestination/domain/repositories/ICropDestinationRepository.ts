@@ -3,7 +3,7 @@ import { ICropDestination } from '../models/ICropDestination';
 import { IListCropDestination } from '../models/IListCropDestination';
 
 export interface ICropDestinationRepository {
-  findAll(crop_Id: string): Promise<IListCropDestination>;
+  findAll(area_id: string): Promise<IListCropDestination>;
   findByName(name: string, crop_id: string): Promise<ICropDestination | null>;
   findByIds(id: string, crop_id: string): Promise<ICropDestination | null>;
   findById(id: string): Promise<ICropDestination | null>;
