@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { HiMenuAlt3 } from 'react-icons/hi';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -5,6 +6,7 @@ import Logo from '../logo/Logo';
 import { links } from '../../utils/links';
 
 const SidebarDashboard = () => {
+  const location = useLocation();
   const [open, setOpen] = useState(true);
 
   let linksUser = links();
@@ -36,7 +38,9 @@ const SidebarDashboard = () => {
               key={i}
               className={` ${
                 menu?.margin && 'mt-5'
-              } group flex items-center text-sm   gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}
+              } group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-green-600 rounded-md ${
+                location.pathname === menu?.path ? 'bg-green-900' : ''
+              }`}
             >
               <div>{React.createElement(menu?.icon, { size: '20' })}</div>
               <h2
@@ -63,4 +67,5 @@ const SidebarDashboard = () => {
     </section>
   );
 };
+
 export default SidebarDashboard;

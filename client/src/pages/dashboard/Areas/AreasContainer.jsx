@@ -6,7 +6,7 @@ import usePropertyStore from '../../../store/propertys/usePropertyStore';
 const AreasContainer = () => {
   // Está sendo renderizado duas vezes
   const selectedProperty = usePropertyStore((state) => state.selectedProperty);
-  // console.log(selectedProperty.property_id);
+
   const property_id = selectedProperty.property_id;
 
   const areas = useFetchArea(property_id);

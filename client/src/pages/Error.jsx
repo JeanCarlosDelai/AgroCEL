@@ -6,7 +6,7 @@ const Error = () => {
   return (
     <>
       <div className=" text-gray-300 ">
-        <img src={img} alt="not found" className="mx-auto" />
+        <img src={img} alt="not found" className="mx-auto pt-20 pb-2" />
         <h3>Ohh! Página não encontrada</h3>
         <p>
           Parece que não conseguimos encontrar a página que você está procurando

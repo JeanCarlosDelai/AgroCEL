@@ -63,24 +63,6 @@ const FormRow = ({
             )}
           />
         ) : (
-          // <Controller
-          //   name={name}
-          //   control={control}
-          //   render={({ field }) => (
-          //     <input
-          //       type={type}
-          //       name={field.name}
-          //       placeholder={placeholder}
-          //       value={
-          //         type === 'date'
-          //           ? format(new Date(field.value), 'yyyy-MM-dd')
-          //           : field.value
-          //       }
-          //       onChange={field.onChange}
-          //       className={inputClass}
-          //     />
-          //   )}
-          // />
           <Controller
             name={name}
             control={control}

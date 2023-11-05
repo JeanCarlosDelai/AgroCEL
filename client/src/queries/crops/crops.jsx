@@ -15,26 +15,9 @@ export function useFetchCrops(area_id) {
   return useQuery(['crops', area_id], () => getCrops(area_id));
 }
 
-// async function getOneArea(property_id, area_id) {
-//   const { data, error } = await customFetch.get(
-//     `/area/${property_id}/property/${area_id}`,
-//   );
-//   if (error) {
-//     toast.success(error);
-//   }
-//   return data;
-// }
-
-// export function useFetchOneArea(property_id, area_id) {
-//   return useQuery(['area', property_id, area_id], () =>
-//     getOneArea(property_id, area_id),
-//   );
-// }
-
-export const createCrop = async (area_id, crop) => {
-  console.log(crop);
+export const createCrop = async (crop) => {
   try {
-    await customFetch.post(`/crop/${area_id.area_id}`, crop);
+    await customFetch.post(`/crop/${crop.area_id}`, crop);
     await queryClient.invalidateQueries('crops');
     toast.success('Colheita criada com sucesso!');
   } catch (error) {
