@@ -59,9 +59,11 @@ export const updateCropSale = async (cropSale, cropSales) => {
   }
 };
 
-export const deleteCropSale = async (crop_id, crop_sale_id) => {
+export const deleteCropSale = async (cropSale) => {
   try {
-    await customFetch.delete(`/crop/sale/${crop_id}/crop/${crop_sale_id}`);
+    await customFetch.delete(
+      `/crop/sale/${cropSale.cropSale.crop_id}/crop/${cropSale.cropSale.id}`,
+    );
     await queryClient.invalidateQueries('cropsSale');
     toast.success('Venda apagada com sucesso!');
   } catch (error) {

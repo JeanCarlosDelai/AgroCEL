@@ -2,8 +2,8 @@ import { CgDetailsMore } from 'react-icons/cg';
 import FormatDate from '../../../utils/FormatDate';
 import { Link } from 'react-router-dom';
 import UpdateCropSaleModal from './UpdateCropSaleModal';
+import DeleteCropSaleModal from './DeleteCropSaleModal';
 const CropSale = (cropSale) => {
-  // console.log(cropSale.cropsSale);
   const discharge_date_format = FormatDate(cropSale?.cropsSale?.discharge_date);
   return (
     <>
@@ -14,7 +14,7 @@ const CropSale = (cropSale) => {
         <td className="px-4 py-3">{cropSale?.cropsSale?.quantity} Kg</td>
         <td className="px-4 py-3">{cropSale?.cropsSale?.purchasing_entity}</td>
         <td className="px-4 py-3">{discharge_date_format}</td>
-        <td className="flex-1 m-0 p-3 justify-end">
+        <td className="flex-1 m-0 p-3 justify-center">
           <Link
             to={`/crop-sale-info?crop_id=${cropSale.cropsSale.crop_id}&crop_sale_id=${cropSale.cropsSale.id}`}
           >
@@ -24,7 +24,9 @@ const CropSale = (cropSale) => {
         <td className="px-4 py-3">
           <UpdateCropSaleModal cropSale={cropSale.cropsSale} />
         </td>
-        <td className="px-4 py-3">{discharge_date_format}</td>
+        <td className="px-4 py-3">
+          <DeleteCropSaleModal cropSale={cropSale.cropsSale} />
+        </td>
       </tr>
     </>
   );
