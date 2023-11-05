@@ -15,10 +15,10 @@ export function useFetchCrops(crop_id) {
   return useQuery(['cropsSale', crop_id], () => getCropsSale(crop_id));
 }
 
-export const createCropSale = async (cropSale) => {
+export const createCropSale = async (crop, cropSale) => {
   try {
     await customFetch.post(
-      `/crop/sale/${cropSale.area_id}/ceop/${cropSale.id}`,
+      `/crop/sale/${crop.crop.area_id}/crop/${crop.crop.id}`,
       cropSale,
     );
     await queryClient.invalidateQueries('cropsSale');

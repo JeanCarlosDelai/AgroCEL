@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { CreateCropSchema } from '../../../schemas/CreateCropSchema';
 import OpenCloseModal from '../../modal/OpenCloseModal';
 import FormRow from '../../Form/FormRow';
 import ClearButtonForm from '../../Buttons/ClearButtonForm';
 import SubmitButton from '../../Buttons/SubmitButton';
 import { BsCurrencyDollar } from 'react-icons/bs';
 import { createCropSale } from '../../../queries/cropsSale/cropsSale';
+import { CreateCropSaleSchema } from '../../../schemas/CreateCropSaleSchema';
 
-const CreateCropSaleModal = (area_id) => {
+const CreateCropSaleModal = (crop) => {
   const [isModalCreateOpen, setCreateModalOpen] = useState(false);
 
   const {
@@ -27,7 +27,7 @@ const CreateCropSaleModal = (area_id) => {
       discharge_date: new Date().toISOString().split('T')[0],
       quantity: '',
     },
-    // resolver: yupResolver(CreateCropSchema),
+    resolver: yupResolver(CreateCropSaleSchema),
   });
 
   function openCreateModal() {
@@ -40,7 +40,7 @@ const CreateCropSaleModal = (area_id) => {
 
   const handlerCreate = async (crops) => {
     setCreateModalOpen(false);
-    await createCropSale(area_id, crops);
+    await createCropSale(crop, crops);
   };
 
   return (
