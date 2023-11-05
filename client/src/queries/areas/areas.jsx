@@ -5,7 +5,6 @@ import queryClient from '../../services/queryClient';
 
 async function getAreas(property_id) {
   const { data, error } = await customFetch.get(`/area/${property_id}`);
-
   if (error) {
     toast.success(error);
   }

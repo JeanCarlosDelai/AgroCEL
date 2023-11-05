@@ -7,6 +7,7 @@ const FormSelectObject = ({
   control,
   labelText,
   options,
+  onChange,
 }) => {
   const inputClass = `bg-gray-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 placeholder-gray-100 dark:focus:ring-primary-500 dark:focus:border-primary-500`;
 
@@ -25,8 +26,8 @@ const FormSelectObject = ({
           render={({ field }) => (
             <select
               name={field.name}
-              value={field.value}
-              onChange={field.onChange}
+              value={field.label}
+              onChange={onChange}
               className={inputClass}
             >
               <option value="" disabled hidden>
