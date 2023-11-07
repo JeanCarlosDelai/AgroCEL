@@ -138,6 +138,9 @@ const CropsDestinationListContainer = () => {
                       Tipo de processamento
                     </th>
                     <th scope="col" className="px-4 py-3">
+                      Detalhes da Produção
+                    </th>
+                    <th scope="col" className="px-4 py-3">
                       Editar
                     </th>
                     <th scope="col" className="px-4 py-3">

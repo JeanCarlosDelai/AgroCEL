@@ -1,5 +1,6 @@
 import { CgDetailsMore } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
+import UpdateCropDestinationModal from './UpdateCropDestinationModal';
 // import UpdateCropSaleModal from './UpdateCropSaleModal';
 // import DeleteCropSaleModal from './DeleteCropSaleModal';
 
@@ -20,17 +21,19 @@ const CropDestination = (cropDestination) => {
           {cropDestination?.cropDestination?.processing_type}
         </td>
         <td>
-          {/* <Link
-            to={`/crop-sale-info?crop_id=${cropDestination.cropDestination.crop_id}&crop_sale_id=${cropDestination.cropDestination.id}`}
+          <Link
+            to={`/crop-destination-info?crop_id=${cropDestination.cropDestination.crop_id}&crop_destination_id=${cropDestination.cropDestination.id}`}
             className="flex items-center justify-center"
           >
             <CgDetailsMore />
-          </Link> */}
-        </td>
-        {/* <td className="px-4 py-3">
-          <UpdateCropSaleModal cropSale={cropDestination.cropDestination} />
+          </Link>
         </td>
         <td className="px-4 py-3">
+          <UpdateCropDestinationModal
+            cropDestination={cropDestination.cropDestination}
+          />
+        </td>
+        {/* <td className="px-4 py-3">
           <DeleteCropSaleModal cropSale={cropDestination.cropDestination} />
         </td> */}
       </tr>

@@ -46,11 +46,14 @@ export const createCropDestination = async (crop, cropSale) => {
   }
 };
 
-export const updateCropDestination = async (cropSale, cropSales) => {
+export const updateCropDestination = async (
+  cropDestination,
+  cropDestinations,
+) => {
   try {
     const response = await customFetch.put(
-      `/crop/destination/${cropSale.cropSale.area_id}/area/${cropSale.cropSale.crop_id}/crop/${cropSale.cropSale.id}`,
-      cropSales,
+      `/crop/destination/${cropDestination.cropDestination.area_id}/area/${cropDestination.cropDestination.crop_id}/crop/${cropDestination.cropDestination.id}`,
+      cropDestinations,
     );
     await queryClient.invalidateQueries('cropsDestination');
     toast.success('Produção alterada com sucesso!');
