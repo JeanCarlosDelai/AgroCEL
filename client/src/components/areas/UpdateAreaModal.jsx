@@ -83,6 +83,7 @@ const UpdateAreaModal = (area) => {
               name="species"
               labelText="Espécie"
               placeholder="Espécie"
+              disabled={true}
               control={control}
               hasError={JSON.stringify(errors.species?.message)}
             />

@@ -1,5 +1,4 @@
 import { Controller } from 'react-hook-form';
-import { format } from 'date-fns';
 
 const FormRow = ({
   type,
@@ -9,13 +8,15 @@ const FormRow = ({
   control,
   hasError,
   options,
+  disabled,
 }) => {
   const inputClass = `bg-gray-500 border ${
     hasError ? 'border-red-500' : 'border-gray-300'
   } text-gray-900 text-sm rounded-lg focus:ring-primary-600 ${
     hasError ? 'focus:border-red-500' : 'focus:border-primary-600'
-  } block w-full p-2 placeholder-gray-100 dark:focus:ring-primary-500 dark:focus:border-primary-500`;
-  console.log();
+  } block w-full p-2 placeholder-gray-100 dark:focus:ring-primary-500 dark:focus:border-primary-500 ${
+    disabled ? 'bg-gray-700 text-gray-600' : '' // Aplica os estilos de desabilitado se 'disabled' for verdadeiro
+  }`;
   return (
     <div>
       <div className="mb-2 block">
@@ -38,6 +39,7 @@ const FormRow = ({
                 placeholder={placeholder}
                 onChange={field.onChange}
                 className={inputClass}
+                disabled={disabled}
               >
                 <option value={field.value}>{field.value}</option>
                 {options.map((option, index) => (
@@ -59,6 +61,7 @@ const FormRow = ({
                 onChange={field.onChange}
                 className={inputClass}
                 {...field}
+                disabled={disabled}
               />
             )}
           />
@@ -74,6 +77,7 @@ const FormRow = ({
                 value={field.value}
                 onChange={field.onChange}
                 className={inputClass}
+                disabled={disabled}
               />
             )}
           />

@@ -18,7 +18,7 @@ class ListAreaUseCase {
     const propertyExist = await this.propertyRepository.findById(property_Id);
 
     if (!propertyExist) {
-      throw new CustomAPIError.BadRequestError('Area does not exists.');
+      throw new CustomAPIError.BadRequestError('Area não existe.');
     }
 
     const areas = await this.areasRepository.findAll(property_Id);
