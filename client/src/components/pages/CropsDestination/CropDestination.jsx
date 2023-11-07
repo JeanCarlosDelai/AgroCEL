@@ -1,9 +1,7 @@
 import { CgDetailsMore } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
 import UpdateCropDestinationModal from './UpdateCropDestinationModal';
-// import UpdateCropSaleModal from './UpdateCropSaleModal';
-// import DeleteCropSaleModal from './DeleteCropSaleModal';
-
+import DeleteCropDestinationModal from './DeleteCropDestinationModal';
 const CropDestination = (cropDestination) => {
   return (
     <>
@@ -33,9 +31,11 @@ const CropDestination = (cropDestination) => {
             cropDestination={cropDestination.cropDestination}
           />
         </td>
-        {/* <td className="px-4 py-3">
-          <DeleteCropSaleModal cropSale={cropDestination.cropDestination} />
-        </td> */}
+        <td className="px-4 py-3">
+          <DeleteCropDestinationModal
+            cropDestination={cropDestination.cropDestination}
+          />
+        </td>
       </tr>
     </>
   );

@@ -63,14 +63,14 @@ export const updateCropDestination = async (
   }
 };
 
-export const deleteCropSale = async (cropSale) => {
+export const deleteCropDestination = async (cropDestination) => {
   try {
     await customFetch.delete(
-      `/crop/destination/${cropSale.cropSale.crop_id}/crop/${cropSale.cropSale.id}`,
+      `/crop/destination/${cropDestination.cropDestination.crop_id}/crop/${cropDestination.cropDestination.id}`,
     );
     await queryClient.invalidateQueries('cropsDestination');
     toast.success('Produção apagada com sucesso!');
   } catch (error) {
-    toast.error(error.response.data.msg);
+    toast.error(error.response);
   }
 };
