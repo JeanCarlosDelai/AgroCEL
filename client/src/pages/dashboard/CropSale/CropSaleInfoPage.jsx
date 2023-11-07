@@ -1,7 +1,4 @@
 import { useLocation } from 'react-router-dom';
-import { useFetchOneArea } from '../../../queries/areas/areas';
-import AccordionItemsArea from '../../../components/areas/areasInfoPage/AccordionItemsArea';
-import Accordion from '../../../components/Accordion/Accordion';
 import { useFetchOneCropSale } from '../../../queries/cropsSale/cropsSale';
 import TableCropSaleInfo from '../../../components/pages/CropsSale/TableCropSaleInfo';
 

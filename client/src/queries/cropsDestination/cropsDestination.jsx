@@ -19,7 +19,7 @@ export function useFetchCropsDestination(area_id) {
 
 async function getOneCropDestination(area_id, crop_id) {
   const { data, error } = await customFetch.get(
-    `/crop/sale/${area_id}/crop/${crop_id}`,
+    `/crop/destination/${area_id}/crop/${crop_id}`,
   );
   if (error) {
     toast.success(error);
@@ -29,7 +29,7 @@ async function getOneCropDestination(area_id, crop_id) {
 
 export function useFetchOneCropDestination(crop_id, crop_sale_id) {
   return useQuery(['cropSalee', crop_id, crop_sale_id], () =>
-    getOneCropSale(crop_id, crop_sale_id),
+    getOneCropDestination(crop_id, crop_sale_id),
   );
 }
 

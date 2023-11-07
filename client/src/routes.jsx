@@ -10,6 +10,7 @@ import CardHome from './pages/dashboard/CardHome';
 import CropsSaleContainer from './pages/dashboard/CropSale/CropsSaleContainer';
 import CropsSaleListContainer from './pages/dashboard/CropSale/CropsSaleListContainer';
 import CropSaleInfoPage from './pages/dashboard/CropSale/CropSaleInfoPage';
+import CropDestinationInfoPage from './pages/dashboard/CropDestination/CropDestinationInfoPage';
 
 export function AppRoutes() {
   return (
@@ -30,6 +31,10 @@ export function AppRoutes() {
         <Route path="sale" element={<CropsSaleContainer />} />
         <Route path="view-sale" element={<CropsSaleListContainer />} />
         <Route path="crop-sale-info" element={<CropSaleInfoPage />} />
+        <Route
+          path="crop-destination-info"
+          element={<CropDestinationInfoPage />}
+        />
         <Route path="/" element={<CardHome />} />
       </Route>
       <Route path="landing" element={<Landing />} />
