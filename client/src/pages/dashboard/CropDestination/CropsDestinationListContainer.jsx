@@ -3,8 +3,8 @@ import { useFetchArea } from '../../../queries/areas/areas';
 import FormSelectObject from '../../../components/Form/FormSelectObject';
 import { useState } from 'react';
 import usePropertyStore from '../../../store/propertys/usePropertyStore';
-import CropSale from '../../../components/pages/CropsSale/CropSale';
 import { useFetchCropsDestination } from '../../../queries/cropsDestination/cropsDestination';
+import CropDestination from '../../../components/pages/CropsDestination/CropDestination';
 
 const CropsDestinationListContainer = () => {
   const selectedProperty = usePropertyStore((state) => state.selectedProperty);
@@ -126,19 +126,16 @@ const CropsDestinationListContainer = () => {
                 <thead className="text-xs text-gray-300 uppercase bg-black border border-gray-300">
                   <tr>
                     <th scope="col" className="px-4 py-4">
-                      Nome da Venda
+                      Nome da Produção
                     </th>
                     <th scope="col" className="px-4 py-3">
-                      Quantidade vendida
+                      Quantidade produzida
                     </th>
                     <th scope="col" className="px-4 py-3">
-                      Entidade Compradora
+                      Destinação
                     </th>
                     <th scope="col" className="px-4 py-3">
-                      Data de descarga
-                    </th>
-                    <th scope="col" className="px-4 py-3">
-                      Detalhes da venda
+                      Tipo de processamento
                     </th>
                     <th scope="col" className="px-4 py-3">
                       Editar
@@ -148,13 +145,16 @@ const CropsDestinationListContainer = () => {
                     </th>
                   </tr>
                 </thead>
-                {/* <tbody className="bg-gray-800 text-gray-300">
-                  {cropsDestination?.data?.map((cropsSale) => {
+                <tbody className="bg-gray-800 text-gray-300">
+                  {cropsDestination?.data?.map((cropsDestination) => {
                     return (
-                      <CropSale key={cropsSale.id} cropsSale={cropsSale} />
+                      <CropDestination
+                        key={cropsDestination.id}
+                        cropDestination={cropsDestination}
+                      />
                     );
                   })}
-                </tbody> */}
+                </tbody>
               </table>
             </div>
           </div>
