@@ -3,10 +3,10 @@ import { useFetchArea } from '../../../queries/areas/areas';
 import FormSelectObject from '../../../components/Form/FormSelectObject';
 import { useState } from 'react';
 import usePropertyStore from '../../../store/propertys/usePropertyStore';
-import { useFetchCropsSale } from '../../../queries/cropsSale/cropsSale';
 import CropSale from '../../../components/pages/CropsSale/CropSale';
+import { useFetchCropsDestination } from '../../../queries/cropsDestination/cropsDestination';
 
-const CropsSaleListContainer = () => {
+const CropsDestinationListContainer = () => {
   const selectedProperty = usePropertyStore((state) => state.selectedProperty);
 
   const property_id = selectedProperty.property_id;
@@ -15,10 +15,8 @@ const CropsSaleListContainer = () => {
 
   const areas = useFetchArea(property_id);
 
-  // const crops = useFetchCrops(selectedArea);
-  // console.log(crops);
-  const cropsSale = useFetchCropsSale(selectedArea);
-  // console.log(cropsSale);
+  const cropsDestination = useFetchCropsDestination(selectedArea);
+
   const areaOptions = areas.data
     ? [
         {
@@ -42,7 +40,7 @@ const CropsSaleListContainer = () => {
     setSelectedArea(selectedValue);
   };
 
-  if (!cropsSale.data) {
+  if (!cropsDestination.data) {
     return (
       <div className="flex">
         <section>
@@ -70,7 +68,7 @@ const CropsSaleListContainer = () => {
     );
   }
 
-  if (cropsSale?.data?.length <= 0) {
+  if (cropsDestination?.data?.length <= 0) {
     return (
       <div className="flex">
         <section>
@@ -117,9 +115,9 @@ const CropsSaleListContainer = () => {
                   />
                 </form>
                 <h6 className="pt-4">
-                  {cropsSale?.data?.length} Colheita
-                  {cropsSale?.data?.length > 1 && 's'} encontrada
-                  {cropsSale?.data?.length > 1 && 's'}
+                  {cropsDestination?.data?.length} Colheita
+                  {cropsDestination?.data?.length > 1 && 's'} encontrada
+                  {cropsDestination?.data?.length > 1 && 's'}
                 </h6>
               </div>
             </div>
@@ -150,13 +148,13 @@ const CropsSaleListContainer = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-gray-800 text-gray-300">
-                  {cropsSale?.data?.map((cropsSale) => {
+                {/* <tbody className="bg-gray-800 text-gray-300">
+                  {cropsDestination?.data?.map((cropsSale) => {
                     return (
                       <CropSale key={cropsSale.id} cropsSale={cropsSale} />
                     );
                   })}
-                </tbody>
+                </tbody> */}
               </table>
             </div>
           </div>
@@ -165,4 +163,4 @@ const CropsSaleListContainer = () => {
     </div>
   );
 };
-export default CropsSaleListContainer;
+export default CropsDestinationListContainer;

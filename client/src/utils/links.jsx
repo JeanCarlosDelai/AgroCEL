@@ -33,23 +33,19 @@ const links = [
 ];
 
 const linksSale = [
-  { id: 1, text: 'Vender', path: '/sale', icon: FaSackDollar },
+  { id: 1, text: 'Vender / Produzir', path: '/sale', icon: FaSackDollar },
   {
     id: 2,
     text: 'Visualizar Vendas',
     path: '/view-sale',
     icon: FaFileInvoiceDollar,
   },
-];
-
-const linksProduction = [
-  { id: 1, text: 'Produzir', path: '/production', icon: BiSolidWine },
   {
-    id: 2,
+    id: 3,
     text: 'Visualizar Produção',
     path: '/view-production',
     icon: FaWineBottle,
   },
 ];
 
-export { links, linksSale, linksProduction };
+export { links, linksSale };

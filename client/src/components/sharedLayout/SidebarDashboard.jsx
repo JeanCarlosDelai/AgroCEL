@@ -1,19 +1,14 @@
 import { useLocation } from 'react-router-dom';
 import {
   HiMenuAlt3,
-  HiPlus,
-  HiChevronDown,
   HiChevronDoubleDown,
   HiChevronDoubleUp,
 } from 'react-icons/hi';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../logo/Logo';
-import { links, linksSale, linksProduction } from '../../utils/links';
+import { links, linksSale } from '../../utils/links';
 import { AiFillDollarCircle } from 'react-icons/ai';
-import { BiSolidWine } from 'react-icons/bi';
-import { CgGlass } from 'react-icons/cg';
-import { TbGlass } from 'react-icons/tb';
 
 const SidebarDashboard = () => {
   const location = useLocation();
@@ -91,7 +86,7 @@ const SidebarDashboard = () => {
           >
             <div className="flex items-center">
               <AiFillDollarCircle size={20} />
-              <h2 className="ml-4">Vendas</h2>
+              <h2 className="ml-4">Vendas / Produção</h2>
               <span className="ml-2">
                 {isDropdownOpen ? (
                   <HiChevronDoubleUp />
@@ -106,65 +101,6 @@ const SidebarDashboard = () => {
             style={{ textAlign: 'left' }}
           >
             {linksSale?.map((menu, i) => (
-              <li key={i}>
-                <button type="button">
-                  <Link
-                    to={menu?.path}
-                    className={`${
-                      menu?.margin && 'mt-5'
-                    } group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-green-600 rounded-md ${
-                      location.pathname === menu?.path ? 'bg-green-900' : ''
-                    }`}
-                  >
-                    <div>{React.createElement(menu?.icon, { size: '20' })}</div>
-                    <h2
-                      style={{
-                        transitionDelay: `${i + 3}00ms`,
-                      }}
-                      className={`whitespace-pre duration-500 ${
-                        !open && 'opacity-0 translate-x-28 overflow-hidden'
-                      }`}
-                    >
-                      {menu?.text}
-                    </h2>
-                    <h2
-                      className={`${
-                        open && 'hidden'
-                      } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
-                    >
-                      {menu?.text}
-                    </h2>
-                  </Link>
-                </button>
-              </li>
-            ))}
-          </ul>
-          <button
-            type="button"
-            className={`group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-green-600 rounded-md ${
-              location.pathname.startsWith('/vendas') ? 'bg-green-900' : ''
-            } ${isDropdownProductionOpen ? 'bg-green-900' : ''}`}
-            onClick={toggleDropdownProduction}
-          >
-            <div className="flex items-center">
-              <TbGlass size={22} />
-              <h2 className="ml-4">Produção Própria</h2>
-              <span className="ml-2">
-                {isDropdownProductionOpen ? (
-                  <HiChevronDoubleUp />
-                ) : (
-                  <HiChevronDoubleDown />
-                )}
-              </span>
-            </div>
-          </button>
-          <ul
-            className={`${
-              isDropdownProductionOpen ? 'block' : 'hidden'
-            }  space-y-2 ml-4`}
-            style={{ textAlign: 'left' }}
-          >
-            {linksProduction?.map((menu, i) => (
               <li key={i}>
                 <button type="button">
                   <Link
