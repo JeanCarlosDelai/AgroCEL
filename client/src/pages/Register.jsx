@@ -1,11 +1,12 @@
 import { useForm } from 'react-hook-form';
-import { Logo, FormRow } from '../components';
 import { createUser } from '../queries/users/users';
 import SubmitButton from '../components/Buttons/SubmitButton';
 import ClearButtonForm from '../components/Buttons/ClearButtonForm';
 import { Link } from 'react-router-dom';
 import { CreateUserSchema } from '../schemas/CreateUserSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
+import Logo from '../components/logo/Logo';
+import FormRow from '../components/Form/FormRow';
 
 function Register() {
   const {

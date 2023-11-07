@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form';
-import { Logo, FormRow } from '../components';
 import { login } from '../queries/users/users';
 import SubmitButton from '../components/Buttons/SubmitButton';
 import ClearButtonForm from '../components/Buttons/ClearButtonForm';
@@ -11,6 +10,8 @@ import {
   addTokenToLocalStorage,
   addUserToLocalStorage,
 } from '../utils/localStorage';
+import Logo from '../components/logo/Logo';
+import FormRow from '../components/Form/FormRow';
 
 function Login() {
   const navigate = useNavigate();
@@ -27,17 +28,21 @@ function Login() {
     resolver: yupResolver(LoginSchema),
   });
 
-  const handlerCreateUser = async (user) => {
-    const response = await login(user);
-    addUserToLocalStorage(response.data.user);
-    addTokenToLocalStorage(response.data.token);
-    navigate('/');
+  const handlerLogin = async (user) => {
+    try {
+      const response = await login(user);
+      addUserToLocalStorage(response.data.user);
+      addTokenToLocalStorage(response.data.token);
+      navigate('/propertys');
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
     <form
       className="flex h-screen items-center justify-center bg-gray-800"
-      onSubmit={handleSubmit(handlerCreateUser)}
+      onSubmit={handleSubmit(handlerLogin)}
     >
       <div className="w-full max-w-sm p-4 bg-gray-600 border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8">
         <div className="flex justify-center mr-14">

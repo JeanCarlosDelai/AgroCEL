@@ -46,10 +46,10 @@ class CropDestinationRepository implements ICropDestinationRepository {
     await this.ormRepository.remove(cropDestination);
   }
 
-  public async findAll(crop_Id: string): Promise<IListCropDestination> {
+  public async findAll(area_id: string): Promise<IListCropDestination> {
     const cropsDestination = await this.ormRepository
       .createQueryBuilder('crops_destination')
-      .where('crops_destination.crop_id = :crop_Id', { crop_Id })
+      .where('crops_destination.area_id = :area_id', { area_id })
       .getMany();
 
     const result = {

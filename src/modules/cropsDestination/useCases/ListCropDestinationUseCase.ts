@@ -13,17 +13,17 @@ class ListCropDestinationUseCase {
   ) // eslint-disable-next-line prettier/prettier
   { }
 
-  public async execute(crop_Id: string): Promise<IListCropDestination> {
-    const cropExist = await this.cropsRepository.findById(crop_Id);
+  public async execute(area_id: string): Promise<IListCropDestination> {
+    // const cropExist = await this.cropsRepository.findById(area_id);
 
-    if (!cropExist) {
-      throw new CustomAPIError.BadRequestError(
-        'Crop destination does not exists.',
-      );
-    }
+    // if (!cropExist) {
+    //   throw new CustomAPIError.BadRequestError(
+    //     'Crop destination does not exists.',
+    //   );
+    // }
 
     const cropsDestination =
-      await this.cropDestinationRepository.findAll(crop_Id);
+      await this.cropDestinationRepository.findAll(area_id);
 
     return cropsDestination;
   }

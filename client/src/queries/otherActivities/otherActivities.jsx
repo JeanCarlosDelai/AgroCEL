@@ -33,9 +33,9 @@ export function useFetchOtherActivities(area_id) {
 //   );
 // }
 
-export const createOtherActivitie = async (area_id, otherActivitie) => {
+export const createOtherActivitie = async (otherActivitie) => {
   try {
-    await customFetch.post(`/other/${area_id.area_id}`, otherActivitie);
+    await customFetch.post(`/other/${otherActivitie.area_id}`, otherActivitie);
     await queryClient.invalidateQueries('otherActivities');
     toast.success('Manejo criado com sucesso!');
   } catch (error) {
@@ -50,7 +50,7 @@ export const updateOtherActivitie = async (
 ) => {
   try {
     const response = await customFetch.put(
-      `/other/${other_activities_id}/area/${area_id}`,
+      `/other/${area_id}/area/${other_activities_id}`,
       otherActivitie,
     );
     await queryClient.invalidateQueries('otherActivities');

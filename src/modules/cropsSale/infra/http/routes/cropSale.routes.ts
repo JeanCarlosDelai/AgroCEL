@@ -18,7 +18,7 @@ cropSaleRouter.get(
 );
 
 cropSaleRouter.get(
-  '/:crop_id',
+  '/:area_id',
   validator(CropIdSchema),
   cropSaleController.index,
 );

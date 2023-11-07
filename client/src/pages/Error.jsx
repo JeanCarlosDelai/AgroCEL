@@ -1,17 +1,25 @@
 import { Link } from 'react-router-dom';
 import img from '../assets/images/not-found.svg';
-import Wrapper from '../assets/wrappers/ErrorPage';
+import Footer from '../components/sharedLayout/Footer';
 
 const Error = () => {
   return (
-    <Wrapper className='full-page'>
-      <div>
-        <img src={img} alt='not found' />
-        <h3>Ohh! Pagina não encontrada</h3>
-        <p>Parece que não conseguimos encontrar a página que você está procurando</p>
-        <Link to='/'>Voltar para a home</Link>
+    <>
+      <div className=" text-gray-300 ">
+        <img src={img} alt="not found" className="mx-auto pt-20 pb-2" />
+        <h3>Ohh! Página não encontrada</h3>
+        <p>
+          Parece que não conseguimos encontrar a página que você está procurando
+        </p>
+        <Link to="/">
+          <p className="block mt-4 hover:text-blue-700 text-blue-500 ">
+            Voltar para a home
+          </p>
+        </Link>
       </div>
-    </Wrapper>
+      <Footer />
+    </>
   );
 };
+
 export default Error;

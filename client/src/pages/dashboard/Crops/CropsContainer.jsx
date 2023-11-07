@@ -1,6 +1,6 @@
 import { useFetchCrops } from '../../../queries/crops/crops';
-import Crop from '../../../components/crops/Crop';
-import CreateCropModal from '../../../components/crops/CreateCropModal';
+import Crop from '../../../components/pages/crops/Crop';
+import CreateCropModal from '../../../components/pages/crops/CreateCropModal';
 
 const CropsContainer = ({ area }) => {
   const area_id = area.data.id;

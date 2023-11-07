@@ -54,9 +54,9 @@ class CropSaleRepositoryInMemory implements ICropSaleRepository {
     this.cropSale.splice(cropSaleIndex, 1);
   }
 
-  public async findAll(crop_id: string): Promise<IListCropSale> {
+  public async findAll(area_id: string): Promise<IListCropSale> {
     const cropSale: CropSale[] = this.cropSale.filter(
-      (crop) => crop.crop_id === crop_id,
+      (crop) => crop.area_id === area_id,
     );
 
     return { data: cropSale };

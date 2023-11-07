@@ -1,7 +1,11 @@
 import React from 'react';
 import { TableRow } from './TableRow';
+import FormatDate from '../../../utils/FormatDate';
 
 function TableAreainfo({ area }) {
+  const implementation_date_format = FormatDate(
+    area?.data?.implementation_date,
+  );
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
       <table className="w-full text-sm text-left text-gray-200  ">
@@ -26,7 +30,7 @@ function TableAreainfo({ area }) {
           />
           <TableRow
             label="Data de implantação"
-            value={area?.data?.implementation_date}
+            value={implementation_date_format}
           />
           <TableRow
             label="Número de fileiras"

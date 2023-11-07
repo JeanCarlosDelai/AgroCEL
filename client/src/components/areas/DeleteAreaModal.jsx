@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { deleteArea } from '../../queries/areas/areas';
 import { BsTrashFill } from 'react-icons/bs';
-import OpenCloseModal from '../OpenCloseModal';
-import { DeleteConfirmation } from '../DeleteConfirmation';
+import OpenCloseModal from '../modal/OpenCloseModal';
+import { DeleteConfirmation } from '../modal/DeleteConfirmation';
 
 export default function DeleteAreaModal(area) {
   const [isModalDeleteOpen, setDeleteModalOpen] = useState(false);
