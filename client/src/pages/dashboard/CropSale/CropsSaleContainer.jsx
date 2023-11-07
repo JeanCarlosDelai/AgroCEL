@@ -139,13 +139,19 @@ const CropsSaleContainer = () => {
                       Vender
                     </th>
                     <th scope="col" className="px-4 py-3">
+                      Nome da Venda
+                    </th>
+                    <th scope="col" className="px-4 py-3">
+                      Detalhes da Venda
+                    </th>
+                    <th scope="col" className="px-4 py-3">
                       Produzir
                     </th>
                     <th scope="col" className="px-4 py-3">
-                      Nome da Destinação
+                      Nome da Produção
                     </th>
                     <th scope="col" className="px-4 py-3">
-                      Detalhes da Destinação
+                      Detalhes da Produção
                     </th>
                   </tr>
                 </thead>

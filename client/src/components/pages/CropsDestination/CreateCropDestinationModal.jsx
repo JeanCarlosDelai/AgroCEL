@@ -9,7 +9,7 @@ import { CreateCropDestinationSchema } from '../../../schemas/CreateCropDestinat
 import { createCropDestination } from '../../../queries/cropsDestination/cropsDestination';
 import { FaWineBottle } from 'react-icons/fa';
 
-const CreateCropSaleModal = (crop) => {
+const CreateCropDestinationModal = (crop) => {
   const [isModalCreateOpen, setCreateModalOpen] = useState(false);
 
   const {
@@ -96,4 +96,4 @@ const CreateCropSaleModal = (crop) => {
     </div>
   );
 };
-export default CreateCropSaleModal;
+export default CreateCropDestinationModal;
