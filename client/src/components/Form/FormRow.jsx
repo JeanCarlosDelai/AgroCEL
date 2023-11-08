@@ -1,5 +1,9 @@
+import { useState } from 'react';
 import { Controller } from 'react-hook-form';
-
+import {
+  HiOutlineArrowNarrowDown,
+  HiOutlineArrowNarrowUp,
+} from 'react-icons/hi';
 const FormRow = ({
   type,
   name,
@@ -10,12 +14,13 @@ const FormRow = ({
   options,
   disabled,
 }) => {
+  const [isSelectOpen, setIsSelectOpen] = useState(false);
   const inputClass = `bg-gray-500 border ${
     hasError ? 'border-red-500' : 'border-gray-300'
   } text-gray-900 text-sm rounded-lg focus:ring-primary-600 ${
     hasError ? 'focus:border-red-500' : 'focus:border-primary-600'
   } block w-full p-2 placeholder-gray-100 dark:focus:ring-primary-500 dark:focus:border-primary-500 ${
-    disabled ? 'bg-gray-700 text-gray-600' : '' // Aplica os estilos de desabilitado se 'disabled' for verdadeiro
+    disabled ? 'bg-gray-700 text-gray-600' : ''
   }`;
   return (
     <div>
@@ -33,21 +38,35 @@ const FormRow = ({
             name={name}
             control={control}
             render={({ field }) => (
-              <select
-                name={field.name}
-                value={field.value}
-                placeholder={placeholder}
-                onChange={field.onChange}
-                className={inputClass}
-                disabled={disabled}
-              >
-                <option value={field.value}>{field.value}</option>
-                {options.map((option, index) => (
-                  <option key={index} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
+              <div className="relative">
+                <div
+                  onClick={() => setIsSelectOpen(!isSelectOpen)}
+                  className="absolute inset-y-0 right-0 flex items-center pr-2 cursor-pointer"
+                >
+                  {isSelectOpen ? (
+                    <HiOutlineArrowNarrowUp className="h-4 w-4 text-gray-900" />
+                  ) : (
+                    <HiOutlineArrowNarrowDown className="h-4 w-4 text-gray-900" />
+                  )}
+                </div>
+                <select
+                  name={field.name}
+                  value={field.value}
+                  placeholder={placeholder}
+                  onChange={field.onChange}
+                  className={inputClass}
+                  disabled={disabled}
+                  onClick={() => setIsSelectOpen(!isSelectOpen)}
+                  onBlur={() => setIsSelectOpen(false)}
+                >
+                  <option value={field.value}>{field.value}</option>
+                  {options.map((option, index) => (
+                    <option key={index} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
             )}
           />
         ) : type === 'date' ? (

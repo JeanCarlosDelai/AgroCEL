@@ -63,7 +63,7 @@ const UpdateCropSaleModal = (cropSale) => {
             <FormRow
               type="text"
               name="name"
-              labelText="Name"
+              labelText="Nome da Venda"
               placeholder="Nome"
               control={control}
               hasError={JSON.stringify(errors.name?.message)}
@@ -71,8 +71,8 @@ const UpdateCropSaleModal = (cropSale) => {
             <FormRow
               type="number"
               name="quantity"
-              labelText="Quantidade"
-              placeholder="Quantidade"
+              labelText="Quantidade / Kg"
+              placeholder="100 Kg"
               control={control}
               hasError={JSON.stringify(errors.quantity?.message)}
             />
@@ -102,16 +102,16 @@ const UpdateCropSaleModal = (cropSale) => {
             <FormRow
               type="number"
               name="graduation"
-              labelText="Grau"
-              placeholder="0"
+              labelText="Grau da carga"
+              placeholder="17º"
               control={control}
               hasError={JSON.stringify(errors.graduation?.message)}
             />
             <FormRow
               type="number"
               name="price"
-              labelText="Preço"
-              placeholder="0"
+              labelText="Preço por Kg"
+              placeholder="10"
               control={control}
               hasError={JSON.stringify(errors.price?.message)}
             />

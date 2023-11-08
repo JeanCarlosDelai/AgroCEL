@@ -52,7 +52,7 @@ const CreateCropModalField = () => {
   }
   const handlerCreate = async (crops) => {
     setCreateModalOpen(false);
-    await createCrop(crops);
+    await createCrop(crops.area_id, crops);
   };
 
   return (
@@ -80,15 +80,15 @@ const CreateCropModalField = () => {
               type="text"
               name="name"
               labelText="Nome da colheita"
-              placeholder="Nome"
+              placeholder="Colheita 3"
               control={control}
               hasError={JSON.stringify(errors.name?.message)}
             />
             <FormRow
               type="number"
               name="quantity"
-              labelText="Quantidade colhida"
-              placeholder="Quantidade"
+              labelText="Quantidade colhida / Kg"
+              placeholder="1000"
               control={control}
               hasError={JSON.stringify(errors.quantity?.message)}
             />
@@ -102,8 +102,8 @@ const CreateCropModalField = () => {
             <FormRow
               type="number"
               name="crop_time"
-              labelText="Tempo de colheita"
-              placeholder="Tempo"
+              labelText="Tempo de colheita / h"
+              placeholder="10 h"
               control={control}
               hasError={JSON.stringify(errors.crop_time?.message)}
             />

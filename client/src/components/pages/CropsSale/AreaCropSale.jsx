@@ -10,7 +10,7 @@ import { useFetchCropsDestination } from '../../../queries/cropsDestination/crop
 
 const AreaCropSale = ({ crop }) => {
   const crop_date_format = FormatDate(crop?.crop_date);
-  // console.log(crop.id);
+
   const cropsSale = useFetchCropsSale(crop.area_id);
   const cropsDestination = useFetchCropsDestination(crop.area_id);
 
@@ -26,8 +26,6 @@ const AreaCropSale = ({ crop }) => {
       )
     : '';
 
-  // console.log(matchingCropsSales);
-  console.log(matchingCropsDestination);
   return (
     <>
       <tr className="border-b dark:border-gray-700">

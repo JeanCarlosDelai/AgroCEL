@@ -59,7 +59,7 @@ const CreateApplicationModal = (area_id) => {
               type="text"
               name="used_product"
               labelText="Produto"
-              placeholder="Produto usado"
+              placeholder="Sulfato"
               control={control}
               hasError={JSON.stringify(errors.used_product?.message)}
             />
@@ -67,7 +67,7 @@ const CreateApplicationModal = (area_id) => {
               type="text"
               name="application_type"
               labelText="Tipo de aplicação"
-              placeholder="Tipo de aplicação"
+              placeholder="Pulverização"
               control={control}
               hasError={JSON.stringify(errors.application_type?.message)}
             />
@@ -89,16 +89,16 @@ const CreateApplicationModal = (area_id) => {
             <FormRow
               type="number"
               name="quantity"
-              labelText="Quantidade"
-              placeholder="Quantidade"
+              labelText="Quantidade de produto / Kg"
+              placeholder="10"
               control={control}
               hasError={JSON.stringify(errors.quantity?.message)}
             />
             <FormRow
               type="number"
               name="application_time"
-              labelText="Tempo de colheita"
-              placeholder="Tempo"
+              labelText="Tempo de aplicação /h"
+              placeholder="10"
               control={control}
               hasError={JSON.stringify(errors.application_time?.message)}
             />

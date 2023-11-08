@@ -31,9 +31,9 @@ export function useFetchApplications(area_id) {
 //   );
 // }
 
-export const createApplication = async (application) => {
+export const createApplication = async (area_id, application) => {
   try {
-    await customFetch.post(`/application/${application.area_id}`, application);
+    await customFetch.post(`/application/${area_id}`, application);
     await queryClient.invalidateQueries('applications');
     toast.success('Aplicação criada com sucesso!');
   } catch (error) {

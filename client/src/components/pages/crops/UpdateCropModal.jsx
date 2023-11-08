@@ -56,15 +56,15 @@ const UpdateCropModal = (crop) => {
             <FormRow
               type="text"
               name="name"
-              labelText="Name"
-              placeholder="Nome"
+              labelText="Nome da colheita"
+              placeholder="Colheita 1"
               control={control}
               hasError={JSON.stringify(errors.name?.message)}
             />
             <FormRow
               type="number"
               name="quantity"
-              labelText="Quantidade"
+              labelText="Quantidade / Kg"
               placeholder="Quantidade"
               control={control}
               hasError={JSON.stringify(errors.quantity?.message)}
@@ -79,7 +79,7 @@ const UpdateCropModal = (crop) => {
             <FormRow
               type="number"
               name="crop_time"
-              labelText="Tempo de colheita"
+              labelText="Tempo de colheita / h"
               placeholder="Tempo"
               control={control}
               hasError={JSON.stringify(errors.crop_time?.message)}

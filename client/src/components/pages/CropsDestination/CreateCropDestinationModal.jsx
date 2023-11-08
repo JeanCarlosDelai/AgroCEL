@@ -22,7 +22,7 @@ const CreateCropDestinationModal = (crop) => {
       name: '',
       processing_type: '',
       destination: '',
-      quantity: '',
+      quantity: crop.crop.quantity,
     },
     resolver: yupResolver(CreateCropDestinationSchema),
   });
@@ -57,7 +57,7 @@ const CreateCropDestinationModal = (crop) => {
             <FormRow
               type="text"
               name="name"
-              labelText="Name"
+              labelText="Nome da Destinação"
               placeholder="Nome"
               control={control}
               hasError={JSON.stringify(errors.name?.message)}
@@ -65,16 +65,17 @@ const CreateCropDestinationModal = (crop) => {
             <FormRow
               type="number"
               name="quantity"
-              labelText="Quantidade"
-              placeholder="Quantidade"
+              labelText="Quantidade / Kg"
+              placeholder="1000 Kg"
               control={control}
+              disabled={true}
               hasError={JSON.stringify(errors.quantity?.message)}
             />
             <FormRow
               type="text"
               name="destination"
               labelText="Destinação"
-              placeholder="Ex: Produção Própria"
+              placeholder="Produção Própria"
               control={control}
               hasError={JSON.stringify(errors.destination?.message)}
             />
@@ -82,7 +83,7 @@ const CreateCropDestinationModal = (crop) => {
               type="text"
               name="processing_type"
               labelText="Tipo de processamento"
-              placeholder="Ex: Vinho"
+              placeholder="Vinho"
               control={control}
               hasError={JSON.stringify(errors.processing_type?.message)}
             />

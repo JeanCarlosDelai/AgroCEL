@@ -55,7 +55,7 @@ const CreateOtherActivitieModalField = () => {
 
   const handlerCreate = async (otherActivitie) => {
     setCreateModalOpen(false);
-    await createOtherActivitie(otherActivitie);
+    await createOtherActivitie(otherActivitie.area_id, otherActivitie);
   };
 
   return (
@@ -82,8 +82,8 @@ const CreateOtherActivitieModalField = () => {
             <FormRow
               type="text"
               name="name"
-              labelText="Name"
-              placeholder="Nome"
+              labelText="Nome do manejo"
+              placeholder="Poda Concord"
               control={control}
               hasError={JSON.stringify(errors.name?.message)}
             />
@@ -91,7 +91,7 @@ const CreateOtherActivitieModalField = () => {
               type="text"
               name="activitie_category"
               labelText="Categoria da atividade"
-              placeholder="Categoria"
+              placeholder="Poda"
               control={control}
               hasError={JSON.stringify(errors.activitie_category?.message)}
             />
@@ -113,8 +113,8 @@ const CreateOtherActivitieModalField = () => {
             <FormRow
               type="number"
               name="activitie_time"
-              labelText="Tempo de manejo"
-              placeholder="Tempo"
+              labelText="Tempo de manejo / h"
+              placeholder="10 h"
               control={control}
               hasError={JSON.stringify(errors.activitie_time?.message)}
             />

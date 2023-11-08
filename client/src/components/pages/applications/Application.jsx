@@ -11,9 +11,9 @@ const Application = ({ application }) => {
           {application?.used_product}
         </td>
         <td className="px-4 py-3">{application?.application_type}</td>
-        <td className="px-4 py-3">{application?.quantity}</td>
+        <td className="px-4 py-3">{application?.quantity} Kg</td>
         <td className="px-4 py-3">{application_date_format}</td>
-        <td className="px-4 py-3">{application?.application_time}</td>
+        <td className="px-4 py-3">{application?.application_time} horas</td>
         <td className="px-4 py-3">{application?.description}</td>
         <td className="flex-1 m-0 p-3 justify-end">
           <UpdateApplicationModal application={application} />
