@@ -6,8 +6,6 @@ import {
 import { SiGoogledocs } from 'react-icons/si';
 import { TbChartAreaLineFilled } from 'react-icons/tb';
 import { GiNotebook } from 'react-icons/gi';
-import { AiFillDollarCircle } from 'react-icons/ai';
-import { BiSolidWine } from 'react-icons/bi';
 import { FaSackDollar } from 'react-icons/fa6';
 
 const links = [
@@ -27,7 +25,7 @@ const links = [
   {
     id: 4,
     text: 'Relatórios',
-    path: '/report',
+    path: '/reports',
     icon: SiGoogledocs,
   },
 ];

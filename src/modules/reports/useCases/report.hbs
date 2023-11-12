@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relatório</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #020202;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #555151;
+    }
+
+    .entry {
+      border: 1px solid #020202;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    .bold-text {
+      font-weight: bold;
+    }
+  </style>
+  <script src="./node_modules/handlebars/dist/handlebars.js"></script>
+
+</head>
+
+
+<body>
+
+
+  <h1>Relatório Geral da Propriedade</h1>
+
+  <h2>Dados da Propriedade</h2>
+  <table>
+    <tr>
+      <th>Nome</th>
+      <th>Área Total</th>
+      <th>Área Cultivada</th>
+      <th>Cidade</th>
+      <th>Estado</th>
+      <!-- Adicione mais cabeçalhos conforme necessário -->
+    </tr>
+    <tr>
+      <td>{{property.name}}</td>
+      <td>{{property.total_area}}</td>
+      <td>{{property.cultivated_area}}</td>
+      <td>{{property.city}}</td>
+      <td>{{property.state}}</td>
+      <!-- Adicione mais dados conforme necessário -->
+    </tr>
+  </table>
+
+  <h2>Áreas</h2>
+  {{#each areas}}
+  <div>
+    <h3>{{this.name}}</h3>
+    <table>
+      <tr>
+        <th>Espécie</th>
+        <th>Variedade</th>
+        <th>Área Cultivada</th>
+        <!-- Adicione mais cabeçalhos conforme necessário -->
+      </tr>
+      <tr>
+        <td>{{this.species}}</td>
+        <td>{{this.variety}}</td>
+        <td>{{this.cultivated_area}}</td>
+        <!-- Adicione mais dados conforme necessário -->
+      </tr>
+    </table>
+
+    <h4>Colheitas</h4>
+    <table>
+      <tr>
+        <th>Colheita</th>
+        <th>Quantidade</th>
+        <th>Data da colheita</th>
+        <th>Tempo de colheita</th>
+        <!-- Adicione mais cabeçalhos conforme necessário -->
+      </tr>
+      {{#each this.crops}}
+      <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.quantity}} Kg</td>
+        <td>{{formatDate this.crop_date}}</td>
+        <td>{{this.crop_time}} horas</td>
+        <!-- Adicione mais dados conforme necessário -->
+      </tr>
+      {{/each}}
+
+      {{#each this.crops}}
+      {{#if @first}}
+      <tr>
+        <td>Total colhido</td>
+        <td id="totalQuantity">{{this.quantity}}</td>
+
+        <td>Horas trabalhadas</td>
+        <td id="totalWork">{{this.crop_time}}</td>
+      </tr>
+      {{else}}
+      <script>
+        // Atualiza o total acumulado
+        var totalQuantity = parseFloat(document.getElementById('totalQuantity').innerText);
+        totalQuantity += parseFloat('{{this.quantity}}');
+        document.getElementById('totalQuantity').innerText = totalQuantity.toFixed() + ' Kg';
+
+        var totalWork = parseFloat(document.getElementById('totalWork').innerText);
+        totalWork += parseFloat('{{this.crop_time}}');
+        document.getElementById('totalWork').innerText = totalWork.toFixed() + ' horas';
+      </script>
+      {{/if}}
+      {{/each}}
+    </table>
+
+    <h4>Aplicações</h4>
+    <table>
+      <tr>
+        <th>Tipo de aplicação</th>
+        <th>Produto</th>
+        <th>Quantidade usada</th>
+        <th>Data da aplicação</th>
+        <th>Tempo de aplicação</th>
+        <!-- Adicione mais cabeçalhos conforme necessário -->
+      </tr>
+      {{#each this.applications}}
+      <tr>
+        <td>{{this.application_type}}</td>
+        <td>{{this.used_product}}</td>
+        <td>{{this.quantity}} Kg</td>
+        <td>{{formatDate this.application_date}}</td>
+        <td>{{this.application_time}} horas</td>
+        <!-- Adicione mais dados conforme necessário -->
+      </tr>
+      {{/each}}
+    </table>
+
+    <h4>Manejo</h4>
+    <table>
+      <tr>
+        <th>Manejo</th>
+        <th>Categoria da Atividade</th>
+        <th>Data do manejo</th>
+        <th>Tempo do manejo</th>
+        <th>Descrição</th>
+        <!-- Adicione mais cabeçalhos conforme necessário -->
+      </tr>
+      {{#each this.otherActivities}}
+      <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.activitie_category}}</td>
+        <td>{{formatDate this.activitie_date}}</td>
+        <td>{{ this.activitie_time }} horas</td>
+        <td>{{ this.description}}</td>
+        <!-- Adicione mais dados conforme necessário -->
+      </tr>
+      {{/each}}
+    </table>
+
+  </div>
+  <hr />
+  {{/each}}
+
+</body>
+
+</html>

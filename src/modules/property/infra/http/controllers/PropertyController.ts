@@ -6,6 +6,7 @@ import { container } from 'tsyringe';
 import DeletePropertyUseCase from '@modules/property/useCases/DeletePropertyUseCase';
 import showPropertyUseCase from '@modules/property/useCases/ShowPropertyUseCase';
 import UpdatePropertyUseCase from '@modules/property/useCases/updatePropertyUseCase';
+import ReportUseCase from '@modules/property/useCases/ReportUseCase';
 
 export default class PropertyController {
   public async listAll(
@@ -76,5 +77,15 @@ export default class PropertyController {
     await deleteProperty.execute({ id });
 
     return response.sendStatus(StatusCodes.NO_CONTENT);
+  }
+
+  public async reportAreas(request: Request, response: Response): Promise<Response> {
+    const { property_id } = request.params;
+
+    const report = container.resolve(ReportUseCase);
+
+    const reports = await report.execute(property_id);
+
+    return response.status(StatusCodes.OK).json(reports);
   }
 }
