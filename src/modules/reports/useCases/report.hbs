@@ -4,23 +4,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
   <title>Relatório</title>
+
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      outline: 0;
+      font-family: 'Heebo', Arial, Helvetica, sans-serif;
+    }
+
+    html {
+      -webkit-print-color-adjust: exact;
+    }
+
+    body {
+      width: 210mm;
+      padding: 10pt;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong {
+      font-family: 'Heebo', Arial, Helvetica, sans-serif;
+      font-weight: 500;
+      padding: 10px;
+    }
+
+    span {
+      font-family: 'Heebo', Arial, Helvetica, sans-serif;
+      font-weight: 300;
+    }
+
+    p {
+      font-family: 'Heebo', Arial, Helvetica, sans-serif;
+      font-weight: 400;
+    }
+
     table {
       border-collapse: collapse;
       width: 100%;
-      margin-bottom: 20px;
     }
 
     th,
     td {
-      border: 1px solid #020202;
+      border: 2px solid #020202;
       padding: 8px;
       text-align: left;
     }
 
     th {
-      background-color: #555151;
+      background-color: gray;
+
     }
 
     .entry {
@@ -37,12 +77,7 @@
 
 </head>
 
-
 <body>
-
-
-  <h1>Relatório Geral da Propriedade</h1>
-
   <h2>Dados da Propriedade</h2>
   <table>
     <tr>
@@ -62,7 +97,6 @@
       <!-- Adicione mais dados conforme necessário -->
     </tr>
   </table>
-
   <h2>Áreas</h2>
   {{#each areas}}
   <div>
@@ -170,9 +204,8 @@
     </table>
 
   </div>
-  <hr />
   {{/each}}
-
+  <p></p>
 </body>
 
 </html>

@@ -1,6 +1,5 @@
 import { inject, injectable } from 'tsyringe';
 import CustomAPIError from '@shared/errors';
-import { IPropertyRepository } from '@modules/property/domain/repositories/IPropertyRepository';
 import fs from 'fs';
 import path from 'path';
 import util from 'util';
@@ -10,7 +9,7 @@ import handlebars from 'handlebars';
 import moment from 'moment';
 
 @injectable()
-class showReportUseCase {
+class showFieldNotebookReportUseCase {
   constructor(
     @inject('ReportsRepository')
     private reportsRepository: IReportRepository, // eslint-disable-next-line prettier/prettier
@@ -44,7 +43,7 @@ class showReportUseCase {
     const svgFilePath = path.join(__dirname, 'logo.svg');
     const svgContent = await readFileAsync(svgFilePath, 'utf-8');
 
-    const filePath = path.join(__dirname, 'report.hbs');
+    const filePath = path.join(__dirname, 'reportField.hbs');
     const htmlTemplate = await readFileAsync(filePath, 'utf-8');
 
     handlebars.registerHelper('formatDate', function (date) {
@@ -64,7 +63,7 @@ class showReportUseCase {
     const scale = 0.8;
 
     const marginConfig = {
-      top: '120px',
+      top: '130px',
       bottom: '50px',
       left: '50px',
       right: '50px',
@@ -75,7 +74,7 @@ class showReportUseCase {
     const headerTemplate = `<style>#header, #footer { padding: 0 !important; }</style>
     <div style=' font-size: 18px; width:100%; -webkit-print-color-adjust: exact;height:100px; min-height: 69px;overflow: auto;clear: both;border-bottom: 1px solid black;background: #71A151;' >
     <span style="position: relative; top: 14px;"> ${svgContent}</span>
-    <h3 style="position: absolute; right: 250px; top: 18px;">Relatório Geral da Propriedade</h3>
+    <h3 style="position: absolute; right: 310px; top: 18px;">Caderno de Campo</h3>
     <span style="position: absolute; right: 15px; top: 40px;">Página <span class="pageNumber"></span> de <span class="totalPages"></span></span>
     </div>`;
 
@@ -103,4 +102,4 @@ class showReportUseCase {
 
 }
 
-export default showReportUseCase;
+export default showFieldNotebookReportUseCase;

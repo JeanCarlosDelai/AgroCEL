@@ -16,7 +16,12 @@ reportRouter.use(isAuthenticated);
 
 reportRouter.get(
   '/pdf/:property_id',
-  reportController.index,
+  reportController.report,
+);
+
+reportRouter.get(
+  '/pdf-field/:property_id',
+  reportController.fieldNotebookReport,
 );
 
 // areaRouter.post(
