@@ -18,6 +18,8 @@ propertyRouter.get(
 
 propertyRouter.get('/user', propertyController.listAll);
 
+propertyRouter.get('/reports/:id', propertyController.reportAreas);
+
 propertyRouter.post(
   '/',
   validator(createPropertySchema),

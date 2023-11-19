@@ -58,8 +58,8 @@ const CreateOtherActivitieModal = (area_id) => {
             <FormRow
               type="text"
               name="name"
-              labelText="Name"
-              placeholder="Nome"
+              labelText="Nome do manejo"
+              placeholder="Poda Concord"
               control={control}
               hasError={JSON.stringify(errors.name?.message)}
             />
@@ -67,7 +67,7 @@ const CreateOtherActivitieModal = (area_id) => {
               type="text"
               name="activitie_category"
               labelText="Categoria da atividade"
-              placeholder="Categoria"
+              placeholder="Poda"
               control={control}
               hasError={JSON.stringify(errors.activitie_category?.message)}
             />
@@ -89,8 +89,8 @@ const CreateOtherActivitieModal = (area_id) => {
             <FormRow
               type="number"
               name="activitie_time"
-              labelText="Tempo de manejo"
-              placeholder="Tempo"
+              labelText="Tempo de manejo / h"
+              placeholder="10"
               control={control}
               hasError={JSON.stringify(errors.activitie_time?.message)}
             />

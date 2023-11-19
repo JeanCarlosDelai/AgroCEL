@@ -11,6 +11,7 @@ import applicationRouter from '@modules/application/infra/http/routes/applicatio
 import agriculturalIputsRouter from '@modules/agriculturalInputs/infra/http/routes/AgriculturalInputs';
 import otherActivitiesRouter from '@modules/otherActivities/infra/http/routes/otherActivities.routes';
 import cropSaleRouter from '@modules/cropsSale/infra/http/routes/cropSale.routes';
+import reportRouter from '@modules/reports/infra/http/routes/report.routes';
 
 const routes = Router();
 
@@ -25,5 +26,6 @@ routes.use('/crop/sale', cropSaleRouter);
 routes.use('/application', applicationRouter);
 routes.use('/inputs', agriculturalIputsRouter);
 routes.use('/other', otherActivitiesRouter);
+routes.use('/reports', reportRouter);
 
 export default routes;

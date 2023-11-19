@@ -60,7 +60,7 @@ const UpdateCropDestinationModal = (cropDestination) => {
             <FormRow
               type="text"
               name="name"
-              labelText="Name"
+              labelText="Nome da venda"
               placeholder="Nome"
               control={control}
               hasError={JSON.stringify(errors.name?.message)}
@@ -68,8 +68,8 @@ const UpdateCropDestinationModal = (cropDestination) => {
             <FormRow
               type="number"
               name="quantity"
-              labelText="Quantidade"
-              placeholder="Quantidade"
+              labelText="Quantidade / Kg"
+              placeholder="100 Kg"
               control={control}
               hasError={JSON.stringify(errors.quantity?.message)}
             />
@@ -77,7 +77,7 @@ const UpdateCropDestinationModal = (cropDestination) => {
               type="text"
               name="destination"
               labelText="Destinação"
-              placeholder="Ex: Produção Própria"
+              placeholder="Produção Própria"
               control={control}
               hasError={JSON.stringify(errors.destination?.message)}
             />
@@ -85,7 +85,7 @@ const UpdateCropDestinationModal = (cropDestination) => {
               type="text"
               name="processing_type"
               labelText="Tipo de processamento"
-              placeholder="Ex: Vinho"
+              placeholder="Vinho"
               control={control}
               hasError={JSON.stringify(errors.processing_type?.message)}
             />

@@ -9,7 +9,7 @@ export const CreateAreaSchema = yup
     cultivated_area: yup
       .number()
       .positive('A área cultivada deve ser um número positivo')
-      .integer('A área cultivada deve ser um número inteiro')
+      // .integer('A área cultivada deve ser um número inteiro')
       .required('Por favor, forneça a área cultivada'),
     species: yup
       .string()

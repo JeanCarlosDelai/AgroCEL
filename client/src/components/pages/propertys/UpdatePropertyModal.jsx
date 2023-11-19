@@ -77,6 +77,7 @@ const UpdatePropertyModal = (property) => {
               labelText="Área cultivada"
               placeholder="Número de hectares"
               control={control}
+              disabled={true}
               hasError={JSON.stringify(errors.cultivated_area?.message)}
             />
             <FormRow

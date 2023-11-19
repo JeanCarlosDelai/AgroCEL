@@ -15,9 +15,9 @@ export function useFetchCrops(area_id) {
   return useQuery(['crops', area_id], () => getCrops(area_id));
 }
 
-export const createCrop = async (crop) => {
+export const createCrop = async (area_id, crops) => {
   try {
-    await customFetch.post(`/crop/${crop.area_id}`, crop);
+    await customFetch.post(`/crop/${area_id}`, crops);
     await queryClient.invalidateQueries('crops');
     toast.success('Colheita criada com sucesso!');
   } catch (error) {

@@ -19,7 +19,7 @@ const AreasContainer = () => {
             <div className="bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden border border-gray-300">
               <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                 <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center md:space-x-3 flex-shrink-0">
-                  <CreateAreaModal />
+                  <CreateAreaModal property_id={property_id} />
                   <h6>Nenhuma área encontrada</h6>
                 </div>
               </div>

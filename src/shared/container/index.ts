@@ -21,6 +21,8 @@ import { IOtherActivitiesRepository } from '@modules/otherActivities/domain/repo
 import OtherActivitiesRepository from '@modules/otherActivities/infra/typeorm/repositories/OtherActivitiesRepository';
 import { ICropSaleRepository } from '@modules/cropsSale/domain/repositories/ICropSaleRepository';
 import CropSaleRepository from '@modules/cropsSale/infra/typeorm/repositories/CropSaleRepository';
+import { IReportRepository } from '@modules/reports/domain/repositories/IReportRepository';
+import ReportsRepository from '@modules/reports/infra/typeorm/repositories/ReportRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -64,4 +66,9 @@ container.registerSingleton<IOtherActivitiesRepository>(
 container.registerSingleton<ICropSaleRepository>(
   'CropSaleRepository',
   CropSaleRepository,
+);
+
+container.registerSingleton<IReportRepository>(
+  'ReportsRepository',
+  ReportsRepository,
 );

@@ -55,7 +55,7 @@ const CreateApplicationModalField = () => {
 
   const handlerCreate = async (applications) => {
     setCreateModalOpen(false);
-    await createApplication(applications);
+    await createApplication(applications.area_id, applications);
   };
 
   return (
@@ -82,8 +82,8 @@ const CreateApplicationModalField = () => {
             <FormRow
               type="text"
               name="used_product"
-              labelText="Produto"
-              placeholder="Produto usado"
+              labelText="Produto Usado"
+              placeholder="Sulfato"
               control={control}
               hasError={JSON.stringify(errors.used_product?.message)}
             />
@@ -91,7 +91,7 @@ const CreateApplicationModalField = () => {
               type="text"
               name="application_type"
               labelText="Tipo de aplicação"
-              placeholder="Tipo de aplicação"
+              placeholder="Pulverização"
               control={control}
               hasError={JSON.stringify(errors.application_type?.message)}
             />
@@ -113,16 +113,16 @@ const CreateApplicationModalField = () => {
             <FormRow
               type="number"
               name="quantity"
-              labelText="Quantidade"
-              placeholder="Quantidade"
+              labelText="Quantidade produto usado / Kg"
+              placeholder="10000 Kg"
               control={control}
               hasError={JSON.stringify(errors.quantity?.message)}
             />
             <FormRow
               type="number"
               name="application_time"
-              labelText="Tempo de colheita"
-              placeholder="Tempo"
+              labelText="Tempo de colheita h"
+              placeholder="10 h"
               control={control}
               hasError={JSON.stringify(errors.application_time?.message)}
             />

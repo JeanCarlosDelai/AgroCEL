@@ -7,7 +7,7 @@ const updateAreaSchema = Joi.object({
     variety: Joi.string().max(50).min(4),
     driving_system: Joi.string().max(50).min(4),
     rookstock_type: Joi.string().max(50).min(4),
-    cultivated_area: Joi.number().max(50).min(4),
+    cultivated_area: Joi.number(),
     geographic_coordinates: Joi.string().max(50).min(4),
     implementation_date: Joi.date().min(4),
     number_rows: Joi.number().max(50).min(4),

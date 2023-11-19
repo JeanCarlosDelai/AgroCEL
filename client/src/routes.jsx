@@ -12,6 +12,7 @@ import CropsSaleListContainer from './pages/dashboard/CropSale/CropsSaleListCont
 import CropSaleInfoPage from './pages/dashboard/CropSale/CropSaleInfoPage';
 import CropDestinationInfoPage from './pages/dashboard/CropDestination/CropDestinationInfoPage';
 import CropsDestinationListContainer from './pages/dashboard/CropDestination/CropsDestinationListContainer';
+import ReportsContainer from './pages/dashboard/Reports/ReportsContainer';
 
 export function AppRoutes() {
   return (
@@ -29,6 +30,7 @@ export function AppRoutes() {
         <Route path="areas" element={<PropertysArea />} />
         <Route path="area-info" element={<AreaInfoPage />} />
         <Route path="field-notebook" element={<FildsNotebookContainer />} />
+        <Route path="reports" element={<ReportsContainer />} />
         <Route path="sale" element={<CropsSaleContainer />} />
         <Route path="view-sale" element={<CropsSaleListContainer />} />
         <Route

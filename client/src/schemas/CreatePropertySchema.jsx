@@ -13,8 +13,6 @@ export const CreatePropertySchema = yup
       .required('Por favor, forneça a área total'),
     cultivated_area: yup
       .number()
-      .positive('A área cultivada deve ser um número positivo')
-      .integer('A área cultivada deve ser um número inteiro')
       .required('Por favor, forneça a área cultivada'),
     city: yup
       .string()

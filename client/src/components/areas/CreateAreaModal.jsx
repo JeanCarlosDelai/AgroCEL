@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CreateAreaSchema } from '../../schemas/CreateAreaSchema';
 import { AreaVarietys } from '../../Arrays/AreaVarietys';
@@ -9,10 +9,10 @@ import OpenCloseModal from '../modal/OpenCloseModal';
 import FormRow from '../Form/FormRow';
 import ClearButtonForm from '../Buttons/ClearButtonForm';
 import SubmitButton from '../Buttons/SubmitButton';
-import ReactDatePicker from 'react-datepicker';
 import { createArea } from '../../queries/areas/areas';
 
 const CreateAreaModal = (property_id) => {
+  console.log(property_id);
   const [isModalCreateOpen, setCreateModalOpen] = useState(false);
 
   const {
@@ -23,17 +23,17 @@ const CreateAreaModal = (property_id) => {
   } = useForm({
     defaultValues: {
       name: '',
-      species: '',
+      species: 'Uva',
       variety: 'Selecione',
       rookstock_type: 'Selecione',
       driving_system: 'Selecione',
-      cultivated_area: '',
+      cultivated_area: 0,
       geographic_coordinates: '',
       implementation_date: new Date().toISOString().split('T')[0],
-      number_rows: '',
-      distance_between_rows: '',
-      distance_between_plants: '',
-      number_plants: '',
+      number_rows: 0,
+      distance_between_rows: 0,
+      distance_between_plants: 0,
+      number_plants: 0,
     },
     resolver: yupResolver(CreateAreaSchema),
   });
@@ -47,7 +47,6 @@ const CreateAreaModal = (property_id) => {
   }
 
   const handlerCreate = async (areas) => {
-    console.log(areas);
     setCreateModalOpen(false);
     await createArea(property_id, areas);
   };
@@ -80,6 +79,7 @@ const CreateAreaModal = (property_id) => {
               labelText="Espécie"
               placeholder="Espécie"
               control={control}
+              disabled={true}
               hasError={JSON.stringify(errors.species?.message)}
             />
             <FormRow

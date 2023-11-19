@@ -73,8 +73,8 @@ const UpdateAreaModal = (area) => {
             <FormRow
               type="text"
               name="name"
-              labelText="Name"
-              placeholder="Nome"
+              labelText="Nome da área"
+              placeholder="Pareiral"
               control={control}
               hasError={JSON.stringify(errors.name?.message)}
             />
@@ -82,15 +82,16 @@ const UpdateAreaModal = (area) => {
               type="text"
               name="species"
               labelText="Espécie"
-              placeholder="Espécie"
+              placeholder="Uva"
+              disabled={true}
               control={control}
               hasError={JSON.stringify(errors.species?.message)}
             />
             <FormRow
               type="number"
               name="cultivated_area"
-              labelText="Área total"
-              placeholder="Número de hectares"
+              labelText="Área total / ha"
+              placeholder="10 ha"
               control={control}
               hasError={JSON.stringify(errors.cultivated_area?.message)}
             />
@@ -98,7 +99,7 @@ const UpdateAreaModal = (area) => {
               type="text"
               name="geographic_coordinates"
               labelText="Coordenadas Geográficas"
-              placeholder="Coordenadas Geográficas"
+              placeholder="-29.176640, -51.492992"
               control={control}
               hasError={JSON.stringify(errors.geographic_coordinates?.message)}
             />
@@ -113,7 +114,7 @@ const UpdateAreaModal = (area) => {
               type="select"
               name="driving_system"
               labelText="Sistema de condução"
-              placeholder="Coloque o sistema de condução"
+              placeholder="Latada"
               options={DrivingSystems}
               control={control}
               hasError={JSON.stringify(errors.driving_system?.message)}
@@ -122,7 +123,7 @@ const UpdateAreaModal = (area) => {
               type="select"
               name="rookstock_type"
               labelText="Tipo de porta Enxerto"
-              placeholder="Coloque o tipo de porta enxerto"
+              placeholder="Pé Franco"
               options={RookstockTypes}
               control={control}
               hasError={JSON.stringify(errors.rookstock_type?.message)}
@@ -131,7 +132,7 @@ const UpdateAreaModal = (area) => {
               type="select"
               name="variety"
               labelText="Variedade"
-              placeholder="Coloque a variedade"
+              placeholder="Isabel"
               options={AreaVarietys}
               control={control}
               hasError={JSON.stringify(errors.variety?.message)}
@@ -140,7 +141,7 @@ const UpdateAreaModal = (area) => {
               type="number"
               name="number_rows"
               labelText="Número de fileiras"
-              placeholder="Coloque a quantidade de fileiras"
+              placeholder="100"
               control={control}
               hasError={JSON.stringify(errors.number_rows?.message)}
             />
@@ -148,7 +149,7 @@ const UpdateAreaModal = (area) => {
               type="number"
               name="distance_between_rows"
               labelText="Distância entre fileiras"
-              placeholder="Coloque a distância entre fileiras"
+              placeholder="2"
               control={control}
               hasError={JSON.stringify(errors.distance_between_rows?.message)}
             />
@@ -156,7 +157,7 @@ const UpdateAreaModal = (area) => {
               type="number"
               name="distance_between_plants"
               labelText="Distância entre plantas"
-              placeholder="Coloque a distância entre plantas"
+              placeholder="1"
               control={control}
               hasError={JSON.stringify(errors.distance_between_plants?.message)}
             />
@@ -164,7 +165,7 @@ const UpdateAreaModal = (area) => {
               type="number"
               name="number_plants"
               labelText="Número de plantas"
-              placeholder="Coloque o número de plantas"
+              placeholder="1000"
               control={control}
               hasError={JSON.stringify(errors.number_plants?.message)}
             />

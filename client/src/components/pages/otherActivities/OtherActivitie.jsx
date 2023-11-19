@@ -12,7 +12,7 @@ const OtherActivitie = ({ otherActivitie }) => {
         </td>
         <td className="px-4 py-3">{otherActivitie?.activitie_category}</td>
         <td className="px-4 py-3">{activitie_date_format}</td>
-        <td className="px-4 py-3">{otherActivitie?.activitie_time}</td>
+        <td className="px-4 py-3">{otherActivitie?.activitie_time} horas</td>
         <td className="px-4 py-3">{otherActivitie?.description}</td>
         <td className="flex-1 m-0 p-3 justify-end">
           <UpdateOtherActivitieModal otherActivitie={otherActivitie} />

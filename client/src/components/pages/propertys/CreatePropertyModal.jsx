@@ -18,7 +18,7 @@ const CreatePropertyModal = () => {
   } = useForm({
     defaultValues: {
       name: '',
-      cultivated_area: '',
+      cultivated_area: 0,
       total_area: '',
       city: '',
       state: '',
@@ -66,6 +66,7 @@ const CreatePropertyModal = () => {
               name="cultivated_area"
               labelText="Área cultivada"
               placeholder="Número de hectares"
+              disabled={true}
               control={control}
               hasError={JSON.stringify(errors.cultivated_area?.message)}
             />

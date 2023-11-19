@@ -3,12 +3,15 @@ import { inject, injectable } from 'tsyringe';
 import { IAreaRepository } from '../domain/repositories/IAreaRepository';
 import { IUpdateArea } from '../domain/models/IUpdateArea';
 import { IArea } from '../domain/models/IArea';
+import { IPropertyRepository } from '@modules/property/domain/repositories/IPropertyRepository';
 
 @injectable()
 class UpdateAreaUseCase {
   constructor(
     @inject('AreaRepository')
-    private areaRepository: IAreaRepository, // eslint-disable-next-line prettier/prettier
+    private areaRepository: IAreaRepository,
+    @inject('PropertyRepository')
+    private propertyRepository: IPropertyRepository, // eslint-disable-next-line prettier/prettier
   ) // eslint-disable-next-line prettier/prettier
   { }
 
@@ -33,8 +36,30 @@ class UpdateAreaUseCase {
       area_id,
     );
 
-    if (!areaExists) {
-      throw new CustomAPIError.BadRequestError('Property or Area not exist.');
+    const propertyOld = await this.propertyRepository.findById(property_id,);
+
+    if (propertyOld) {
+
+      if (!areaExists) {
+        throw new CustomAPIError.BadRequestError('Propriedade ou área não existe.');
+      }
+
+      if (areaExists.cultivated_area < cultivated_area) {
+        if (propertyOld.total_area < (propertyOld.cultivated_area + cultivated_area - areaExists.cultivated_area)) {
+          throw new CustomAPIError.BadRequestError('Área cultivada maior que área total da propriedade.');
+        } else {
+          propertyOld.cultivated_area += cultivated_area - areaExists.cultivated_area;
+          await this.propertyRepository.save(propertyOld);
+        }
+
+      } else if (areaExists.cultivated_area > cultivated_area) {
+
+        propertyOld.cultivated_area += cultivated_area - areaExists.cultivated_area;
+        await this.propertyRepository.save(propertyOld);
+      }
+
+    } else {
+      throw new CustomAPIError.BadRequestError('Propriedade não encontrada.');
     }
 
     areaExists.name = name;
@@ -50,9 +75,9 @@ class UpdateAreaUseCase {
     areaExists.distance_between_plants = distance_between_plants;
     areaExists.number_plants = number_plants;
 
-    const property = await this.areaRepository.save(areaExists);
+    const area = await this.areaRepository.save(areaExists);
 
-    return property;
+    return area;
   }
 }
 

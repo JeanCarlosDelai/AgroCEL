@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Relatório</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      outline: 0;
+      font-family: 'Heebo', Arial, Helvetica, sans-serif;
+    }
+
+    html {
+      -webkit-print-color-adjust: exact;
+    }
+
+    body {
+      padding: 10pt;
+      text-align: center;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Heebo', Arial, Helvetica, sans-serif;
+      font-weight: 400;
+      padding: 10px;
+    }
+
+    strong {
+      font-weight: 500;
+    }
+
+    span {
+      font-family: 'Heebo', Arial, Helvetica, sans-serif;
+      font-weight: 300;
+    }
+
+    p {
+      font-family: 'Heebo', Arial, Helvetica, sans-serif;
+      font-weight: 400;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+
+    th,
+    td {
+      border: 2px solid #020202;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: gray;
+
+    }
+
+    .entry {
+      border: 1px solid #020202;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    .bold-text {
+      font-weight: bold;
+    }
+
+    .property-details {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-top: 25px;
+      margin-bottom: 25px;
+    }
+
+    .property-field {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+      background-color: #71A151;
+    }
+
+    .table-field {
+      align-items: center;
+      margin-bottom: 5px;
+      background-color: #71A151;
+    }
+
+    .property-field2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+      background-color: #54773d;
+    }
+
+    .property-field-property {
+      margin-bottom: 5px;
+      background-color: gray;
+    }
+
+    .declaracao {
+      color: rgb(187, 12, 12);
+      margin-bottom: 50px;
+      margin-right: 10px;
+    }
+
+    .declaracao-div {
+      padding-left: 22px;
+      margin-bottom: 20px;
+    }
+  </style>
+  <script src="./node_modules/handlebars/dist/handlebars.js"></script>
+
+</head>
+
+<body class="propertyData">
+
+  <div class="declaracao-div">
+    <h4 class="declaracao">DECLARO QUE TODAS AS INFORMAÇÕES CONTIDAS NESTE DOCUMENTO SÃO VERDADEIRAS.</h4>
+    <hr />
+    <h4>Assinatura do proprietário</h4>
+  </div>
+
+  <div class="property-details">
+    <div class="property-field-property">
+      <h3>
+        Dados da Propriedade -> {{property.name}}
+      </h3>
+    </div>
+    <div class="property-field2">
+      <h3><strong>Área Total: </strong>{{property.total_area}} ha</h3>
+    </div>
+    <div class="property-field">
+      <h3><strong>Área Cultivada: </strong>{{property.cultivated_area}} ha</h3>
+    </div>
+    <div class="property-field2">
+      <h3><strong>Cidade: </strong>{{property.city}}</h3>
+    </div>
+    <div class="property-field">
+      <h3><strong>Estado: </strong>{{property.state}}</h3>
+    </div>
+  </div>
+
+  {{#each areas}}
+  <div class="property-details">
+    <div class="property-field-property">
+      <h3>
+        Dados da Área -> {{this.name}}
+      </h3>
+    </div>
+    <div class="property-field">
+      <h3>
+        <strong>Espécie: </strong>{{this.species}}
+      </h3>
+    </div>
+    <div class="property-field2">
+      <h3><strong>Variedade: </strong>{{this.variety}}</h3>
+    </div>
+    <div class="property-field">
+      <h3><strong>Área Cultivada: </strong>{{this.cultivated_area}} ha</h3>
+    </div>
+  </div>
+
+  <div class="property-details">
+    <div class="property-field-property">
+      <h3>
+        Aplicações
+      </h3>
+    </div>
+    <table>
+      <tr class="property-field-property">
+        <th>
+          <h3>Tipo de aplicação</h3>
+        </th>
+        <th>
+          <h3>Produto</h3>
+        </th>
+        <th>
+          <h3>Quantidade usada</h3>
+        </th>
+        <th>
+          <h3>Data da aplicação</h3>
+        </th>
+        <th>
+          <h3>Tempo de aplicação</h3>
+        </th>
+      </tr>
+      {{#each this.applications}}
+      <tr class="table-field">
+        <td>
+          <h3>{{this.application_type}}</h3>
+        </td>
+        <td>
+          <h3>{{this.used_product}}</h3>
+        </td>
+        <td>
+          <h3>{{this.quantity}} Kg</h3>
+        </td>
+        <td>
+          <h3>{{formatDate this.application_date}}</h3>
+        </td>
+        <td>
+          <h3>{{this.application_time}} horas</h3>
+        </td>
+      </tr>
+      {{/each}}
+    </table>
+  </div>
+
+  <div class="property-details">
+    <div class="property-field-property">
+      <h3>
+        Manejo
+      </h3>
+    </div>
+    <table>
+      <tr class="property-field-property">
+        <th>
+          <h3>Manejo</h3>
+        </th>
+        <th>
+          <h3>Categoria da Atividade</h3>
+        </th>
+        <th>
+          <h3>Data do manejo</h3>
+        </th>
+        <th>
+          <h3>Tempo do manejo</h3>
+        </th>
+        <th>
+          <h3>Descrição</h3>
+        </th>
+      </tr>
+      {{#each this.otherActivities}}
+      <tr class="table-field">
+        <td>
+          <h3>{{this.name}}</h3>
+        </td>
+        <td>
+          <h3>{{this.activitie_category}}</h3>
+        </td>
+        <td>
+          <h3>{{formatDate this.activitie_date}}</h3>
+        </td>
+        <td>
+          <h3>{{ this.activitie_time }} horas</h3>
+        </td>
+        <td>
+          <h3>{{ this.description}}</h3>
+        </td>
+      </tr>
+      {{/each}}
+    </table>
+  </div>
+
+  <div class="property-details">
+    <div class="property-field-property">
+      <h3>
+        Colheitas
+      </h3>
+    </div>
+    <table>
+      <tr class="property-field-property">
+        <th>
+          <h3>Colheita</h3>
+        </th>
+        <th>
+          <h3>Quantidade</h3>
+        </th>
+        <th>
+          <h3>Data da colheita</h3>
+        </th>
+        <th>
+          <h3>Tempo de colheita</h3>
+        </th>
+      </tr>
+      {{#each this.crops}}
+      <tr class="table-field">
+        <td>
+          <h3>{{this.name}}</h3>
+        </td>
+        <td>
+          <h3>{{this.quantity}} Kg</h3>
+        </td>
+        <td>
+          <h3>{{formatDate this.crop_date}}</h3>
+        </td>
+        <td>
+          <h3>{{this.crop_time}} horas</h3>
+        </td>
+        <!-- Adicione mais dados conforme necessário -->
+      </tr>
+      {{/each}}
+    </table>
+
+  </div>
+  {{/each}}
+
+</body>
+
+</html>

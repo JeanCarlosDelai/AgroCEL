@@ -10,6 +10,8 @@ import { createCropSale } from '../../../queries/cropsSale/cropsSale';
 import { CreateCropSaleSchema } from '../../../schemas/CreateCropSaleSchema';
 
 const CreateCropSaleModal = (crop) => {
+  console.log(crop.crop.quantity);
+
   const [isModalCreateOpen, setCreateModalOpen] = useState(false);
 
   const {
@@ -25,7 +27,7 @@ const CreateCropSaleModal = (crop) => {
       graduation: '',
       price: '',
       discharge_date: new Date().toISOString().split('T')[0],
-      quantity: '',
+      quantity: crop.crop.quantity,
     },
     resolver: yupResolver(CreateCropSaleSchema),
   });
@@ -60,17 +62,18 @@ const CreateCropSaleModal = (crop) => {
             <FormRow
               type="text"
               name="name"
-              labelText="Name"
-              placeholder="Nome"
+              labelText="Nome da venda"
+              placeholder="Venda 1"
               control={control}
               hasError={JSON.stringify(errors.name?.message)}
             />
             <FormRow
               type="number"
               name="quantity"
-              labelText="Quantidade"
-              placeholder="Quantidade"
+              labelText="Quantidade / Kg"
+              placeholder="100 Kg"
               control={control}
+              disabled={true}
               hasError={JSON.stringify(errors.quantity?.message)}
             />
             <FormRow
@@ -99,16 +102,16 @@ const CreateCropSaleModal = (crop) => {
             <FormRow
               type="number"
               name="graduation"
-              labelText="Grau"
-              placeholder="0"
+              labelText="Grau da carga"
+              placeholder="17º"
               control={control}
               hasError={JSON.stringify(errors.graduation?.message)}
             />
             <FormRow
               type="number"
               name="price"
-              labelText="Preço"
-              placeholder="0"
+              labelText="Preço por Kg"
+              placeholder="1 Kg"
               control={control}
               hasError={JSON.stringify(errors.price?.message)}
             />
