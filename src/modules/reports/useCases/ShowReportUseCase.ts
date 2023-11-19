@@ -1,6 +1,5 @@
 import { inject, injectable } from 'tsyringe';
 import CustomAPIError from '@shared/errors';
-import { IPropertyRepository } from '@modules/property/domain/repositories/IPropertyRepository';
 import fs from 'fs';
 import path from 'path';
 import util from 'util';
@@ -61,13 +60,13 @@ class showReportUseCase {
 
     const page = await browser.newPage();
 
-    const scale = 0.8;
+    const scale = 0.6;
 
     const marginConfig = {
       top: '120px',
       bottom: '50px',
-      left: '50px',
-      right: '50px',
+      left: '40px',
+      right: '40px',
     };
 
     await page.setContent(renderedHtml);

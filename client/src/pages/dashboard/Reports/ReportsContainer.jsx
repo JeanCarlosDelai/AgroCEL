@@ -1,4 +1,3 @@
-// App.js
 import React, { useState } from 'react';
 import {
   useFetchReports,
@@ -33,7 +32,7 @@ const ReportsContainer = () => {
   }
 
   return (
-    <div>
+    <div className="flex">
       <PdfViewer base64String={reportPdf} fileName={'Relatório Geral'} />
       <PdfViewer base64String={reportPdfField} fileName={'Caderno de Campo'} />
     </div>
