@@ -37,8 +37,9 @@ const CreateApplicationModal = (area_id) => {
   }
 
   const handlerCreate = async (applications) => {
+    const areaId = area_id.area_id;
     setCreateModalOpen(false);
-    await createApplication(area_id, applications);
+    await createApplication(areaId, applications);
   };
 
   return (

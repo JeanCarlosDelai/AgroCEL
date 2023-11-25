@@ -37,8 +37,9 @@ const CreateOtherActivitieModal = (area_id) => {
   }
 
   const handlerCreate = async (otherActivitie) => {
+    const areaId = area_id.area_id;
     setCreateModalOpen(false);
-    await createOtherActivitie(area_id, otherActivitie);
+    await createOtherActivitie(areaId, otherActivitie);
   };
 
   return (

@@ -52,7 +52,7 @@ beforeAll(() => {
   createPropertyUseCase = new CreatePropertyUseCase(
     propertysRepositoryInMemory,
   );
-  createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory);
+  createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory, propertysRepositoryInMemory);
   createOtherActivitiesUseCase = new CreateOtherActivitiesUseCase(
     otherActivitiesRepositoryInMemory,
   );

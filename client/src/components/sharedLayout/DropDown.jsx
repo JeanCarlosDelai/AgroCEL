@@ -6,18 +6,22 @@ import {
 import { Avatar } from 'flowbite-react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import usePropertyStore from '../../../src/store/propertys/usePropertyStore';
 
 const DropDown = () => {
   const [isDropDownOpen, setDropDownOpen] = useState(false);
   const user = getUserFromLocalStorage();
   const navigate = useNavigate();
-
+  const removeSelectProperty = usePropertyStore(
+    (state) => state.removeSelectProperty,
+  );
   const toggleDropDown = () => {
     setDropDownOpen(!isDropDownOpen);
   };
 
   const logout = () => {
     removeUserFromLocalStorage();
+    removeSelectProperty();
     toast.success('Saindooooo...');
     navigate('/landing');
   };

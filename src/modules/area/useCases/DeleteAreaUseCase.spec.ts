@@ -43,8 +43,8 @@ beforeAll(() => {
   createPropertyUseCase = new CreatePropertyUseCase(
     propertysRepositoryInMemory,
   );
-  createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory);
-  deleteAreaUseCase = new DeleteAreaUseCase(areasRepositoryInMemory);
+  createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory, propertysRepositoryInMemory);
+  deleteAreaUseCase = new DeleteAreaUseCase(areasRepositoryInMemory, propertysRepositoryInMemory);
 });
 
 describe('Delete Area', () => {
@@ -87,7 +87,7 @@ describe('Delete Area', () => {
   });
 
   it('Should be able to delete a new area', async () => {
-    const expectErrorResponse = new Error('Area not found.');
+    const expectErrorResponse = new Error('Área não encontrada.');
 
     await deleteAreaUseCase.execute({ property_id, area_id });
 

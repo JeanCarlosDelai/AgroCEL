@@ -1,4 +1,4 @@
-import CropSale from '@modules/cropsSale/typeorm/entities/CropSale';
+import CropSale from '@modules/cropsSale/infra/typeorm/entities/CropSale';
 import { v4 as uuidv4 } from 'uuid';
 import { ICropSaleRepository } from '../ICropSaleRepository';
 import { ICreateCropSale } from '../../models/ICreateCropSale';

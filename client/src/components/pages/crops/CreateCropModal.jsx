@@ -35,9 +35,10 @@ const CreateCropModal = (area_id) => {
   }
 
   const handlerCreate = async (crops) => {
-    console.log(crops);
+    const areaId = area_id.area_id;
+    // console.log(area_id);
     setCreateModalOpen(false);
-    await createCrop(area_id, crops);
+    await createCrop(areaId, crops);
   };
 
   return (
