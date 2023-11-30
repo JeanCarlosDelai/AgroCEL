@@ -36,28 +36,35 @@ class UpdateAreaUseCase {
       area_id,
     );
 
-    const propertyOld = await this.propertyRepository.findById(property_id,);
+    const propertyOld = await this.propertyRepository.findById(property_id);
 
     if (propertyOld) {
-
       if (!areaExists) {
-        throw new CustomAPIError.BadRequestError('Propriedade ou área não existe.');
+        throw new CustomAPIError.BadRequestError(
+          'Propriedade ou área não existe.',
+        );
       }
 
       if (areaExists.cultivated_area < cultivated_area) {
-        if (propertyOld.total_area < (propertyOld.cultivated_area + cultivated_area - areaExists.cultivated_area)) {
-          throw new CustomAPIError.BadRequestError('Área cultivada maior que área total da propriedade.');
+        if (
+          propertyOld.total_area <
+          propertyOld.cultivated_area +
+            cultivated_area -
+            areaExists.cultivated_area
+        ) {
+          throw new CustomAPIError.BadRequestError(
+            'Área cultivada maior que área total da propriedade.',
+          );
         } else {
-          propertyOld.cultivated_area += cultivated_area - areaExists.cultivated_area;
+          propertyOld.cultivated_area +=
+            cultivated_area - areaExists.cultivated_area;
           await this.propertyRepository.save(propertyOld);
         }
-
       } else if (areaExists.cultivated_area > cultivated_area) {
-
-        propertyOld.cultivated_area += cultivated_area - areaExists.cultivated_area;
+        propertyOld.cultivated_area +=
+          cultivated_area - areaExists.cultivated_area;
         await this.propertyRepository.save(propertyOld);
       }
-
     } else {
       throw new CustomAPIError.BadRequestError('Propriedade não encontrada.');
     }

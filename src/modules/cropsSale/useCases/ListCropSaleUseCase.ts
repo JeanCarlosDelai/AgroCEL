@@ -1,5 +1,4 @@
 import { inject, injectable } from 'tsyringe';
-import CustomAPIError from '@shared/errors';
 import { ICropRepository } from '@modules/crops/domain/repositories/ICropRepository';
 import { ICropSaleRepository } from '../domain/repositories/ICropSaleRepository';
 import { IListCropSale } from '../domain/models/IListCropSale';
@@ -14,7 +13,6 @@ class ListCropSaleUseCase {
   { }
 
   public async execute(area_id: string): Promise<IListCropSale> {
-
     const cropSale = await this.cropSaleRepository.findAll(area_id);
 
     return cropSale;

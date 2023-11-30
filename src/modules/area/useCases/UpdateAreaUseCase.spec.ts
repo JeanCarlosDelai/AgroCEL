@@ -15,8 +15,8 @@ import CreatePropertyUseCase from '@modules/property/useCases/CreatePropertyUseC
 import { ICreateProperty } from '@modules/property/domain/models/ICreateProperty';
 import { IProperty } from '@modules/property/domain/models/IProperty';
 import { IPropertyRepository } from '@modules/property/domain/repositories/IPropertyRepository';
-import UpdateAreaUseCase from './updateAreaUseCase';
 import { IUpdateArea } from '../domain/models/IUpdateArea';
+import UpdateAreaUseCase from '@modules/area/useCases/UpdateAreaUseCase';
 
 let usersRepositoryInMemory: IUsersRepository;
 let propertysRepositoryInMemory: IPropertyRepository;
@@ -44,8 +44,14 @@ beforeAll(() => {
   createPropertyUseCase = new CreatePropertyUseCase(
     propertysRepositoryInMemory,
   );
-  createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory, propertysRepositoryInMemory);
-  updateAreaUseCase = new UpdateAreaUseCase(areasRepositoryInMemory, propertysRepositoryInMemory);
+  createAreaUseCase = new CreateAreaUseCase(
+    areasRepositoryInMemory,
+    propertysRepositoryInMemory,
+  );
+  updateAreaUseCase = new UpdateAreaUseCase(
+    areasRepositoryInMemory,
+    propertysRepositoryInMemory,
+  );
 });
 
 describe('Delete Area', () => {

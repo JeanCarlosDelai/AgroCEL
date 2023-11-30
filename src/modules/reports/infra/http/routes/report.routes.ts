@@ -14,10 +14,7 @@ reportRouter.use(isAuthenticated);
 //   areaController.show,
 // );
 
-reportRouter.get(
-  '/pdf/:property_id',
-  reportController.report,
-);
+reportRouter.get('/pdf/:property_id', reportController.report);
 
 reportRouter.get(
   '/pdf-field/:property_id',

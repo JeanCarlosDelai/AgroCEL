@@ -44,7 +44,7 @@ let property: IProperty;
 let area: IArea;
 let crop: ICrop;
 let cropSale: ICropSale;
-let cropSale2: ICropSale;
+// let cropSale2: ICropSale;
 
 beforeAll(() => {
   usersRepositoryInMemory = new UsersRepositoryInMemory();
@@ -60,7 +60,10 @@ beforeAll(() => {
   createPropertyUseCase = new CreatePropertyUseCase(
     propertysRepositoryInMemory,
   );
-  createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory, propertysRepositoryInMemory);
+  createAreaUseCase = new CreateAreaUseCase(
+    areasRepositoryInMemory,
+    propertysRepositoryInMemory,
+  );
   createCropUseCase = new CreateCropUseCase(cropsRepositoryInMemory);
   createCropSaleUseCase = new CreateCropSaleUseCase(
     cropsSaleRepositoryInMemory,
@@ -128,20 +131,20 @@ describe('List Crop Sale', () => {
       quantity: 10000,
     };
 
-    const cropDataSale2: ICreateCropSale = {
-      name: 'Venda Natura2',
-      area_id: area.id,
-      crop_id: crop.id,
-      purchasing_entity: 'Naturasuc',
-      purchasing_entity_cnpj: '01231.123123.123',
-      graduation: 14,
-      price: 1,
-      discharge_date: new Date(),
-      quantity: 10000,
-    };
+    // const cropDataSale2: ICreateCropSale = {
+    //   name: 'Venda Natura2',
+    //   area_id: area.id,
+    //   crop_id: crop.id,
+    //   purchasing_entity: 'Naturasuc',
+    //   purchasing_entity_cnpj: '01231.123123.123',
+    //   graduation: 14,
+    //   price: 1,
+    //   discharge_date: new Date(),
+    //   quantity: 10000,
+    // };
     cropSale = await createCropSaleUseCase.execute(cropDataSale);
 
-    cropSale2 = await createCropSaleUseCase.execute(cropDataSale2);
+    // cropSale2 = await createCropSaleUseCase.execute(cropDataSale2);
   });
 
   it('Should be able to delete a crop sale', async () => {

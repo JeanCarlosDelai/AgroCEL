@@ -5,7 +5,7 @@ import CreateAreaUseCase from '@modules/area/useCases/CreateAreaUseCase';
 import ListAreaUseCase from '@modules/area/useCases/ListAreaUseCase';
 import ShowAreaUseCase from '@modules/area/useCases/ShowAreaUseCase';
 import DeleteAreaUseCase from '@modules/area/useCases/DeleteAreaUseCase';
-import UpdateAreaUseCase from '@modules/area/useCases/updateAreaUseCase';
+import UpdateAreaUseCase from '@modules/area/useCases/UpdateAreaUseCase';
 
 export default class AreaController {
   public async index(request: Request, response: Response): Promise<Response> {

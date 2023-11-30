@@ -16,12 +16,8 @@ class showReportUseCase {
   ) // eslint-disable-next-line prettier/prettier
   { }
 
-  public async execute(
-    property_Id: string,
-  ): Promise<any | null> {
-    const result = await this.reportsRepository.findReport(
-      property_Id,
-    );
+  public async execute(property_Id: string): Promise<any | null> {
+    const result = await this.reportsRepository.findReport(property_Id);
 
     if (!result) {
       throw new CustomAPIError.BadRequestError('Report not found.');
@@ -99,7 +95,6 @@ class showReportUseCase {
 
     return reportPdf;
   }
-
 }
 
 export default showReportUseCase;

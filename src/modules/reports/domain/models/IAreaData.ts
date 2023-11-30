@@ -1,6 +1,6 @@
-import { IApplication } from "@modules/application/domain/models/IApplication";
-import { ICrop } from "@modules/crops/domain/models/ICrop";
-import { IOtherActivities } from "@modules/otherActivities/domain/models/IOtherActivities";
+import { IApplication } from '@modules/application/domain/models/IApplication';
+import { ICrop } from '@modules/crops/domain/models/ICrop';
+import { IOtherActivities } from '@modules/otherActivities/domain/models/IOtherActivities';
 
 export interface IAreaData {
   id: string;

@@ -79,7 +79,10 @@ export default class PropertyController {
     return response.sendStatus(StatusCodes.NO_CONTENT);
   }
 
-  public async reportAreas(request: Request, response: Response): Promise<Response> {
+  public async reportAreas(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
     const { property_id } = request.params;
 
     const report = container.resolve(ReportUseCase);
