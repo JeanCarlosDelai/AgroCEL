@@ -73,7 +73,7 @@ export default class AreaController {
       number_plants,
     } = request.body;
 
-    const updateArea = container.resolve(UpdateAreaUseCase);
+    const updateArea: UpdateAreaUseCase = container.resolve(UpdateAreaUseCase);
 
     const area = await updateArea.execute({
       name,
