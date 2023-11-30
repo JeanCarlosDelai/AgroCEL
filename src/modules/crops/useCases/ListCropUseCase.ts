@@ -11,8 +11,8 @@ class ListCropUseCase {
     private cropsRepository: ICropRepository,
     @inject('AreaRepository')
     private areaRepository: IAreaRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute(area_Id: string): Promise<IListCrop> {
     const areaExist = await this.areaRepository.findById(area_Id);

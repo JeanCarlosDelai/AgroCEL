@@ -13,8 +13,8 @@ class showReportUseCase {
   constructor(
     @inject('ReportsRepository')
     private reportsRepository: IReportRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute(property_Id: string): Promise<any | null> {
     const result = await this.reportsRepository.findReport(property_Id);

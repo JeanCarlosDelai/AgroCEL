@@ -11,8 +11,8 @@ class ListAreaUseCase {
     private areasRepository: IAreaRepository,
     @inject('PropertyRepository')
     private propertyRepository: IPropertyRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute(property_Id: string): Promise<IListArea> {
     const propertyExist = await this.propertyRepository.findById(property_Id);

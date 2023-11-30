@@ -8,8 +8,8 @@ class ReportUseCase {
   constructor(
     @inject('PropertyRepository')
     private propertysRepository: IPropertyRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute(property_Id: string): Promise<IProperty | null> {
     const property = await this.propertysRepository.findById(property_Id);

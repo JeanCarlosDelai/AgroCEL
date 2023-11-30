@@ -9,8 +9,8 @@ class ShowUserUseCase {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute({ user_id }: IShowUser): Promise<User> {
     const user = await this.usersRepository.findById(user_id);

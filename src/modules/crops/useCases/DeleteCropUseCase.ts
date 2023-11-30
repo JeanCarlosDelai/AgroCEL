@@ -8,8 +8,8 @@ class DeleteCropUseCase {
   constructor(
     @inject('CropRepository')
     private cropRepository: ICropRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute({ id, area_id }: IDeleteCrop): Promise<void> {
     const crop = await this.cropRepository.findByIds(id, area_id);

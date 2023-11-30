@@ -4,7 +4,9 @@ import { ICreateAgriculturalInputs } from '../../models/ICreateAgriculturalInput
 import { IAgriculturalInputsRepository } from '../IAgriculturalInputsRepository';
 import AgriculturalInputs from '@modules/agriculturalInputs/infra/typeorm/entities/AgriculturalInputs';
 // eslint-disable-next-line prettier/prettier
-class AgriculturalInputsRepositoryInMemory implements IAgriculturalInputsRepository {
+class AgriculturalInputsRepositoryInMemory
+  implements IAgriculturalInputsRepository
+{
   private agriculturalInputs: AgriculturalInputs[] = [];
 
   public async create({

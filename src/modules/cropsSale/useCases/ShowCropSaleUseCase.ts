@@ -9,8 +9,8 @@ class ShowCropSaleUseCase {
   constructor(
     @inject('CropSaleRepository')
     private cropsSaleRepository: ICropSaleRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute({
     id,

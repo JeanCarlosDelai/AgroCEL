@@ -11,8 +11,8 @@ class DeleteAreaUseCase {
     private areaRepository: IAreaRepository,
     @inject('PropertyRepository')
     private propertyRepository: IPropertyRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute({ property_id, area_id }: IDeleteArea): Promise<void> {
     const area = await this.areaRepository.findByIds(property_id, area_id);

@@ -9,8 +9,8 @@ class ShowApplicationUseCase {
   constructor(
     @inject('ApplicationRepository')
     private aplicationRepository: IApplicationRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute({
     id,

@@ -8,8 +8,8 @@ class CreateAgriculturalInputsUseCase {
   constructor(
     @inject('AgriculturalInputsRepository')
     private agriculturalInputsRepository: IAgriculturalInputsRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute({
     name,

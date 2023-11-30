@@ -9,8 +9,8 @@ class ShowAreaUseCase {
   constructor(
     @inject('AreaRepository')
     private areasRepository: IAreaRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute({
     property_id,

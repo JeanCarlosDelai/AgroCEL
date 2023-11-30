@@ -11,8 +11,8 @@ class ListApplicationUseCase {
     private applicationRepository: IApplicationRepository,
     @inject('AreaRepository')
     private areaRepository: IAreaRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute(area_Id: string): Promise<IListApplication> {
     const areaExist = await this.areaRepository.findById(area_Id);

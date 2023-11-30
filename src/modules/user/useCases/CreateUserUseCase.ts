@@ -12,8 +12,8 @@ class CreateUserUseCase {
     private usersRepository: IUsersRepository,
     @inject('HashProvider')
     private hashProvider: IHashProvider, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute({ name, email, password }: ICreateUser): Promise<IUser> {
     const emailExists = await this.usersRepository.findByEmail(email);

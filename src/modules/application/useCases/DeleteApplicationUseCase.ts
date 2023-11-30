@@ -8,8 +8,8 @@ class DeleteApplicationUseCase {
   constructor(
     @inject('ApplicationRepository')
     private applicationRepository: IApplicationRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute({ id, area_id }: IDeleteApplication): Promise<void> {
     const application = await this.applicationRepository.findByIds(id, area_id);

@@ -12,8 +12,8 @@ class UpdateProfileUseCase {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute({
     user_id,

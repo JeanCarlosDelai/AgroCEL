@@ -9,8 +9,8 @@ class CreateOtherActivitiesUseCase {
   constructor(
     @inject('OtherActivitiesRepository')
     private otherActivitiesRepository: IOtherActivitiesRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute({
     name,

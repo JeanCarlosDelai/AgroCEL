@@ -11,24 +11,10 @@ class CreateAreaUseCase {
     private areaRepository: IReportRepository,
     @inject('PropertyRepository')
     private propertyRepository: IPropertyRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
-  public async execute({
-    name,
-    property_id,
-    species,
-    variety,
-    driving_system,
-    rookstock_type,
-    cultivated_area,
-    geographic_coordinates,
-    implementation_date,
-    number_rows,
-    distance_between_rows,
-    distance_between_plants,
-    number_plants,
-  }: any): Promise<any> {
+  public async execute({ property_id, cultivated_area }: any): Promise<any> {
     const propertyOld = await this.propertyRepository.findById(property_id);
 
     if (propertyOld) {
@@ -46,8 +32,6 @@ class CreateAreaUseCase {
     } else {
       throw new CustomAPIError.BadRequestError('Propriedade não encontrada.');
     }
-
-
   }
 }
 

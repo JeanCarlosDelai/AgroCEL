@@ -16,7 +16,7 @@ import { ICreateProperty } from '@modules/property/domain/models/ICreateProperty
 import { IProperty } from '@modules/property/domain/models/IProperty';
 import { IPropertyRepository } from '@modules/property/domain/repositories/IPropertyRepository';
 import { IUpdateArea } from '../domain/models/IUpdateArea';
-import UpdateAreaUseCase from '@modules/area/useCases/UpdateAreaUseCase';
+import UpdateAreaUseCase from './UpdateAreaUseCase';
 
 let usersRepositoryInMemory: IUsersRepository;
 let propertysRepositoryInMemory: IPropertyRepository;

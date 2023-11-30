@@ -9,8 +9,8 @@ class CreateCropDestinationUseCase {
   constructor(
     @inject('CropDestinationRepository')
     private cropDestinationRepository: ICropDestinationRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute({
     name,

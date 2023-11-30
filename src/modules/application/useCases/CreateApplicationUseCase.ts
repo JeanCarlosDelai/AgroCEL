@@ -8,8 +8,8 @@ class CreateApplicationUseCase {
   constructor(
     @inject('ApplicationRepository')
     private applicationRepository: IApplicationRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute({
     area_id,

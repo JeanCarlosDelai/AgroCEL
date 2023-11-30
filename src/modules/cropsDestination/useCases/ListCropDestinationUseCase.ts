@@ -9,8 +9,8 @@ class ListCropDestinationUseCase {
     private cropsRepository: ICropRepository,
     @inject('CropDestinationRepository')
     private cropDestinationRepository: ICropDestinationRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute(area_id: string): Promise<IListCropDestination> {
     // const cropExist = await this.cropsRepository.findById(area_id);

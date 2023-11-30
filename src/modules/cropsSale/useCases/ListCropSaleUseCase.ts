@@ -9,8 +9,8 @@ class ListCropSaleUseCase {
     private cropsRepository: ICropRepository,
     @inject('CropSaleRepository')
     private cropSaleRepository: ICropSaleRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute(area_id: string): Promise<IListCropSale> {
     const cropSale = await this.cropSaleRepository.findAll(area_id);

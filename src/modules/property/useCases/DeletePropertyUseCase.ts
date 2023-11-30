@@ -8,8 +8,8 @@ class DeletePropertyUseCase {
   constructor(
     @inject('PropertyRepository')
     private propertyRepository: IPropertyRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute({ id }: IDeleteProperty): Promise<void> {
     const product = await this.propertyRepository.findById(id);

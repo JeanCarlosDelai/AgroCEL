@@ -9,8 +9,8 @@ class CreatePropertyUseCase {
   constructor(
     @inject('PropertyRepository')
     private propertyRepository: IPropertyRepository, // eslint-disable-next-line prettier/prettier
-  ) // eslint-disable-next-line prettier/prettier
-  { }
+    // eslint-disable-next-line prettier/prettier
+  ) {}
 
   public async execute({
     name,
