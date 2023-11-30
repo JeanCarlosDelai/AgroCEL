@@ -4,8 +4,8 @@ import { container } from 'tsyringe';
 import CreateAreaUseCase from '@modules/area/useCases/CreateAreaUseCase';
 import ListAreaUseCase from '@modules/area/useCases/ListAreaUseCase';
 import ShowAreaUseCase from '@modules/area/useCases/ShowAreaUseCase';
-import UpdateAreaUseCase from '@modules/area/useCases/UpdateAreaUseCase';
 import DeleteAreaUseCase from '@modules/area/useCases/DeleteAreaUseCase';
+import UpdateAreaUseCase from '@modules/area/useCases/updateAreaUseCase';
 
 export default class AreaController {
   public async index(request: Request, response: Response): Promise<Response> {
