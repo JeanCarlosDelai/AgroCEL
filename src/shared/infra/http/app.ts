@@ -3,7 +3,7 @@ import 'express-async-errors';
 import cors from 'cors';
 import errorHandlerMiddleware from './middlewares/error-handler';
 import notFound from './middlewares/not-found';
-import '@shared/infra/typeorm';
+import '../typeorm/index.js';
 import '@shared/container';
 import routes from './routes';
 

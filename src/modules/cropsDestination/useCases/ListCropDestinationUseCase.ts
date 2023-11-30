@@ -1,5 +1,4 @@
 import { inject, injectable } from 'tsyringe';
-import CustomAPIError from '@shared/errors';
 import { ICropRepository } from '@modules/crops/domain/repositories/ICropRepository';
 import { ICropDestinationRepository } from '../domain/repositories/ICropDestinationRepository';
 import { IListCropDestination } from '../domain/models/IListCropDestination';

@@ -15,7 +15,6 @@ class DeleteAreaUseCase {
   { }
 
   public async execute({ property_id, area_id }: IDeleteArea): Promise<void> {
-
     const area = await this.areaRepository.findByIds(property_id, area_id);
 
     if (!area) {
@@ -24,16 +23,14 @@ class DeleteAreaUseCase {
 
     await this.areaRepository.remove(area);
 
-    const propertyOld = await this.propertyRepository.findById(property_id,);
+    const propertyOld = await this.propertyRepository.findById(property_id);
 
     if (propertyOld) {
       propertyOld.cultivated_area -= area.cultivated_area;
       await this.propertyRepository.save(propertyOld);
-
     } else {
       throw new CustomAPIError.BadRequestError('Propriedade não encontrada.');
     }
-
   }
 }
 

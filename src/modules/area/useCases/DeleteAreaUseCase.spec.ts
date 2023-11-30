@@ -43,8 +43,14 @@ beforeAll(() => {
   createPropertyUseCase = new CreatePropertyUseCase(
     propertysRepositoryInMemory,
   );
-  createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory, propertysRepositoryInMemory);
-  deleteAreaUseCase = new DeleteAreaUseCase(areasRepositoryInMemory, propertysRepositoryInMemory);
+  createAreaUseCase = new CreateAreaUseCase(
+    areasRepositoryInMemory,
+    propertysRepositoryInMemory,
+  );
+  deleteAreaUseCase = new DeleteAreaUseCase(
+    areasRepositoryInMemory,
+    propertysRepositoryInMemory,
+  );
 });
 
 describe('Delete Area', () => {

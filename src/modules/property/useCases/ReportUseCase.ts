@@ -11,12 +11,8 @@ class ReportUseCase {
   ) // eslint-disable-next-line prettier/prettier
   { }
 
-  public async execute(
-    property_Id: string,
-  ): Promise<IProperty | null> {
-    const property = await this.propertysRepository.findById(
-      property_Id,
-    );
+  public async execute(property_Id: string): Promise<IProperty | null> {
+    const property = await this.propertysRepository.findById(property_Id);
 
     if (!property) {
       throw new CustomAPIError.BadRequestError('Property not exist.');

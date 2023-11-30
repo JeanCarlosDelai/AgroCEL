@@ -18,7 +18,9 @@ class ShowAreaUseCase {
   }: IShowArea): Promise<IArea | null> {
     const area = await this.areasRepository.findByIds(property_id, area_id);
     if (!area) {
-      throw new CustomAPIError.BadRequestError('Propriedade ou área não existe.');
+      throw new CustomAPIError.BadRequestError(
+        'Propriedade ou área não existe.',
+      );
     }
 
     return area;

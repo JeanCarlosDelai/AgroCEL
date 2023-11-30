@@ -39,7 +39,10 @@ beforeAll(() => {
   createPropertyUseCase = new CreatePropertyUseCase(
     propertysRepositoryInMemory,
   );
-  createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory, propertysRepositoryInMemory);
+  createAreaUseCase = new CreateAreaUseCase(
+    areasRepositoryInMemory,
+    propertysRepositoryInMemory,
+  );
 });
 
 describe('Create Area', () => {

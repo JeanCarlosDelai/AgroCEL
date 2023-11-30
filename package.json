@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
-    "compile": "npx tsc",
-    "start": "node dist/shared/infra/http/server.js",
+    "build": " npx tsc && npx tsc-alias",
+    "start": "node ./dist/src/shared/infra/http/server.js",
     "lint": "eslint ./src  --ext .ts",
     "lint:fix": "eslint ./src  --ext .ts --fix",
     "style:check": "prettier --check \"src/**/*.ts\" ",
@@ -21,6 +21,7 @@
   "dependencies": {
     "@types/handlebars": "^4.1.0",
     "bcryptjs": "^2.4.3",
+    "cjs": "^0.0.11",
     "class-transformer": "^0.5.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
@@ -70,6 +71,7 @@
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.1",
     "ts-node-dev": "^2.0.0",
+    "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.2.2"
   }

@@ -6,7 +6,6 @@ import showFieldNotebookReportUseCase from '@modules/reports/useCases/ShowFieldN
 
 export default class ReportController {
   public async report(request: Request, response: Response) {
-
     const property_id = request.params.property_id;
 
     const showReport = container.resolve(showReportUseCase);
@@ -14,11 +13,9 @@ export default class ReportController {
     const reportPdf = await showReport.execute(property_id);
 
     return response.status(StatusCodes.OK).json({ reportPdf });
-
   }
 
   public async fieldNotebookReport(request: Request, response: Response) {
-
     const property_id = request.params.property_id;
 
     const showReport = container.resolve(showFieldNotebookReportUseCase);
@@ -26,6 +23,5 @@ export default class ReportController {
     const reportPdf = await showReport.execute(property_id);
 
     return response.status(StatusCodes.OK).json({ reportPdf });
-
   }
 }
