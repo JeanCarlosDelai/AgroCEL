@@ -39,7 +39,7 @@ beforeAll(() => {
   createPropertyUseCase = new CreatePropertyUseCase(
     propertysRepositoryInMemory,
   );
-  createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory);
+  createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory, propertysRepositoryInMemory);
 });
 
 describe('Create Area', () => {
@@ -55,7 +55,7 @@ describe('Create Area', () => {
       name: 'Propriedade 1',
       user_id: user.id,
       total_area: 10,
-      cultivated_area: 5,
+      cultivated_area: 0,
       city: 'Coronel Pilar',
       state: 'RS',
     };
@@ -70,7 +70,7 @@ describe('Create Area', () => {
       variety: 'Jackes',
       driving_system: 'Latada',
       rookstock_type: 'Pé Franco',
-      cultivated_area: 5,
+      cultivated_area: 2,
       geographic_coordinates: '123.3456.6565',
       implementation_date: new Date(),
       number_rows: 50,
@@ -92,7 +92,7 @@ describe('Create Area', () => {
       variety: 'Jackes',
       driving_system: 'Latada',
       rookstock_type: 'Pé Franco',
-      cultivated_area: 5,
+      cultivated_area: 2,
       geographic_coordinates: '123.3456.6565',
       implementation_date: new Date(),
       number_rows: 50,
@@ -101,7 +101,7 @@ describe('Create Area', () => {
       number_plants: 2000,
     };
 
-    const expectErrorResponse = new Error('Area name already used.');
+    const expectErrorResponse = new Error('Nome da Área já está sendo Usado.');
 
     expect(createAreaUseCase.execute(areaData)).rejects.toThrowError(
       expectErrorResponse,

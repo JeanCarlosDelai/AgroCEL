@@ -61,7 +61,7 @@ beforeAll(() => {
   createPropertyUseCase = new CreatePropertyUseCase(
     propertysRepositoryInMemory,
   );
-  createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory);
+  createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory, propertysRepositoryInMemory);
   createCropUseCase = new CreateCropUseCase(cropsRepositoryInMemory);
   createCropDestinationUseCase = new CreateCropDestinationUseCase(
     cropsDestinationRepositoryInMemory,

@@ -43,7 +43,7 @@ beforeAll(() => {
   createPropertyUseCase = new CreatePropertyUseCase(
     propertysRepositoryInMemory,
   );
-  createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory);
+  createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory, propertysRepositoryInMemory);
   showAreaUseCase = new ShowAreaUseCase(areasRepositoryInMemory);
 });
 
@@ -96,7 +96,7 @@ describe('Show Area', () => {
   it('Should not be able to show one area', async () => {
     const property_id = '1232131321';
     const area_id = '1232131321';
-    const expectErrorResponse = new Error('Property or Area not exist.');
+    const expectErrorResponse = new Error('Propriedade ou área não existe.');
 
     expect(
       showAreaUseCase.execute({ property_id, area_id }),

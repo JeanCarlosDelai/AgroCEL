@@ -44,8 +44,8 @@ beforeAll(() => {
   createPropertyUseCase = new CreatePropertyUseCase(
     propertysRepositoryInMemory,
   );
-  createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory);
-  updateAreaUseCase = new UpdateAreaUseCase(areasRepositoryInMemory);
+  createAreaUseCase = new CreateAreaUseCase(areasRepositoryInMemory, propertysRepositoryInMemory);
+  updateAreaUseCase = new UpdateAreaUseCase(areasRepositoryInMemory, propertysRepositoryInMemory);
 });
 
 describe('Delete Area', () => {
@@ -127,7 +127,7 @@ describe('Delete Area', () => {
       distance_between_plants: 1,
       number_plants: 2000,
     };
-    const expectErrorResponse = new Error('Property or Area not exist.');
+    const expectErrorResponse = new Error('Propriedade ou área não existe.');
 
     expect(updateAreaUseCase.execute(areaDataUpdate)).rejects.toThrowError(
       expectErrorResponse,

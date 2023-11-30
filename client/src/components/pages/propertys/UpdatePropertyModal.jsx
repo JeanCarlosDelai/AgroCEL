@@ -9,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { CreatePropertySchema } from '../../../schemas/CreatePropertySchema';
 import usePropertyStore from '../../../store/propertys/usePropertyStore';
 import { AiOutlineEdit } from 'react-icons/ai';
+import { States } from '../../../Arrays/States';
 
 const UpdatePropertyModal = (property) => {
   const [isModalCreateOpen, setCreateModalOpen] = useState(false);
@@ -97,10 +98,11 @@ const UpdatePropertyModal = (property) => {
               hasError={JSON.stringify(errors.city?.message)}
             />
             <FormRow
-              type="text"
+              type="select"
               name="state"
               labelText="Estado"
               placeholder="Seu Estado"
+              options={States}
               control={control}
               hasError={JSON.stringify(errors.state?.message)}
             />

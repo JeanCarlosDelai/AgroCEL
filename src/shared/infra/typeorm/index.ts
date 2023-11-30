@@ -22,11 +22,13 @@ import CropSale from '@modules/cropsSale/infra/typeorm/entities/CropSale';
 
 export const dataSource = new DataSource({
   type: 'postgres',
-  host: 'localhost',
+  url: process.env.DATABASE_LOCAL == 'WEB' ? process.env.DATABASE_URL : '',
+  host: process.env.DATABASE_LOCAL == 'WEB' ? '' : 'localhost',
   port: 5432,
   username: 'postgres',
-  password: 'docker',
-  database: 'agrocel',
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE,
+
   entities: [
     User,
     Property,

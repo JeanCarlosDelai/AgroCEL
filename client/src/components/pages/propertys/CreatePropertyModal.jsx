@@ -7,6 +7,7 @@ import ClearButtonForm from '../../Buttons/ClearButtonForm';
 import SubmitButton from '../../Buttons/SubmitButton';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CreatePropertySchema } from '../../../schemas/CreatePropertySchema';
+import { States } from '../../../Arrays/States';
 
 const CreatePropertyModal = () => {
   const [isModalCreateOpen, setCreateModalOpen] = useState(false);
@@ -87,10 +88,11 @@ const CreatePropertyModal = () => {
               hasError={JSON.stringify(errors.city?.message)}
             />
             <FormRow
-              type="text"
+              type="select"
               name="state"
               labelText="Estado"
               placeholder="Seu Estado"
+              options={States}
               control={control}
               hasError={JSON.stringify(errors.state?.message)}
             />
