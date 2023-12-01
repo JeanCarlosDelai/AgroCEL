@@ -3,9 +3,10 @@ import {
   getUserFromLocalStorage,
   getTokenFromLocalStorage,
 } from './localStorage';
+const apiUrl = import.meta.env.VITE_BASE_URL;
 
 const customFetch = axios.create({
-  baseURL: 'http://localhost:3333/',
+  baseURL: `${apiUrl}/`,
 });
 
 customFetch.interceptors.request.use((config) => {
